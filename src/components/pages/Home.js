@@ -27,7 +27,7 @@ class Home extends React.Component {
         const getMyAccount = (userDetails) => {
             return (
                 <div>
-                    <TextEditor />
+                    {/* <TextEditor /> */}
                     <a href="/my-account">My Account ({userDetails.user.first_name} {userDetails.user.last_name}) </a>
                     <span className="link" onClick={() => this.logout()}> Logout</span>
                 </div>

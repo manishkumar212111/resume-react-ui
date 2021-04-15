@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASE_URL, EndPoints } from './config';
 
 const getLoggedInUserToken = () => {
-    return typeof localStorage !== 'undefined' && localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')).tokens.access.token;
+    return typeof localStorage !== 'undefined' && localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')).tokens && JSON.parse(localStorage.getItem('userDetail')).tokens.access.token;
 }
 
 const SECONDS = 30;

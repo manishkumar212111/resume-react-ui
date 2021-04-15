@@ -26,6 +26,27 @@ export const GetUserById = (userId) => dispatch =>{
   }
 }
 
+export const auth = () => dispatch =>{
+  try {
+    API.post('Auth' , {}, '' , function(res){
+      console.log(res);
+      if(res && res.data){
+          dispatch( { type: "USER_DETAIL_AUTH",
+            data : res.data
+          });
+        } else {
+            // window.location.href = '/';
+            console.log(res.data.message);
+            dispatch(setAlert(res.data.message , 'danger'));    
+        }
+    })
+    
+  } catch (err) {
+    console.log(err)
+    console.log(err)
+  }
+}
+
 export const UpdateUserById = (userId , data) => dispatch =>{
     try{
         dispatch({

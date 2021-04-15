@@ -46,6 +46,9 @@ const EndPoints = {
     },
     GoogleLoginValidate : {
         url : "/api/auth/google/validate"
+    },
+    Auth: {
+        url : "api/user/auth"
     }
 };
 

@@ -6,7 +6,7 @@ import Register from "../widgets/Register";
 import { Link } from "react-router-dom";
 
 function Auth(props) {
-    const [ showLogin , setShowLogin] = useState(false);
+    const [ showLogin , setShowLogin] = useState(props.location.hash == '#login' ? true : false);
     const SubmitCb = (obj) => {
         props.loginUser(obj);
     }
@@ -24,7 +24,6 @@ function Auth(props) {
         }
         
     }, [props.userDetail])
-    console.log(props.userDetail)
     return(
             <span className="test" style={{"margin-left": "41%"}}>
                 <span style={{padding: "32px" , cursor: "pointer"}} onClick={() => setShowLogin(true)}>Login</span><span style={{padding: "32px" , cursor: "pointer"}} onClick={() => setShowLogin(false)}>Register</span>

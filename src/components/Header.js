@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { auth } from "../actions/user";
+import { setLocalStorageItem , getLocalStorageItem} from "../utils/globals";
 
-const Header = ( { loggedIn } ) => (
+const Header = ( props ) => {
+    useEffect(() => {
+        props.auth();
+    }, []);
+    
+    useEffect(() => {
+        setLocalStorageItem('expires' , props.expires)
+    }, [props.expires])
+    console.log(props.expires)
+    return(
     <div>
         This is Header
         {/* <Link to="/" className="link">Home</Link>
@@ -10,10 +21,17 @@ const Header = ( { loggedIn } ) => (
         <Link to="/contact" className="link">Contact</Link>
         { loggedIn && <Link to="/secret" className="link">Secret</Link> } */}
     </div>
-);
+    )
+    
+}
 
 const mapStateToProps = ( state ) => ( {
     loggedIn: state.loggedIn,
+    expires: state.user.expires
 } );
 
-export default connect( mapStateToProps )( Header );
+const mapDispatchToProps = {
+    auth,
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( Header );
