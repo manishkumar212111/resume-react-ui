@@ -7,15 +7,25 @@ import { connect } from "react-redux";
   
 import Header from "./Header";
 import routes from "../routes";
-import Footer from "./Footer"
+import Footer from "./Footer";
+
+import Auth from "../components/pages/Auth";
+
 class Layout extends React.Component {
     constructor() {
         super();
         this.state = {
             title: "Welcome to Resume Maker!",
         };
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
+    componentDidMount() {
+      this.setState({
+        hashElement : window.location.hash
+      })
+      window.addEventListener('scroll', this.handleScroll);
+    }
     createNotification(type, message) {
         console.log(type , message);
         let configs = {
@@ -47,8 +57,22 @@ class Layout extends React.Component {
           this.createNotification(`${alert.alertType}`, alert.msg);
         });
     }
+
+    handleScroll(e) {
+      let elem = document.querySelector(".navbar");
+      if(document.getElementById('main').getBoundingClientRect().top < -55){
+        elem.classList.add('nav-sticky')
+      } else {
+        elem.classList.remove('nav-sticky')
+
+      }
+
+    }
+
     render() {
-        console.log(this.props , "sdbhbjh")
+        console.log(this.props , "sdbhbjh");
+
+        
         return (
             <div>
                 <ToastContainer 
@@ -62,13 +86,14 @@ class Layout extends React.Component {
                     draggable
                     pauseOnHover
                 />
-                <h1>{ this.state.title }</h1>
+                {/* <h1>{ this.state.title }</h1> */}
                 <Header />
-                <Switch>
-                    { routes.map( route => <Route key={ route.path } { ...route } /> ) }
-                </Switch>
+                <div id="main" onScroll={(e) => this.handleScroll(e)}>
+                  <Switch>
+                      { routes.map( route => <Route key={ route.path } { ...route } /> ) }
+                  </Switch>
+                </div>
                 <Footer />
-
             </div>
         );
     }
