@@ -3,6 +3,9 @@ import API from "../API"
 
 export const loginUser = ( data ) => dispatch =>{
   try{
+    dispatch( { type: "LOGIN_USER_LOADING",
+      data : true
+    });
 
     API.post('Login' , data, '' , function(res){
       
@@ -14,6 +17,9 @@ export const loginUser = ( data ) => dispatch =>{
             console.log(res.data.message);
             dispatch(setAlert(res.data.message , 'danger'));    
         }
+        dispatch( { type: "LOGIN_USER_LOADING",
+          data : false
+        });
     })
     
   } catch (err) {
@@ -24,7 +30,9 @@ export const loginUser = ( data ) => dispatch =>{
 
 export const GoogleLoginValidate = ( data ) => dispatch =>{
   try{
-
+    dispatch( { type: "LOGIN_USER_LOADING",
+      data : true
+    });
     API.post('GoogleLoginValidate' , data, '' , function(res){
       
       if(res && res.data.user){
@@ -35,6 +43,9 @@ export const GoogleLoginValidate = ( data ) => dispatch =>{
             console.log(res.data.message);
             dispatch(setAlert(res.data.message , 'danger'));    
         }
+        dispatch( { type: "LOGIN_USER_LOADING",
+          data : false
+        });
     })
     
   } catch (err) {
@@ -45,7 +56,9 @@ export const GoogleLoginValidate = ( data ) => dispatch =>{
 
 export const registerUser = ( data ) => dispatch =>{
   try{
-
+    dispatch( { type: "LOGIN_USER_LOADING",
+      data : true
+    });
     API.post('Register' , data, '' , function(res){
       
       if(res && res.data.user){
@@ -56,6 +69,9 @@ export const registerUser = ( data ) => dispatch =>{
             console.log(res.data.message);
             dispatch(setAlert(res.data.message , 'danger'));    
         }
+        dispatch( { type: "LOGIN_USER_LOADING",
+          data : false
+        });
     })
     
   } catch (err) {

@@ -11,7 +11,7 @@ const Header = ( props ) => {
         props.auth();
     }, []);
     useEffect(() => {
-
+        console.log(props.userDetail)
     })
     useEffect(() => {
         setLocalStorageItem('expires' , props.expires)
@@ -42,7 +42,7 @@ const Header = ( props ) => {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav ml-auto navbar-center" id="mySidenav">
                         <li className="nav-item active">
-                            <a href="#home" className="nav-link">Home</a>
+                            <Link to="/" className="nav-link">Home</Link>
                         </li>
                         <li className="nav-item">
                             <a href="#portfolio" className="nav-link">Templates</a>
@@ -58,10 +58,15 @@ const Header = ( props ) => {
                         </li>
 
                     </ul>
-                    <div className="navbar-button d-none d-lg-inline-block">
+                    
+                    {!(props.userDetail && props.userDetail.first_name) ? <div className="navbar-button d-none d-lg-inline-block">
                         <Link className="btn btn-sm btn-primary btn-round" to="#login" data-toggle="modal" onClick = {() => sethashElement('#login')} data-target="#login">Log In</Link>
                         <Link className="btn btn-sm btn-outline-primary btn-round"  to="#register" onClick = {() => sethashElement('#register')} data-toggle="modal">Register</Link>
-                    </div>
+                    </div> : 
+                    <div className="navbar-button d-none d-lg-inline-block">
+                        <Link className="btn btn-sm btn-primary btn-round" to="/">My Resume</Link>
+                        <Link className="btn btn-sm btn-outline-primary btn-round"  to="/my-account">Hello {props.userDetail.first_name}</Link>
+                    </div>}
                 </div>
             </div>
         </nav>
@@ -74,7 +79,8 @@ const Header = ( props ) => {
 
 const mapStateToProps = ( state ) => ( {
     loggedIn: state.loggedIn,
-    expires: state.user.expires
+    expires: state.user.expires,
+    userDetail: state.user.userDetail
 } );
 
 const mapDispatchToProps = {

@@ -1,6 +1,7 @@
 import React , { useState , useEffect , Fragment } from "react";
 import "./register.css";
 import validateUtility from "../../../utils/ValidateUtility"
+import GoogleLoginButton from "../../widgets/googleLogin";
 
 const Login = (props) => {
     const [fieldobj , setFieldObj] = useState({ first_name : "", last_name : "",  email : "manish.kumar212111@gmail.com" , password : "Password@123" });
@@ -54,35 +55,59 @@ const Login = (props) => {
         props.SubmitCb(fieldobj)  
 
     }
+
+    const loginCb = (token) => {
+        console.log(token);
+        props.googleLoginCb(token);
+    }
+
     return (
-        <div class="tab-pane fade show active" id="registertab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <div class="row">
-                <div class="col-md-6 form-group mt-1"><input name="name" placeholder="First Name" id="name" class="form-control f-12" type="text"/></div>
-                <div class="col-md-6 form-group mt-1"><input name="name" placeholder="Last Name" id="name" class="form-control f-12" type="text"/></div>
-                <div class="col-md-6 form-group mt-1"><input name="name" placeholder="Email" id="name" class="form-control f-12" type="email"/></div>
-                <div class="col-md-6 form-group mt-1"><input name="name" placeholder="Password" id="name" class="form-control f-12" type="password"/></div>
-                <div class="col-md-12 "><p class="f-12"><span class="mdi mdi-check"></span> By clicking this you agree our terms, and privacy policy</p></div>
-                <div class="col-md-12"><a href="#" class="btn btn-primary d-block shadow">Register</a> </div>
-                <div class="col-md-12"><div class="option text-center"><span>or</span></div></div>
-                <div class="col-md-12"><a href="#" class="btn btn-outline-muted d-block mt-4 shadow"><img src="images/google.svg"/> Sign-up with Google</a> </div>
+        <div className="tab-pane fade show active" id="registertab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div className="row">
+                <div className="col-md-6 form-group mt-1">
+                    <span className="error">{!errorObj.first_name.error && errorObj.first_name.msg}</span>          
+                    <input className="form-control f-12" type="text" placeholder="Enter First Name" name="first_name" value={fieldobj.first_name} onChange={(e) => handleChange(e)}/>
+                </div>
+                <div className="col-md-6 form-group mt-1">
+                    <span className="error">{!errorObj.last_name.error && errorObj.last_name.msg}</span>
+                    <input className="form-control f-12" placeholder="Enter Last Name" name="last_name" value={fieldobj.last_name} onChange={(e) => handleChange(e)}/>
+                </div>
+                <div className="col-md-6 form-group mt-1">
+                    <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
+                    <input className="form-control f-12" type="text" placeholder="Enter Email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)}/>
+                </div>
+                <div className="col-md-6 form-group mt-1">
+                    <span className="error">{!errorObj.password.error && errorObj.password.msg}</span>
+                    <input className="form-control f-12" type="password" placeholder="Enter Password" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)}/>
+                </div>
+                <div className="col-md-12 ">
+                    <p className="f-12"><span className="mdi mdi-check"></span> By clicking this you agree our terms, and privacy policy</p></div>
+                <div className="col-md-12" onClick={handleClick}>
+                    <button  className="btn btn-primary d-block shadow" disabled={props.login_user_loading}>Register</button>
+                </div>
+                <div className="col-md-12"><div className="option text-center"><span>or</span></div></div>
+                <div className="col-md-12">
+                    <GoogleLoginButton loginCb = {loginCb} buttonText="Signup with Google" /> 
+                    {/* <a href="#" className="btn btn-outline-muted d-block mt-4 shadow"><img src={google} /> Signup with Google</a>  */}
+                </div>
             </div>
         </div>
-        // <div className="login-container">    
-        //     <div className="container">
+        // <div classNameName="login-container">    
+        //     <div classNameName="container">
         //         <label for="uname"><b>First Name</b></label>
         //             <span className="error">{!errorObj.first_name.error && errorObj.first_name.msg}</span>
         //             <input type="text" placeholder="Enter First Name" name="first_name" value={fieldobj.first_name} onChange={(e) => handleChange(e)} required />
         //         <label for="uname"><b>Last Name</b></label>
-        //             <span className="error">{!errorObj.last_name.error && errorObj.last_name.msg}</span>
+        //             <span classNameName="error">{!errorObj.last_name.error && errorObj.last_name.msg}</span>
         //             <input type="text" placeholder="Enter Last Name" name="last_name" value={fieldobj.last_name} onChange={(e) => handleChange(e)} required />
         //         <label for="uname"><b>Email</b></label>
-        //             <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
+        //             <span classNameName="error">{!errorObj.email.error && errorObj.email.msg}</span>
         //             <input type="text" placeholder="Enter Email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} required />
         //         <label for="psw"><b>Password</b></label>
-        //             <span className="error">{!errorObj.password.error && errorObj.password.msg}</span>
+        //             <span classNameName="error">{!errorObj.password.error && errorObj.password.msg}</span>
         //             <input type="password" placeholder="Enter Password" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)} required />
         //         <button type="submit" onClick={handleClick}>Register</button>
-        //         {/* <span className="psw">Forgot <a href="#">password?</a></span> */}
+        //         {/* <span classNameName="psw">Forgot <a href="#">password?</a></span> */}
 
         //     </div>
         // </div>

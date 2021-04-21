@@ -1613,7 +1613,7 @@ textarea.form-control {
 
 .error {
   margin: 8px 0px;
-  display: none;
+  /* display: none; */
   color: #eb466d;
 }
 

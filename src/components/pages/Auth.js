@@ -47,7 +47,7 @@ function Auth(props) {
                                   </div>
                                   <div className="col-12">
                                       <div className="tab-content" id="v-pills-tabContent">
-                                        {showLogin ? <Login googleLoginCb = {googleLoginCb} SubmitCb = {SubmitCb} /> : <Register SubmitCb = {registerSubmitCb }/>}      
+                                        {showLogin ? <Login login_user_loading={props.login_user_loading} googleLoginCb = {googleLoginCb} SubmitCb = {SubmitCb} /> : <Register login_user_loading={props.login_user_loading} login_user_loading={props.login_user_loading} SubmitCb = {registerSubmitCb } googleLoginCb = {googleLoginCb}/>}      
                                       </div>
                                   </div>
                               </div>
@@ -74,6 +74,7 @@ function Auth(props) {
 
 const mapStateToProps = ( state ) => ( {
     userDetail: state.auth.userDetail,
+    login_user_loading: state.auth.login_user_loading
 } );
 
 const mapDispatchToProps = {

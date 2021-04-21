@@ -1,5 +1,6 @@
 
 import LOGIN_USER from "../actions/types"
+
 const initialState = {
     userDetail: [],
   };
@@ -12,6 +13,8 @@ const initialState = {
           return {...state, userDetail :  data};
         case 'LOGIN_USER':
             return {...state, userDetail :  data};
+        case 'LOGIN_USER_LOADING':
+          return {...state, login_user_loading : data};
         default: return state;
     }
   }
