@@ -7,12 +7,13 @@ import logo from "./../scss/images/logo-dark.png"
 import Auth from '../components/pages/Auth'
 const Header = ( props ) => {
     const [ hashElement , sethashElement] = useState('');
+    const [userDetail , setUserDetail] = useState(props.userDetail)
     useEffect(() => {
         props.auth();
     }, []);
     useEffect(() => {
-        console.log(props.userDetail)
-    })
+        setUserDetail(getLocalStorageItem('userDetail'));
+    } , [props])
     useEffect(() => {
         setLocalStorageItem('expires' , props.expires)
     }, [props.expires])
@@ -41,7 +42,7 @@ const Header = ( props ) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav ml-auto navbar-center" id="mySidenav">
-                        <li className="nav-item active">
+                        <li className="nav-item">
                             <Link to="/" className="nav-link">Home</Link>
                         </li>
                         <li className="nav-item">
@@ -54,7 +55,7 @@ const Header = ( props ) => {
                             <a href="#team" className="nav-link">Articles</a>
                         </li>
                         <li className="nav-item">
-                            <a href="#testimonial" className="nav-link">FAQs</a>
+                            <Link to="/faq" className="nav-link">FAQs</Link>
                         </li>
 
                     </ul>

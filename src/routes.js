@@ -7,7 +7,8 @@ import ForgotPsd from "./components/pages/forgotPassword";
 import ResetPsd from "./components/pages/resetPassword";
 import MyAccount from "./components/pages/MyAccount";
 import Price from "./components/pages/price";
-import Stripe from "./components/pages/price/stripeContainer"
+import Stripe from "./components/pages/price/stripeContainer";
+import Faq from "./components/pages/faq"
 export default [
     {
         path: "/",
@@ -42,6 +43,11 @@ export default [
     {
         path: "/payment",
         component: Stripe,
+        exact: true,
+    },
+    {
+        path: "/faq",
+        component: Faq,
         exact: true,
     },
     {

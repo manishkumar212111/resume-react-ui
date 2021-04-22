@@ -49,22 +49,22 @@ const ChangeEmail = (props) => {
 
     }
     return (
-        <div className="login-container">
-            <span onClick={() => props.closeCb(false)}>Close</span>    
-            <div className=" container">
-                <label for="uname"><b>Your Old password</b></label>
+            <>
+                <div>
+                    <label className="text-muted" for="uname"><b>Your Old password</b></label>
+                    <input type="password" className="form-control mb-4"  placeholder="Enter Password" name="old_password" value={fieldobj.old_password} onChange={(e) => handleChange(e)} required />
                     <span className="error">{!errorObj.old_password.error && errorObj.old_password.msg}</span>
-                    <input type="password" placeholder="Enter Password" name="old_password" value={fieldobj.old_password} onChange={(e) => handleChange(e)} required />
-                
-                <label for="uname"><b>Your New email</b></label>
+                </div>
+                <div>
+                    <label className="text-muted" for="uname"><b>Your New email</b></label>
+                    <input className="form-control mb-4" type="text" placeholder="Enter email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} required />
                     <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
-                    <input type="text" placeholder="Enter email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} required />
-                
-                <button type="submit" onClick={handleClick}>Change Email</button>
-                {/* <a href="/auth">Login </a> */}
-
-            </div>
-        </div>
+                </div>
+                <div className="col-md-8 pb-4">
+                    <button type="submit" className="btn btn-primary btn-sm" onClick={handleClick}>Change Email</button>
+                </div>
+            </>
+        
     )
 }
 

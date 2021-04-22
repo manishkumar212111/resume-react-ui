@@ -50,8 +50,8 @@ export const auth = () => dispatch =>{
 export const UpdateUserById = (userId , data) => dispatch =>{
     try{
         dispatch({
-            type : "UPDATING_USER",
-            data : {}
+            type : "LOADING_USER_ACCOUNT_EDIT",
+            data : true
         })
       API.patch('UpdateUserById' , data , userId , function(res){
         
@@ -64,6 +64,10 @@ export const UpdateUserById = (userId , data) => dispatch =>{
               console.log(res.data.message);
               dispatch(setAlert(res.data.message , 'danger'));    
           }
+          dispatch({
+            type : "LOADING_USER_ACCOUNT_EDIT",
+            data : false
+        })
       })
       
     } catch (err) {

@@ -1617,6 +1617,32 @@ textarea.form-control {
   color: #eb466d;
 }
 
+.accordion .card-header .mdi{
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+.collapse {
+  overflow: hidden;
+  max-height: 1000px;
+  transition: max-height 1s ease-in-out;
+}
+.mdi-plus:before {
+    content: "+";
+}
+.mdi-minus:before {
+  content: "-";
+}
+  .mdi:before, .mdi-set {
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 #ajaxsuccess {
   font-size: 16px;
   width: 100%;

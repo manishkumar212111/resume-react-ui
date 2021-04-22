@@ -71,32 +71,72 @@ const EditUserDetail = (props) => {
 
                                              
     return(
-        <div className="container">
-                <span onClick={() => {props.closeCb(false)}}>close</span>
-                <label for="uname"><b>First Name</b></label>
-                    <span className="error">{!errorObj.first_name.error && errorObj.first_name.msg}</span>
-                    <input type="text" placeholder="Enter First Name" name="first_name" value={fieldobj.first_name} onChange={(e) => handleChange(e)} required />
-                <label for="uname"><b>Last Name</b></label>
-                    <span className="error">{!errorObj.last_name.error && errorObj.last_name.msg}</span>
-                    <input type="text" placeholder="Enter Last Name" name="last_name" value={fieldobj.last_name} onChange={(e) => handleChange(e)} required />
-                <label for="uname"><b>Email</b></label>
-                    <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
-                    <input type="text" placeholder="Enter Email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} disabled required />
-                <label for="psw"><b>Date of birth</b></label>
+        <div className="row">
+                <div className="col-md-12 ">
+                    <h6> <span className="mdi mdi-account"></span> Account Info</h6>
+                </div>
+                <div className="col-md-12">
+                    <div className="bg-light p-4">
+                   <div className="row">
+                       <div className="col-md-4">
+                           <label className="text-muted">First Name</label>
+                           <input className="form-control mb-4" type="text" placeholder="Enter First Name" name="first_name" value={fieldobj.first_name} onChange={(e) => handleChange(e)} required />
+                           <span className="error">{!errorObj.first_name.error && errorObj.first_name.msg}</span>
+                       </div>
+                       <div className="col-md-4">
+                           <label className="text-muted">Last name</label>
+                           <input className="form-control mb-4"  placeholder="Enter Last Name" name="last_name" value={fieldobj.last_name} onChange={(e) => handleChange(e)}/>
+                           <span className="error">{!errorObj.last_name.error && errorObj.last_name.msg}</span>
+                       </div>
+                       <div className="col-md-4">
+                           <label className="text-muted">Date of birth</label>
+                           <DatePicker
+                                selected={fieldobj.dob ? new Date(fieldobj.dob) : ""}
+                                dateFormat="dd/MM/yyyy"
+                                onSelect={handleDateSelect} //when day is clicked
+                                maxDate={new Date('01-01-2005')}
+                                showYearDropdown = {true}
+                                showMonthDropdown = {true}
+                                placeholderText="Enter date of birth"
+                                className="form-control mb-4"
+                            />
+                            <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
+                           {/* <input type="text" className="form-control mb-4 "/> */}
+                       </div>
+                       <div className="col-md-12 text-right">
+                           <button className={`btn btn-primary ${props.loading_account_info_edit ? "btnDisabled" : ""}`} disabled={props.loading_account_info_edit ? true : false} onClick={handleClick}>SAVE</button>
+                       </div>
+                   </div>
+                    </div>
+                </div>
+            </div>
+        
+        // <div className="container">
+        //         <span onClick={() => {props.closeCb(false)}}>close</span>
+        //         <label for="uname"><b>First Name</b></label>
+        //             <span className="error">{!errorObj.first_name.error && errorObj.first_name.msg}</span>
+        //             <input type="text" placeholder="Enter First Name" name="first_name" value={fieldobj.first_name} onChange={(e) => handleChange(e)} required />
+        //         <label for="uname"><b>Last Name</b></label>
+        //             <span className="error">{!errorObj.last_name.error && errorObj.last_name.msg}</span>
+        //             <input type="text" placeholder="Enter Last Name" name="last_name" value={fieldobj.last_name} onChange={(e) => handleChange(e)} required />
+        //         <label for="uname"><b>Email</b></label>
+        //             <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
+        //             <input type="text" placeholder="Enter Email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} disabled required />
+        //         <label for="psw"><b>Date of birth</b></label>
                     
-                    <DatePicker
-                            selected={fieldobj.dob ? new Date(fieldobj.dob) : ""}
-                            dateFormat="dd/MM/yyyy"
-                            onSelect={handleDateSelect} //when day is clicked
-                            maxDate={new Date('01-01-2005')}
-                            showYearDropdown = {true}
-                            showMonthDropdown = {true}
-                            placeholderText="Enter date of birth"
-                        />
-                <button type="submit" onClick={handleClick}>Update</button>
-                {/* <span className="psw">Forgot <a href="#">password?</a></span> */}
+        //             <DatePicker
+        //                     selected={fieldobj.dob ? new Date(fieldobj.dob) : ""}
+        //                     dateFormat="dd/MM/yyyy"
+        //                     onSelect={handleDateSelect} //when day is clicked
+        //                     maxDate={new Date('01-01-2005')}
+        //                     showYearDropdown = {true}
+        //                     showMonthDropdown = {true}
+        //                     placeholderText="Enter date of birth"
+        //                 />
+        //         <button type="submit" onClick={handleClick}>Update</button>
+        //         {/* <span className="psw">Forgot <a href="#">password?</a></span> */}
 
-        </div>
+        // </div>
     )
 }
 
