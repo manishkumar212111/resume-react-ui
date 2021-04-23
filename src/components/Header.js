@@ -10,6 +10,10 @@ const Header = ( props ) => {
     const [userDetail , setUserDetail] = useState(props.userDetail)
     useEffect(() => {
         props.auth();
+            window.addEventListener('storage', () => {
+                console.log("on storage change event listener");
+               setUserDetail(localStorage.getItem('userDetail') ? localStorage.getItem('userDetail').user : {})   
+            });            
     }, []);
     useEffect(() => {
         setUserDetail(getLocalStorageItem('userDetail'));
@@ -49,7 +53,10 @@ const Header = ( props ) => {
                             <a href="#portfolio" className="nav-link">Templates</a>
                         </li>
                         <li className="nav-item">
-                            <a href="#pricing" className="nav-link">Pricing</a>
+                            <a href="/pricing" className="nav-link">Pricing</a>
+                        </li>
+                        <li className="nav-item">
+                            <a href="/contact" className="nav-link">Contact</a>
                         </li>
                         <li className="nav-item">
                             <a href="#team" className="nav-link">Articles</a>
@@ -64,9 +71,11 @@ const Header = ( props ) => {
                         <Link className="btn btn-sm btn-primary btn-round" to="#login" data-toggle="modal" onClick = {() => sethashElement('#login')} data-target="#login">Log In</Link>
                         <Link className="btn btn-sm btn-outline-primary btn-round"  to="#register" onClick = {() => sethashElement('#register')} data-toggle="modal">Register</Link>
                     </div> : 
-                    <div className="navbar-button d-none d-lg-inline-block">
+                    <div class="navbar-button d-none d-lg-inline-block">
+                        {localStorage.getItem('expires') == 'true' && <Link to="/pricing"><button class="btn btn-sm btn-warning btn-round"><span class="mdi mdi-lock-open-variant-outline"></span>Upgrade</button></Link>}
                         <Link className="btn btn-sm btn-primary btn-round" to="/">My Resume</Link>
-                        <Link className="btn btn-sm btn-outline-primary btn-round"  to="/my-account">Hello {props.userDetail.first_name}</Link>
+                        <Link to="/my-account"><div class="btn btn-sm btn-soft-dark btn-round pt-0 pb-0"><span>Hello, {props.userDetail.first_name} </span><span class="mdi mdi-account-circle mdi-24px"></span></div> </Link>
+                        {/* <Link className="btn btn-sm btn-outline-primary btn-round"  to="/my-account">Hello {props.userDetail.first_name}</Link> */}
                     </div>}
                 </div>
             </div>

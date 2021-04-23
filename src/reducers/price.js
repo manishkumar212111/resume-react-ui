@@ -15,7 +15,7 @@ const initialState = {
           return {...state, planDetail :  data, plan_detail_loading : false};
 
         case "PLAN_LIST":
-          return {...state, plans :  data.results, totalPages : data.totalPages, plan_detail_loading : false};
+          return {...state, plans :  data , plan_detail_loading : false};
         
         default: return state;
     }

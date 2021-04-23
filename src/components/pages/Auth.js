@@ -20,7 +20,9 @@ function Auth(props) {
     useEffect(() => {
         if(props.userDetail && props.userDetail.user){
             typeof localStorage !== 'undefined' &&  localStorage.setItem('userDetail', JSON.stringify(props.userDetail))
-            window.location.href = '/';
+            let location = window.login_redirect;
+            window.location.href = location ? location : '/';
+            window.login_redirect = null;
         }
         
     }, [props.userDetail])

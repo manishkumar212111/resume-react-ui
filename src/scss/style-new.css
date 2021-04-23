@@ -1610,7 +1610,9 @@ textarea.form-control {
   color: #4252f9;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
-
+.form-control-payment {
+  padding : 10px 10px !important;;
+}
 .error {
   margin: 8px 0px;
   /* display: none; */

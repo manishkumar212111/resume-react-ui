@@ -5,6 +5,8 @@ import alert from "./alert";
 import auth from "./auth";
 import user from "./user"
 import price from "./price";
+import common from "./common";
+
 
 const sessionReducer = ( state = false, action ) => {
     switch ( action.type ) {
@@ -20,7 +22,8 @@ const appReducers = combineReducers({
     alert,
     auth,
     user,
-    price
+    price,
+    common
 });
 
 const rootReducer = (state, action) => {
