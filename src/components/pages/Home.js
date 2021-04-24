@@ -7,11 +7,7 @@ import headerImg from "../../scss/images/features/bg-1.svg";
 
 import Carousal from "../widgets/carousal";
 import Benefits from "../widgets/benefits";
-
-import r1 from "../../scss/images/r1.png";
-import r2 from "../../scss/images/r2.png";
-import r3 from "../../scss/images/r3.png";
-import r4 from "../../scss/images/r4.png";
+import { templates } from "../../configs";
 
 
 import start1 from "../../scss/images/start1.svg";
@@ -106,39 +102,15 @@ class Home extends React.Component {
                                 
                         <Carousal show={4}>
 
-                        
-                                        {/* <div className="carousel-item active"> */}
-                                            {/* <div className="row"> */}
-                                                <div className="col-md-3">
-                                                     <img src={r1} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r2} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r3} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r1} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r2} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r3} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r1} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r2} className="d-block w-100" alt="..." />
-                                                </div>
-                                                <div className="col-md-3">
-                                                     <img src={r3} className="d-block w-100" alt="..." />
-                                                </div>
+                        {
+                            templates.map((item) => (
+                                        <div className="col-md-3">
+                                            <img src={item.img} className="d-block w-100" height="294" loading="lazy" alt="..." />
+                                        </div>
+
+                                    ))
+                                }
                                                 
-                                            {/* </div> */}
-                                        {/* </div> */}
 
                                     
                                 </Carousal>

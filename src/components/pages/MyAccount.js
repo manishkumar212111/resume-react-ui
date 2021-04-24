@@ -8,7 +8,7 @@ import ChangeEmail from "../widgets/changeEmail";
 import { sendResetLink } from ".././../actions/auth"
 import UserChoiceNotif from "../widgets/UserChoiceNotif"
 import { Link } from 'react-router-dom';
-
+import account from "../../scss/images/account.svg"
 import Shimmer from "../widgets/shimmerEffect";
 function MyAccount(props) {
     const [currentUserDetail , setCurrentUserDetail] = useState({});
@@ -74,7 +74,7 @@ function MyAccount(props) {
         return ( <Shimmer />)
     }
     return (
-
+    <>    
     <section className="align-items-center pt-5">
         <div className="container">
             <div className="row align-items-center mt-5 pt-2 mb-4 text-center">
@@ -158,6 +158,16 @@ function MyAccount(props) {
             </div>
         </div>
     </section>
+    <section class="mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><img src={account}/> </div>
+                <div class="col-md-5"><h1 class="home-title mt-5">30% Discount on annual plans</h1> </div>
+                <div class="col-md-3"><button class="btn btn-danger mt-5">Switch to yearly plans</button></div>
+            </div>
+        </div>
+    </section>
+    </>
         // <div>My account
         //     <div>Section 1 : </div> 
         //     { currentUserDetail && currentUserDetail.subscription ? currentUserDetail.subscription.type == 'free' ? 'Free (upgrade to pro)' : currentUserDetail.subscription.type : "" }
