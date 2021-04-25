@@ -8,7 +8,8 @@ import ResetPsd from "./components/pages/resetPassword";
 import MyAccount from "./components/pages/MyAccount";
 import Price from "./components/pages/price";
 import Stripe from "./components/pages/price/stripeContainer";
-import Faq from "./components/pages/faq"
+import Faq from "./components/pages/faq";
+import Tool from "./components/pages/tool";
 export default [
     {
         path: "/",
@@ -49,6 +50,10 @@ export default [
         path: "/faq",
         component: Faq,
         exact: true,
+    },
+    {
+        path: "/resume-maker/:template_id",
+        component: Tool,
     },
     {
         path: "/about",

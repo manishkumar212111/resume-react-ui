@@ -1613,6 +1613,15 @@ textarea.form-control {
 .form-control-payment {
   padding : 10px 10px !important;;
 }
+canvas {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  height: auto;
+  margin-top: 50px;
+}
+
+.tool .nav-link img { margin: 0 auto; margin-bottom: 10px;}
 .error {
   margin: 8px 0px;
   /* display: none; */

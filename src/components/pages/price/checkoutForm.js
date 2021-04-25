@@ -62,7 +62,7 @@ function CheckoutForm(props) {
                   planId : props.planDetail.id
                 }, '',
                 (result) => {
-                  
+                  console.log(result)
                   handleServerResponse(result.data);
                 }
               )
@@ -84,7 +84,7 @@ function CheckoutForm(props) {
 
   const handleServerResponse = (response) => {
     if (response.error) {
-      setError(error.message)
+      setError(response.message)
       setButtonDisable(false);
       // Show error from server on payment form
     } else if (response.requires_action) {
@@ -103,7 +103,8 @@ function CheckoutForm(props) {
                 {
                   payment_intent_id : res.paymentIntent.id
                 }, '',
-                (result) => {
+                (result , err) => {
+                  console.log(result , err)
                   handleServerResponse(result.data);
                 }
               )
@@ -200,7 +201,7 @@ function CheckoutForm(props) {
           <button style={{"padding" : "9px"}} className={`form-control btn btn-primary ${buttonDisabled ? 'btnDisabled' : " "}`} type="submit" disabled={buttonDisabled || !stripe}>
             Pay {props.planDetail.currencyType} {props.planDetail.calculated_price}
           </button>
-          {error && <span>{error}</span>}
+          {error && <span class="error">{error}</span>}
         </div>
     </form>
     </div>

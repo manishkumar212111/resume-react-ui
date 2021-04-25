@@ -27,7 +27,7 @@ function Auth(props) {
         
     }, [props.userDetail])
     return(
-        <div className="modal fade show" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <><div className="modal fade show" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">
 
@@ -62,7 +62,10 @@ function Auth(props) {
                 </div>
             </div>
         </div>
-            // <span className="test" style={{"margin-left": "41%"}}>
+
+        <div class="modal-backdrop fade show"></div>
+        </>
+// <span className="test" style={{"margin-left": "41%"}}>
             //     <span style={{padding: "32px" , cursor: "pointer"}} onClick={() => setShowLogin(true)}>Login</span><span style={{padding: "32px" , cursor: "pointer"}} onClick={() => setShowLogin(false)}>Register</span>
             //     {showLogin ? <Login googleLoginCb = {googleLoginCb} SubmitCb = {SubmitCb} /> : <Register SubmitCb = {registerSubmitCb }/>}
             //     <span className="psw" style={{"margin-right": "41%"}}><a href="forgot-password">Forgot password?</a></span>
