@@ -10,6 +10,11 @@ import Price from "./components/pages/price";
 import Stripe from "./components/pages/price/stripeContainer";
 import Faq from "./components/pages/faq";
 import Tool from "./components/pages/tool";
+import BlogList from "./components/pages/blog/blogList";
+import BlogDetail from "./components/pages/blog/blogDetail";
+import Template from "./components/pages/template";
+import myResume from "./components/pages/myResume";
+
 export default [
     {
         path: "/",
@@ -52,8 +57,29 @@ export default [
         exact: true,
     },
     {
+        path: "/resume-maker/edit/:id",
+        component: Tool,
+    },
+    {
         path: "/resume-maker/:template_id",
         component: Tool,
+    },
+    
+    {
+        path: "/blogs/:id",
+        component: BlogDetail,
+    },
+    {
+        path: "/templates",
+        component: Template,
+    },
+    {
+        path: "/my-resumes",
+        component: myResume,
+    },
+    {
+        path: "/blogs",
+        component: BlogList,
     },
     {
         path: "/about",

@@ -4,7 +4,7 @@ import { fetchData } from "../../actions/home";
 import { checkLogin } from "../../utils/globals";
 import TextEditor from "../../components/widgets/TextEditor";
 import headerImg from "../../scss/images/features/bg-1.svg";
-
+import {Link} from "react-router-dom"
 import Carousal from "../widgets/carousal";
 import Benefits from "../widgets/benefits";
 import { templates } from "../../configs";
@@ -44,7 +44,7 @@ class Home extends React.Component {
                 <div>
                     {/* <TextEditor /> */}
                     <a href="/my-account">My Account ({userDetails.user.first_name} {userDetails.user.last_name}) </a>
-                    <span classNameName="link" onClick={() => this.logout()}> Logout</span>
+                    <span className="link" onClick={() => this.logout()}> Logout</span>
                 </div>
             )
         }
@@ -105,7 +105,7 @@ class Home extends React.Component {
                         {
                             templates.map((item) => (
                                         <div className="col-md-3">
-                                            <img src={item.img} className="d-block w-100" height="294" loading="lazy" alt="..." />
+                                            <Link to={`/resume-maker/${item.id}`}><img src={item.img} className="d-block w-100" height="294" loading="lazy" alt="..." /></Link>
                                         </div>
 
                                     ))

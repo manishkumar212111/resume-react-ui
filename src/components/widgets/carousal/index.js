@@ -58,10 +58,10 @@ export default function Carousel(props)  {
                                         {/* You can alwas change the content of the button to other things */}
                 {
                     currentIndex > 0 &&
-                    <a className="carousel-control-prev" onClick={prev}>
-                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span className="sr-only">Previous</span>
-                    </a>
+                    <span className="carousel-control-prev" onClick={prev}>
+                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="sr-only">Previous</span>
+                    </span>
                     // <button onClick={prev} className="left-arrow">
                     //     &lt;
                     // </button>

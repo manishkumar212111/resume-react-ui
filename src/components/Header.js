@@ -50,7 +50,7 @@ const Header = ( props ) => {
                             <Link to="/" className="nav-link">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a href="#portfolio" className="nav-link">Templates</a>
+                            <a href="/templates" className="nav-link">Templates</a>
                         </li>
                         <li className="nav-item">
                             <a href="/pricing" className="nav-link">Pricing</a>
@@ -59,7 +59,7 @@ const Header = ( props ) => {
                             <a href="/contact" className="nav-link">Contact</a>
                         </li>
                         <li className="nav-item">
-                            <a href="#team" className="nav-link">Articles</a>
+                            <Link to="/blogs" className="nav-link">Articles</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/faq" className="nav-link">FAQs</Link>
@@ -73,7 +73,7 @@ const Header = ( props ) => {
                     </div> : 
                     <div class="navbar-button d-none d-lg-inline-block">
                         {localStorage.getItem('expires') == 'true' && <Link to="/pricing"><button class="btn btn-sm btn-warning btn-round"><span class="mdi mdi-lock-open-variant-outline"></span>Upgrade</button></Link>}
-                        <Link className="btn btn-sm btn-primary btn-round" to="/">My Resume</Link>
+                        <Link to="/my-resumes" className="btn btn-sm btn-primary btn-round">My Resume</Link>
                         <Link to="/my-account"><div class="btn btn-sm btn-soft-dark btn-round pt-0 pb-0"><span>Hello, {props.userDetail.first_name} </span><span class="mdi mdi-account-circle mdi-24px"></span></div> </Link>
                         {/* <Link className="btn btn-sm btn-outline-primary btn-round"  to="/my-account">Hello {props.userDetail.first_name}</Link> */}
                     </div>}
