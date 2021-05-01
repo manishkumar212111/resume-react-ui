@@ -24,7 +24,28 @@ const background_color = ['color1','color2','color3','color4','color5','color6']
 
 const text_color = ['font_color1','font_color2','font_color3','font_color4','font_color5','font_color6'];
 const theme = ['theme1', 'theme2', 'theme3','theme4']
+
+const fonts = ['fjvkjdfvbjfd', 'dfvhbjhdbvdhf','fdvbhdfjhdfvbh','fdhvbjdfvbjhdf','fdjvbjdfvbjdfh'];
+const fontPairing = ['dfvdfvdf','bfgbfgbfg','ffgbfgbfgb','gbfgbfgbfg','bfgbfgbfgb','bgfbfgbfgbfg'];
+
+const fontSize = [
+    { text : "small" , value:"10" },
+    { text : "Medium" , value:"14" },
+    { text : "Large" , value:"18" },
+    { text : "Extra Large" , value:"25" }
+]
+
+const icons = [
+    { value:"summary", text: "Summary" , status : false},
+    { value:"jobTitle", text: "Job Title" , status : false},
+    { value:"industry", text: "Industry" , status : false},
+    { value:"photo", text: "Photo" , status : false}
+]
 module.exports ={
+    icons : icons,
+    fontSize : fontSize,
+    fonts : fonts,
+    fontPairing : fontPairing,
     background_color : background_color,
     text_color : text_color,
     theme : theme,

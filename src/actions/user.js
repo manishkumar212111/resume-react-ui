@@ -15,8 +15,8 @@ export const GetUserById = (userId) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
     })
     
@@ -36,8 +36,8 @@ export const auth = () => dispatch =>{
           });
         } else {
             // window.location.href = '/';
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
     })
     
@@ -61,8 +61,8 @@ export const UpdateUserById = (userId , data) => dispatch =>{
             });
             dispatch(setAlert("Details updated successfully" , 'success'));    
           } else {
-              console.log(res.data.message);
-              dispatch(setAlert(res.data.message , 'danger'));    
+              //console.log(res.data.message);
+              res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
           dispatch({
             type : "LOADING_USER_ACCOUNT_EDIT",
@@ -90,8 +90,8 @@ export const UpdateUserById = (userId , data) => dispatch =>{
             });
             dispatch(setAlert("Details updated successfully" , 'success'));    
           } else {
-              console.log(res.data.message);
-              dispatch(setAlert(res.data.message , 'danger'));    
+              //console.log(res.data.message);
+              res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
       })
       
@@ -115,8 +115,8 @@ export const UpdateUserById = (userId , data) => dispatch =>{
             });
             dispatch(setAlert("Details updated successfully" , 'success'));    
           } else {
-              console.log(res.data.message);
-              dispatch(setAlert(res.data.message , 'danger'));    
+              //console.log(res.data.message);
+              res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
       })
       
@@ -145,8 +145,8 @@ export const UpdateUserById = (userId , data) => dispatch =>{
               }
 
           } else {
-              console.log(res.data.message);
-              dispatch(setAlert(res.data.message , 'danger'));    
+              //console.log(res.data.message);
+              res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
       })
       

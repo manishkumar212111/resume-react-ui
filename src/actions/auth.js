@@ -14,8 +14,8 @@ export const loginUser = ( data ) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
         dispatch( { type: "LOGIN_USER_LOADING",
           data : false
@@ -40,8 +40,8 @@ export const GoogleLoginValidate = ( data ) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
         dispatch( { type: "LOGIN_USER_LOADING",
           data : false
@@ -66,8 +66,8 @@ export const registerUser = ( data ) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
         dispatch( { type: "LOGIN_USER_LOADING",
           data : false
@@ -92,8 +92,8 @@ export const sendResetLink = ( data ) => dispatch =>{
       if(res && !res.data.message){
         dispatch(setAlert("Reset link sent" , 'success'));    
       } else {
-          console.log(res.data.message);
-          dispatch(setAlert(res.data.message , 'danger'));    
+          //console.log(res.data.message);
+          res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
       }
       dispatch( { type: "LOGIN_USER_LOADING",
         data : false
@@ -115,8 +115,8 @@ export const resetPassword = ( token , password ) => dispatch =>{
         dispatch(setAlert("Password reset successfull" , 'success'));    
 
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
     })
     

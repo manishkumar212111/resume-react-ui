@@ -35,8 +35,8 @@ export const GetPlanById = (planId, currencyType) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
     })

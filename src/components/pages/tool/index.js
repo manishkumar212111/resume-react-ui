@@ -49,7 +49,19 @@ function Index (props){
             case 'text_color':
                 props.updateLocalState({...resume_detail, style : {...resume_detail.style , text_color : value}})
                 break;
-
+            case 'font':
+                props.updateLocalState({...resume_detail, style : {...resume_detail.style , fontType : value}})
+                break;
+            case 'fontPairing':
+                props.updateLocalState({...resume_detail, style : {...resume_detail.style , fontPairing : value}})
+                break;
+            case 'fontSize':
+                props.updateLocalState({...resume_detail, style : {...resume_detail.style , fontSize : value}})
+                break;
+            case 'icons':
+                props.updateLocalState({...resume_detail, style : {...resume_detail.style , icons : value}})
+                break;
+            
         }
     }
     console.log(props , resume_detail);
@@ -63,7 +75,7 @@ function Index (props){
             <div className="tool bg-dark mt-5">
                 <div className="container">
                     <div className="row">
-                        <SideBar handleSidebar={handleSidebar} resume_detail={resume_detail}/>
+                        <SideBar handleSidebar={handleSidebar} resume_detail={resume_detail} basic_info={props.basic_info}/>
                         <div className="col-md-6 p-5">
                             <div className="row">
                                 <div className="col-md-12 text-center">
@@ -88,6 +100,7 @@ function Index (props){
 
 const mapStateToProps = ( state ) => ( {
     resume_detail: state.tool.resume_detail,
+    basic_info: state.tool.basic_info,
     loading_tools : state.tool.loading_tools
 } );
 

@@ -7,6 +7,10 @@ import font from "../../../scss/images/font.svg";
 import content from "../../../scss/images/content.svg";
 import Template from "./component/template"
 import Background from "./component/background";
+import Fonts from "./component/fonts";
+import BasicInfo from "./component/basic_info";
+import { updateUserInfo } from "../../../actions/tool";
+import { connect } from "react-redux";
 
 function SideBar(props){
     const [type , setType] = useState('');
@@ -14,6 +18,9 @@ function SideBar(props){
         setType(type);
     }
 
+    const basicInfoUpdate = (fieldObj) => {
+        props.updateUserInfo(fieldObj)
+    }
     return(
         <>
         <div className="col-md-2">
@@ -66,8 +73,33 @@ function SideBar(props){
                     
                 </div>
                 }
+
+            {type == 'font' && 
+                <div class="col-md-4 ">
+                        <div class="pt-5" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
+                            <Fonts handleSidebar = { (value , key) => {props.handleSidebar(value , key);}} />
+                        </div>   
+                    
+                </div>
+            }
+            {type == 'info' && 
+                <div class="col-md-4 ">
+                        <div class="pt-5" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
+                            <BasicInfo basicInfoUpdate={basicInfoUpdate} handleSidebar = { (value , key) => {props.handleSidebar(value , key)}} basic_info = {props.basic_info} />
+                        </div>   
+                    
+                </div>
+            }
         </>
     )
 };
 
-export default SideBar;
+const mapStateToProps = ( state ) => ( {
+});
+
+const mapDispatchToProps = {
+    updateUserInfo
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( SideBar );
+   

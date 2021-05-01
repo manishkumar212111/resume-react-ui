@@ -17,8 +17,8 @@ export const createResume = (data) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            // //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
       dispatch({
@@ -49,8 +49,8 @@ export const getResumeById = (id) => dispatch =>{
             data : res.data
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            // //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
       dispatch({
@@ -64,6 +64,35 @@ export const getResumeById = (id) => dispatch =>{
     console.log(err)
   }
 } 
+
+export const updateUserInfo = (data) => ( dispatch ) =>{
+  try {
+    
+  dispatch({
+      type : "LOADING_TOOLS",
+      data : true
+  })
+  API.post('ResumeList', data , "" , function(res){
+    if(res && res.data && res.data.id){
+      dispatch( { type: "RESUME_INFO_UPDATE",
+        data : res.data
+      });
+      dispatch(setAlert("Basic details updated successfully" , 'success'));
+
+    } else {
+        // //console.log(res.data.message);
+        res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
+    }
+
+      dispatch({
+          type : "LOADING_TOOLS",
+          data : false
+      })
+  })
+} catch (error) {
+  console.log(error);
+}
+}
 
 export const updateLocalState = (data) => dispatch =>{
     try{

@@ -14,8 +14,8 @@ export const sendEnquiry = (data) => dispatch =>{
             data : true
           });
         } else {
-            console.log(res.data.message);
-            dispatch(setAlert(res.data.message , 'danger'));    
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
       dispatch({
