@@ -38,7 +38,7 @@ const Header = ( props ) => {
        <> 
        <nav className="navbar navbar-expand-lg fixed-top navbar-custom sticky">
             <div className="container">
-                <a className="navbar-brand logo text-uppercase" href="index.html">
+                <a className="navbar-brand logo text-uppercase" href="/">
                     <img src={logo} alt="" height="22" />
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

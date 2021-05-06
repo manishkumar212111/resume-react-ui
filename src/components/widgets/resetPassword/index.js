@@ -46,20 +46,26 @@ const ResetPassword = (props) => {
 
     }
     return (
-        <div className="login-container">    
-            <div className=" container">
-                <label for="uname"><b>Your New password</b></label>
+        <section className="align-items-center pt-5">
+            <div className="container">
+                <div className="row align-items-center mt-5 pt-2 mb-4 text-center">
+                    <div className="col-lg-12"> <h1 className="home-title">Reset Password</h1></div>
+                </div>
+                <div className="col-md-6 form-group mt-1">
                     <span className="error">{!errorObj.password.error && errorObj.password.msg}</span>
-                    <input type="password" placeholder="Enter Password" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)} required />
-                <label for="uname"><b>Repeat your password</b></label>
+                    <input className="form-control f-12" type="password" placeholder="Enter Password" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)} required />
+                </div>
+                <div className="col-md-6 form-group mt-1">
                     <span className="error">{!errorObj.repeat_password.error && errorObj.repeat_password.msg}</span>
-                    <input type="password" placeholder="Enter Password" name="repeat_password" value={fieldobj.repeat_password} onChange={(e) => handleChange(e)} required />
-                
-                <button type="submit" onClick={handleClick}>Reset password</button>
-                <a href="/auth">Login </a>
+                    <input className="form-control f-12" type="password" placeholder="Enter Password" name="repeat_password" value={fieldobj.repeat_password} onChange={(e) => handleChange(e)} required />
+                    <input type="button" className="btn btn-primary mt-3" disabled={props.login_user_loading} type="button" onClick={handleClick} value="Reset password"></input>
+
+                </div>                
+                {/* <a href="/auth">Login </a> */}
 
             </div>
-        </div>
+         </section>
+
     )
 }
 

@@ -43,15 +43,19 @@ const ForgotPassword = (props) => {
 
     }
     return (
-        <div className="login-container">    
+        <section className="align-items-center pt-5">
             <div className="container">
-                <p>Enter Email associated with your account to get reset password link over email</p>
-                <label for="uname"><b>Email</b></label>
-                    <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
-                    <input type="text" placeholder="Enter Email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} required />
-                <button type="submit" onClick={handleClick}>Send Email</button>
+                <div className="row align-items-center mt-5 pt-2 mb-4 text-center">
+                    <div className="col-lg-12"> <h1 className="home-title">Forgot Password</h1></div>
+                </div>
+                <p>Enter email associated with your account to get reset password link over email</p>
+                <div className="col-md-6 form-group mt-1">
+                <span className="error">{!errorObj.email.error && errorObj.email.msg}</span>
+                    <input className="form-control f-12" type="text" placeholder="Enter Email" name="email" value={fieldobj.email} onChange={(e) => handleChange(e)} required />
+                    <button className="btn btn-primary mt-3" disabled={props.login_user_loading} type="button" onClick={handleClick}>Send Email</button>                
+                </div>
             </div>
-        </div>
+        </section>
     )
 }
 

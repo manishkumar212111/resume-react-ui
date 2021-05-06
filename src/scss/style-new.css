@@ -1658,7 +1658,10 @@ canvas {
   background: #13b59e;
   border-color: #13b59e;
 }
-
+.centered {
+  padding: 204px;
+  margin-left: 35%;
+}
 .btn-outline-success {
   color: #15c7ae;
   border-color: #15c7ae;

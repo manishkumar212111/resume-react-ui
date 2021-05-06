@@ -109,6 +109,9 @@ export const sendResetLink = ( data ) => dispatch =>{
 
 export const resetPassword = ( token , password ) => dispatch =>{
   try{
+    dispatch( { type: "LOGIN_USER_LOADING",
+      data : true
+    });
 
     API.post('ResetPassword' , { token : token , password : password}, '' , function(res){
       if(res && !res.data.message){
@@ -118,6 +121,10 @@ export const resetPassword = ( token , password ) => dispatch =>{
             //console.log(res.data.message);
             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
+        dispatch( { type: "LOGIN_USER_LOADING",
+          data : false
+        });
+      
     })
     
   } catch (err) {

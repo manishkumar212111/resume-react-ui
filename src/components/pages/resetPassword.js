@@ -24,6 +24,7 @@ function ResetPsd(props) {
 
 const mapStateToProps = ( state ) => ( {
     userDetail: state.auth.userDetail,
+    login_user_loading: state.auth.login_user_loading
 } );
 
 const mapDispatchToProps = {

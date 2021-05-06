@@ -13,7 +13,7 @@ import feature from "../../../scss/images/feature.svg";
 
 const data =[
         {text : "Modern templates" , img : f1, sideImg : feature , sideText : "Beneifits of using our product"},
-        {text : "Create multiple version" , img : f2 , sideImg : feature , sideText : "Beneifits of using our product"},
+        {text : "Create multiple version" , img : f2 , sideImg : f2 , sideText : "Beneifits of using our product"},
         {text : "Formating and editing tools" , img : f3 , sideImg : feature , sideText : "Beneifits of using our product"},
         {text : "Live preview mode" , img : f4 , sideImg : feature , sideText : "Beneifits of using our product"},
         {text : "Full customizable Design" , img : f5 , sideImg : feature , sideText : "Beneifits of using our product"},
@@ -48,7 +48,7 @@ export default function Features(props){
                                 <ul className="nav nav-pills mb-3" id="pills-tab1" role="tablist">
                                     { data.map((item , i) => (
                                     <li style={{'cursor' : 'pointer'}} onClick={()=>setActive(i)} className="nav-item col-md-6 mt-3" role="presentation">
-                                        <span className="nav-link active shadow p-3" id="pills-home-tab" data-toggle="pill" href="#f1" role="tab" aria-controls="pills-home" aria-selected="true"><img className="d-inline-block w-20" src={item.img} alt="work-img" /> {item.text}</span>
+                                        <span className={`nav-link shadow p-3 ${active == i ? 'active' : ''}`} id="pills-home-tab" data-toggle="pill" href="#f1" role="tab" aria-controls="pills-home" aria-selected="true"><img className="d-inline-block w-20" src={item.img} alt="work-img" /> {item.text}</span>
                                     </li>))}
                                     
                                 </ul>
