@@ -20,9 +20,9 @@ const templates = [
 ]
 const categories = ['All', 'New'];
 
-const background_color = ['color1','color2','color3','color4','color5','color6'];
+const background_color = ['#545454','#545454','#545454','#545454','#545454','#545454'];
 
-const text_color = ['font_color1','font_color2','font_color3','font_color4','font_color5','font_color6'];
+const text_color = ['#545454','#545454','#545454','#545454','#545454','#545454','#545454','#545454'];
 const theme = ['theme1', 'theme2', 'theme3','theme4']
 
 const fonts = ['fjvkjdfvbjfd', 'dfvhbjhdbvdhf','fdvbhdfjhdfvbh','fdhvbjdfvbjhdf','fdjvbjdfvbjdfh'];

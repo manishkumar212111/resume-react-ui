@@ -1662,6 +1662,16 @@ canvas {
   padding: 204px;
   margin-left: 35%;
 }
+.color {
+  padding-left: 0px;
+}
+.color li {
+  margin-right: 2px;
+  display: inline-block;
+  width: 19%;
+  height: 50px;
+}
+
 .btn-outline-success {
   color: #15c7ae;
   border-color: #15c7ae;

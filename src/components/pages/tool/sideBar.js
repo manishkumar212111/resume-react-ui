@@ -55,9 +55,9 @@ function SideBar(props){
         </div>
         
             {type == 'template' && 
-                <div class="col-md-4 ">
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="pt-5" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
+                <div className="col-md-4 ">
+                    <div className="tab-content" id="pills-tabContent">
+                        <div className="col-md-12 bg-white pt-3 pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
                             <Template handleSidebar = { (value , key) => {props.handleSidebar(value , key); setType(null)}} />
                         </div>   
                     </div>
@@ -66,28 +66,34 @@ function SideBar(props){
                 }
 
             {type == 'background' && 
-                <div class="col-md-4 ">
-                        <div class="pt-5" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
+                <div className="col-md-4">
+                    <div className="tab-content  pt-3" id="pills-tabContent">
+
+                        <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
                             <Background handleSidebar = { (value , key) => {props.handleSidebar(value , key);}} />
                         </div>   
-                    
+                    </div>    
                 </div>
                 }
 
             {type == 'font' && 
-                <div class="col-md-4 ">
-                        <div class="pt-5" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
+                <div className="col-md-4">
+                    <div className="tab-content  pt-3" id="pills-tabContent">
+
+                        <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
                             <Fonts handleSidebar = { (value , key) => {props.handleSidebar(value , key);}} />
                         </div>   
-                    
+                    </div>       
                 </div>
             }
             {type == 'info' && 
-                <div class="col-md-4 ">
-                        <div class="pt-5" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
+                <div className="col-md-4">
+                    <div className="tab-content  pt-3" id="pills-tabContent">
+
+                        <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
                             <BasicInfo basicInfoUpdate={basicInfoUpdate} handleSidebar = { (value , key) => {props.handleSidebar(value , key)}} basic_info = {props.basic_info} />
                         </div>   
-                    
+                    </div>                    
                 </div>
             }
         </>

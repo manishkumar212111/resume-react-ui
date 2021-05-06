@@ -27,38 +27,88 @@ const Fonts = (props) => {
         document.execCommand("underline");
     }
     
+    const test = (e) => {
+        console.log(e);
+    }
     return (
-        <div>
-            <h2>Fonts</h2>
+        <>
+        <h6>Fonts</h6>
+            <div className="row">
             {fonts.map((itm) => (
-                <><input type="radio" name="font" value={itm} onChange={() => props.handleSidebar(itm , 'font')} /> {itm}</>
-            ))}
-            <h2>Fonts Pairing</h2>
-            
-            {fontPairing.map((itm) => (
-                <><input type="radio" name="fontPairing" value={itm} onChange={() => props.handleSidebar(itm , 'fontPairing')} />{itm}</>
-            ))}
-
-            <h2>Font Size</h2>
-            
-            {fontSize.map((itm) => (
-                <><input type="radio" value={itm.text} name="fontSize" onChange={() => props.handleSidebar(itm.value , 'fontSize')} />{itm.text}</>
-            ))}
-            <h2>
-                Style
-            </h2>
-            <button onClick={bold}>Bold</button>
-            <button onClick={italic}>Italic</button>
-            <button onClick={underline}>Underline</button>
-            
-            <h2>Icon</h2>
-            {iconList.map((itm , i) => (
-                <><input type="checkbox" name="fontSize" onChange={(e) => handleCheckBox(e , i)} checked={itm.status} />{itm.text}</>
+                <div className="col-md-6">
+                    <div className="custom-control custom-radio mb-3">
+                        <input type="radio" className="custom-control-input" name="font" id={`customRadio${itm}`} value={itm} onChange={(e) => props.handleSidebar(itm , 'font') }/> 
+                        <label className="custom-control-label" for={`customRadio${itm}`}>{itm}</label>
+                    </div>
+                </div>
             ))}
                 
+            <div className="col-md-12 mt-4">
+                <h6>Font Weight</h6>
 
+            </div>
+            {fontPairing.map((itm) => (
+                
+                <div className="col-md-6">
+                    <div className="custom-control custom-radio mb-3">
+                        <input type="radio" className="custom-control-input"  id={`customRadio11${itm}`} value={itm} onChange={() => props.handleSidebar(itm , 'fontPairing')}  />
+                        <label className="custom-control-label" for={`customRadio11${itm}`}>{itm}</label>
+                    </div>
+                </div>
+            ))}
+
+            <div className="col-md-12 mt-4">
+                <h6>Font Size</h6>
+
+            </div>
+            {fontSize.map((itm) => (
+                    
+                <div className="col-md-6">
+                    <div className="custom-control custom-radio mb-3">
+                        <input type="radio" key={itm.text} className="custom-control-input" id={`customRadio12${itm.text}`} value={itm.text} onChange={() => props.handleSidebar(itm.value , 'fontSize')}  />
+                        <label className="custom-control-label" for={`customRadio12${itm.text}`}>{itm.text}</label>
+                    </div>
+                </div>
+            ))}
+
+                <div className="col-md-12 mt-4">
+                    <h6>Style</h6>
+
+                </div>
+                <div className="col-md-12">
+                    <span className="mdi mdi-format-bold f-20 d-inline-block mr-4" onClick={bold}></span>
+                    <span className="mdi mdi-format-italic f-20 d-inline-block mr-4" onClick={italic}></span>
+                    <span className="mdi mdi-format-underline  f-20 d-inline-block mr-4" onClick={underline}></span>
+                    {/* <span className="mdi mdi-format-size f-20 d-inline-block mr-4"></span>
+                    <span className="mdi mdi-format-align-center f-20 d-inline-block"></span> */}
+                </div>
+                {/* <div className="col-md-12">
+                    <div className="custom-control custom-switch mt-4 mb-4">
+                        <input type="checkbox" className="custom-control-input" id="switch1" />
+                        <label className="custom-control-label" for="switch1">Sample Text</label>
+                    </div>
+                </div> */}
+
+
+                <div className="col-md-12 mt-4">
+                    <h6>Icons</h6>
+                </div>
+
+                {iconList.map((itm , i) => (
+                    <div className="col-md-6">
+                        <div className="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" name="fontSize" className="custom-control-input" id={`customRadio18${itm.text}`} onChange={(e) => handleCheckBox(e , i)} checked={itm.status} />
+                            <label className="custom-control-label" for={`customRadio18${itm.text}`}>{itm.text}</label>
+                        </div>
+                    </div>
+            
+                ))}
+            
         </div>
+
+        </>
     )
 }
+
 
 export default Fonts;

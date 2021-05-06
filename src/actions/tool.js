@@ -97,7 +97,7 @@ export const updateUserInfo = (data) => ( dispatch ) =>{
 export const updateLocalState = (data) => dispatch =>{
     try{
         dispatch({
-            type : "RESUME_DETAIL",
+            type : "RESUME_DETAIL_DETAIL",
             data : data
         })
     } catch (err) {
