@@ -8,7 +8,7 @@ const initialState = {
     const { type , data } = action;
     switch ( type ) {
         case "RESUME_DETAIL":
-            return {...state, resume_detail :  data.product , basic_info : data.basic_info};
+            return {...state, resume_detail :  data.resume_detail , basic_info : data.basic_info};
         case "LOADING_TOOLS":
             return {...state, loading_tools :  data};
         case "RESUME_INFO_UPDATE":
@@ -17,6 +17,6 @@ const initialState = {
             return {...state, resume_detail : data};
 
         default: return state;
-    }
+    }   
   }
   

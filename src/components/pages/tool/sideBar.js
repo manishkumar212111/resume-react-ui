@@ -9,6 +9,8 @@ import Template from "./component/template"
 import Background from "./component/background";
 import Fonts from "./component/fonts";
 import BasicInfo from "./component/basic_info";
+import Layout from "./component/layout";
+
 import { updateUserInfo } from "../../../actions/tool";
 import { connect } from "react-redux";
 
@@ -92,6 +94,16 @@ function SideBar(props){
 
                         <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
                             <BasicInfo basicInfoUpdate={basicInfoUpdate} handleSidebar = { (value , key) => {props.handleSidebar(value , key)}} basic_info = {props.basic_info} />
+                        </div>   
+                    </div>                    
+                </div>
+            }
+            {type == 'layout' && 
+                <div className="col-md-4">
+                    <div className="tab-content  pt-3" id="pills-tabContent">
+
+                        <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
+                            <Layout sample_map={props.resume_detail ? props.resume_detail.sample_map : {}} handleSidebar = { (value , key) => {props.handleSidebar(value , key)}} />
                         </div>   
                     </div>                    
                 </div>

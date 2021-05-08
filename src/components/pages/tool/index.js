@@ -61,6 +61,9 @@ function Index (props){
             case 'icons':
                 props.updateLocalState({...resume_detail, style : {...resume_detail.style , icons : value}})
                 break;
+            case 'sample_map':
+                props.updateLocalState({...resume_detail, sample_map : value})
+                break;
             
         }
     }

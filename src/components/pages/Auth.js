@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Register from "../widgets/Register";
 import { Link } from "react-router-dom";
 import login from "../../scss/images/login.svg"
+
 function Auth(props) {
     const [ showLogin , setShowLogin] = useState(props.showLogin);
     const SubmitCb = (obj) => {
