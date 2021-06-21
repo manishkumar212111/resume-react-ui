@@ -66,8 +66,8 @@ class Home extends React.Component {
                                     </p>
 
                                     <div className="mt-4 pt-3">
-                                        <a href="" className="btn btn-primary ">Get started for free</a>
-                                        <a href="" className="btn btn-outline-primary">Create your resume for free</a>
+                                        <button style={{"marginRight" : "10px"}}  className="btn btn-primary ">Get started for free</button>
+                                        <button className="btn btn-outline-primary">Create your resume for free</button>
                                     </div>
 
 

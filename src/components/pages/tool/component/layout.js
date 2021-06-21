@@ -12,14 +12,14 @@ const Layout = (props) => {
     }
     
     const handleInActiveDrop = (e) => {
-        console.log(e.target.id, "in drop" , draggedId);
 
         if(e.target.id && sample_map[draggedId] && draggedId){
-            console.log(e.target.id, "in drop" , sample_map[draggedId]);
             let field = {};
             field[draggedId] = false;
             setSampleMap(obj => ({...obj , ...field}));
-            props.handleSidebar(sample_map , 'sample_map');
+            setTimeout(() => {
+                props.handleSidebar({...sample_map, ...field} , 'sample_map');                
+            }, 10);
         }
     }
 
@@ -29,7 +29,9 @@ const Layout = (props) => {
             let field = {};
             field[draggedId] = true;
             setSampleMap(obj => ({...obj , ...field}));
-            props.handleSidebar(sample_map , 'sample_map');
+            setTimeout(() => {
+                props.handleSidebar({...sample_map, ...field} , 'sample_map');                
+            }, 10);
 
         }
     }

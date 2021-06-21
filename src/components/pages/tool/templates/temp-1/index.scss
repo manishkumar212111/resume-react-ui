@@ -1,0 +1,127 @@
+.temp1 {
+    * {box-sizing: border-box; padding: 0; margin: 0;}
+
+		padding: 0; font-family: arial; background: #eee; margin: 0px 50px;
+
+		.row::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
+
+		[class*="col-"] {
+		  float: left;
+		  padding: 0px 15px;
+		}
+
+		.col-1 {width: 8.33%;}
+		.col-2 {width: 16.66%;}
+		.col-3 {width: 25%;}
+		.col-4 {width: 33.33%;}
+		.col-5 {width: 41.66%;}
+		.col-6 {width: 50%;}
+		.col-7 {width: 58.33%;}
+		.col-8 {width: 66.66%;}
+		.col-9 {width: 75%;}
+		.col-10 {width: 83.33%;}
+		.col-11 {width: 91.66%;}
+		.col-12 {width: 100%;}
+
+		.padding0{padding:0;}
+
+    	#resumeOne{padding: 0; margin: 0;}
+
+		#resumeOne .container{
+			height: auto;
+			margin: 0px auto;
+			padding: 0px;
+			background: #fff;
+			width: 1280px;
+		}
+
+		#resumeOne .resumeHeader{
+			width: 100%;
+			margin: 0;
+			padding:30px 0 30px 0;
+
+		}
+		#resumeOne .resumeHeader p{
+			font-size: 16px;
+			line-height: 24px;
+		}
+
+		#resumeOne .resumeHeader .left{
+			width: 100%;
+			text-align: center;
+		}
+		#resumeOne .resumeHeader .left img{
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			margin-top: 10px;
+		}
+		#resumeOne .resumeHeader .right{
+			width: 100%;
+		}
+		#resumeOne .resumeHeader .right h1{
+
+			font-size: 40px;
+			color: #000;
+			text-align: left;
+		}
+
+		#resumeOne .resumeHeader .right .jobTitle{
+			font-size: 16px;
+			text-transform: uppercase;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		#resumeOne .resumeBody{
+			width: 100%;
+			margin: 0;
+			padding:0;
+			border-top: 1px solid #ddd;
+		}
+
+		#resumeOne .resumeBody h2{
+			font-size: 20px;
+			text-transform: uppercase;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		#resumeOne .resumeBody h3{
+			font-size: 16px;
+		}
+
+		#resumeOne .resumeBody p{
+			font-size: 16px;
+			line-height: 24px;
+		}
+
+		#resumeOne .resumeBody .left{
+			border-right: 1px solid #ddd;
+			
+		}
+		#resumeOne .resumeBody .left .bottomBorder{
+			border-bottom: 1px solid #ddd;
+			padding: 30px;
+			text-align: right;
+		}
+
+		#resumeOne .resumeBody .right .section{
+			border-bottom: 0px solid #ddd;
+			padding: 30px;
+			text-align: left;
+		}
+
+		#resumeOne .resumeBody .right{
+			padding: 0px;
+		}
+
+		#resumeOne .resumeFooter{
+			width: 100%;
+			margin: 0;
+			padding:0;
+		}
+}

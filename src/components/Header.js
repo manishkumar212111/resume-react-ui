@@ -68,12 +68,12 @@ const Header = ( props ) => {
                     </ul>
                     
                     {!(props.userDetail && props.userDetail.first_name) ? <div className="navbar-button d-none d-lg-inline-block">
-                        <Link className="btn btn-sm btn-primary btn-round" to="#login" data-toggle="modal" onClick = {() => sethashElement('#login')} data-target="#login">Log In</Link>
+                        <Link style={{marginRight : "5px"}} className="btn btn-sm btn-primary btn-round" to="#login" data-toggle="modal" onClick = {() => sethashElement('#login')} data-target="#login">Log In</Link>
                         <Link className="btn btn-sm btn-outline-primary btn-round"  to="#register" onClick = {() => sethashElement('#register')} data-toggle="modal">Register</Link>
                     </div> : 
                     <div class="navbar-button d-none d-lg-inline-block">
-                        {localStorage.getItem('expires') == 'true' && <Link to="/pricing"><button class="btn btn-sm btn-warning btn-round"><span class="mdi mdi-lock-open-variant-outline"></span>Upgrade</button></Link>}
-                        <Link to="/my-resumes" className="btn btn-sm btn-primary btn-round">My Resume</Link>
+                        {localStorage.getItem('expires') == 'true' && <Link style={{marginRight : "5px"}} to="/pricing"><button class="btn btn-sm btn-warning btn-round"><span class="mdi mdi-lock-open-variant-outline"></span>Upgrade</button></Link>}
+                        <Link style={{marginRight : "5px"}} to="/my-resumes" className="btn btn-sm btn-primary btn-round">My Resume</Link>
                         <Link to="/my-account"><div class="btn btn-sm btn-soft-dark btn-round pt-0 pb-0"><span>Hello, {props.userDetail.first_name} </span><span class="mdi mdi-account-circle mdi-24px"></span></div> </Link>
                         {/* <Link className="btn btn-sm btn-outline-primary btn-round"  to="/my-account">Hello {props.userDetail.first_name}</Link> */}
                     </div>}

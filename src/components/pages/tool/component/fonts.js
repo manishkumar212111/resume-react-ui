@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { fonts , fontPairing , fontSize , icons } from "../../../../configs"
-
+import {connect} from "react-redux";
+import {updateFontState} from "../../../../actions/tool";
 const Fonts = (props) => {
     const [ iconList , setIconList] = useState(icons);
 
@@ -13,23 +14,19 @@ const Fonts = (props) => {
     }
 
     const bold = (e) => {
-        e.preventDefault();
-        document.execCommand("bold");
+        props.updateFontState({bold : !props.font_detail.bold});    
     }
       
     const italic = (e) => {
-        e.preventDefault();
-        document.execCommand("italic");
+        props.updateFontState({italic : !props.font_detail.italic});    
+
     }
       
     const underline= (e) =>{
-        e.preventDefault();
-        document.execCommand("underline");
+        props.updateFontState({underline : !props.font_detail.underline});    
     }
     
-    const test = (e) => {
-        console.log(e);
-    }
+    console.log(props.font_detail)
     return (
         <>
         <h6>Fonts</h6>
@@ -111,4 +108,13 @@ const Fonts = (props) => {
 }
 
 
-export default Fonts;
+const mapStateToProps = ( state ) => ( {
+    font_detail: state.tool.font_detail
+} );
+
+const mapDispatchToProps = {
+    updateFontState
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( Fonts );
+   

@@ -14,7 +14,7 @@ import BlogList from "./components/pages/blog/blogList";
 import BlogDetail from "./components/pages/blog/blogDetail";
 import Template from "./components/pages/template";
 import myResume from "./components/pages/myResume";
-
+import Download from "./components/pages/tool/downloads";
 export default [
     {
         path: "/",
@@ -64,7 +64,10 @@ export default [
         path: "/resume-maker/:template_id",
         component: Tool,
     },
-    
+    {
+        path: "/downloads/:id",
+        component: Download,
+    },
     {
         path: "/blogs/:id",
         component: BlogDetail,

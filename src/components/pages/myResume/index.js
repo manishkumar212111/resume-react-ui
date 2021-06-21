@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Shimmer } from 'react-shimmer';
+import Shimmer from '../../widgets/shimmerEffect';
 import { getResume, deleteResume } from "../../../actions/resume";
 import { templates } from "../../../configs"
 const Index = (props) => {

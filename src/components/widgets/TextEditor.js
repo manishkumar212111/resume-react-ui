@@ -35,12 +35,12 @@ const TextEditor = (props) => {
         <button onClick={bold}>Bold</button>
         <button onClick={italic}>Italic</button>
           <button onClick={underline}>Underline</button>
-        <div className={isContentEditable ? "editable": ""} contentEditable={isContentEditable} onDoubleClick={(e) => onFocus(e)} onBlur={(e) => onBlur(e)} onFocus={(e) => onFocus(e)} onInput={(e) => handleChange(e)}>
+        <div  contentEditable={true} onInput={(e) => handleChange(e)}>
           I am a rich text editor. You can also use CTRL-B, CTRL-I and CTRL-U to bold, italicize, and underline. If you look at my HTML you'll see HTML tags being added too :)
         </div>
-        <div className={isContentEditable ? "editable": ""} contentEditable={isContentEditable} onDoubleClick={(e) => onFocus(e)} onBlur={(e) => onBlur(e)} onFocus={(e) => onFocus(e)} onInput={(e) => handleChange(e)}>
+        {/* <div className={isContentEditable ? "editable": ""} contentEditable={isContentEditable} onDoubleClick={(e) => onFocus(e)} onBlur={(e) => onBlur(e)} onFocus={(e) => onFocus(e)} onInput={(e) => handleChange(e)}>
           , CTRL-I and CTRL-U to bold, italicize, and underline. If you look at my HTML you'll see HTML tags being added too :)
-        </div>
+        </div> */}
         
       </div>);
 }

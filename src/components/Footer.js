@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Footer = ( { loggedIn } ) => (
-        <section class="section bg-dark pt-5 pb-3">
+        <section id="footer" class="section bg-dark pt-5 pb-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">

@@ -119,7 +119,7 @@ const Contact = (props) => {
                                 <span className="error">{!errorObj.message.error && errorObj.message.msg}</span>          
                                 <textarea className="form-control" name="message" value={fieldobj.message} onChange={(e) => handleChange(e)}></textarea>
                                 </div>
-                            <div className="col-md-12" onClick={handleClick}><button href="" className={`btn btn-primary ${props.updating_enquiry ? 'btnDisabled' : ''}`} disabled={props.updating_enquiry}>Get In Touch <span className="mdi mdi-arrow-right"></span></button></div>
+                            <div className="col-md-12" onClick={handleClick}><button style={{float : "right"}} className={`btn btn-primary ${props.updating_enquiry ? 'btnDisabled' : ''}`} disabled={props.updating_enquiry}>Get In Touch <span className="mdi mdi-arrow-right"></span></button></div>
                         </div>
                         </div>
                         <div className="option text-center mt-5"><span>or</span></div>
