@@ -6,7 +6,7 @@ import { getLocalStorageItem, setLocalStorageItem } from "../../../utils/globals
 import Auth from "../../pages/Auth";
 import Shimmer from "../../widgets/shimmerEffect";
 import Temp1 from "./templates/temp-1";
-
+import { BASE_URL } from "../../../API/config"
 function Index (props){
     const [showLogin , setShowLogin] = useState(false);
     const [resume_detail , setResumeDetail] = useState({});
@@ -120,7 +120,7 @@ function Index (props){
 
     const downloadResume = () => {
         var link = document.createElement('a');
-        link.href = "http://localhost:5000/api/common/template?product_id="+resume_detail.id;
+        link.href = BASE_URL + "api/common/template?product_id="+resume_detail.id;
         link.target = "_blank";
         
         link.download = "PdfName-" + new Date().getTime() + ".pdf";
