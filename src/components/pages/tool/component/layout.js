@@ -48,6 +48,17 @@ const Layout = (props) => {
                 >{key}</li>)
             }
         }
+        if(h.length == 0){
+            h.push(<li 
+                style={{listStyle : "none"}}
+                id={0} 
+                draggable={true} 
+                onDragOver={(ev) => ev.preventDefault()}
+                onDragStart={handleDrag}
+                
+            >Empty</li>
+            )
+        }
         return h;
     }
     
@@ -55,14 +66,18 @@ const Layout = (props) => {
     <div>
         Active
        <div id="active" onDrop={handleActiveDrop}>
+        <span>
            {getData(true)}
+           </span>
        </div>
        Inactive
        <div 
         id="inactive" 
         onDrop={handleInActiveDrop}
        >
+         <span>  
         {getData(false)}   
+        </span>
         </div> 
     </div>
     )

@@ -110,8 +110,28 @@ function Index (props){
             case 'custom_field':
                 props.updateLocalState({...resume_detail, custom_field : value})
                 break;
-            
-
+            case 'hobbies':
+                props.updateLocalState({...resume_detail, hobbies : value})
+                break;
+            case 'languages':
+                props.updateLocalState({...resume_detail, languages : value})
+                break;
+            case 'publications':
+                props.updateLocalState({...resume_detail, publications : value})
+                break;
+            case 'certifications':
+                props.updateLocalState({...resume_detail, certifications : value})
+                break;
+            case 'trainings':
+                props.updateLocalState({...resume_detail, trainings : value})
+                break;
+            case 'patents':
+                props.updateLocalState({...resume_detail, patents : value})
+                break;
+            case 'references':
+                props.updateLocalState({...resume_detail, references : value})
+                break;
+    
             default:
                 // props.updateLocalState({...resume_detail , summary : value})
             
