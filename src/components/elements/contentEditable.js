@@ -57,10 +57,10 @@ const ContentEditable = (props) => {
     };
   
     return (
-      <span
+      <div
         contentEditable
         onInput={handleInput}
-        className={`custom-textarea ${props.className}`}
+        className={`${props.className}`}
         dangerouslySetInnerHTML={{ __html: defaultValue.current.replaceAll('&lt;' , '<') }}
       />
     );
