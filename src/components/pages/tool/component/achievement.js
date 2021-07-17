@@ -24,20 +24,42 @@ const Achievement = (props) => {
     }, [props.achievement]);
 
     return(
-        <div>
-            <ContentEditable
-                value={achievement.title ? achievement.title : "Institute Name"}
-                onChange={(value) => handleChange('title', value)}  
-            />
-            <ContentEditable
-                value={achievement.description ? achievement.description : "Institute Name"}
-                onChange={(value) => handleChange('description', value)} 
-            />
-            <input type="text" placeholder="Location" value={achievement.location} onChange={(e) => handleChange('location' , e.target.value)}></input><br></br>
-            <input type="date" placeholder="Date" value={achievement.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+        <div className="card">
+            <div className="card-body">
+                <div className="card">   
+                    <h3>
+                        <ContentEditable
+                            value={achievement.title ? achievement.title : "Institute Name"}
+                            onChange={(value) => handleChange('title', value)}  
+                            className="card-body"
+            
+                        />
+                    </h3>
+                </div>
+                <div className="card mt-4">
+                    <ContentEditable
+                        className="card-body"
+                        value={achievement.description ? achievement.description : "Institute Name"}
+                        onChange={(value) => handleChange('description', value)} 
+                    />
+                    
+                </div>
 
-            <span onClick={() =>  props.handleAchievementDelete(props.active, "achievement")}>delete</span>
-        </div>
+
+            <div className="mt-4 form-inline">
+                <input type="text" placeholder="Location" className="form-control" value={achievement.location} onChange={(e) => handleChange('location' , e.target.value)}></input><br></br>            
+            </div>
+            
+            <div className="mt-4 form-inline">
+                <input type="date" className="form-control" placeholder="Date" value={achievement.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+            </div>
+            
+            
+            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handleAchievementDelete(props.active, "achievement")}>delete</span>    
+            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>    
+            
+            </div>
+    </div>
     )
 }
 

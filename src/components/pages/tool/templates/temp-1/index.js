@@ -18,7 +18,7 @@ import Training from '../../component/training';
 import Publication from '../../component/publications';
 import Patent from '../../component/patent';
 import Reference from '../../component/reference';
-
+import AddNew from '../../component/elements/addNew';
 import "./icons.scss"
 import Img from "./images/pp.jpg";
 
@@ -496,7 +496,7 @@ const Index = (props) => {
     }
     
     return(
-        <main className="resumeMain">
+        <main className={`resumeMain ${props.downloads ? "downloadMain" : ""}`}>
         <div className="resumeLeft">
             <div className="resumeProfile">
                 <div className="resumePP"><img src={Img} alt=""/></div>
@@ -522,16 +522,17 @@ const Index = (props) => {
                         <span className="resumeUniName">{months[item.duration.from.month ? parseInt(item.duration.from.month) : 0]} {item.duration.from.year ? item.duration.from.year : "2000"} - {months[item.duration.to.month ? parseInt(item.duration.to.month) : 0]} {item.duration.to.year ? item.duration.to.year : "2003"}</span>
                         <span className="resumelocation">{item.location ? item.location : ""}</span>
                     </div> : <div>
-                        {activeEducation !== "" && <Education handleEducationDelete={handleDelate} active={activeEducation} education={resume_detail.education[activeEducation]} handleChange={handleEducationCB}/>}
+                        {activeEducation !== "" && <Education handleEducationDelete={handleDelate} handleSave={setActiveEducation} active={activeEducation} education={resume_detail.education[activeEducation]} handleChange={handleEducationCB}/>}
                     </div>
                 ))}     
-                {!props.downloads && <span onClick={() => handleEducationClick(activeEducation)}>Add new Education</span>}
+                {!props.downloads && <AddNew handleAddNew={handleEducationClick} activeElement={activeEducation} />}
 
             </div>
             {(resume_detail.sample_map && resume_detail.sample_map.skills) && <ul className="resumeSkills">
                 <h4>SKILLS</h4>
                 {renderSkill()}
-                {!props.downloads && <span onClick={() => handleSkillClick(activeSkill)}>Add new skill</span>}
+                {!props.downloads && <AddNew handleAddNew={handleSkillClick} activeElement={activeSkill} />}
+                
 
             </ul>}
             
@@ -570,31 +571,16 @@ const Index = (props) => {
             {(resume_detail.sample_map && resume_detail.sample_map.languages) && <ul className="resumeSkills resumeLangSpoke">
                 <h4>LANGUAGES</h4>
                 {renderLanguages()}
-                {!props.downloads && <span onClick={() => handleLanguagesClick(activeLanguages)}>Add new language</span>}
+                {!props.downloads && <AddNew handleAddNew={handleLanguagesClick} activeElement={activeLanguages} />}
 
             </ul>}
             
             {(resume_detail.sample_map && resume_detail.sample_map.hobbies) && <ul className="resumeSkills resumeLangSpoke">
                 <h4>Hobbies</h4>
                 {renderHobbies()}
-                {!props.downloads && <span onClick={() => handleHobbiesClick(activeHobbies)}>Add new hobby</span>}
+                {!props.downloads && <AddNew handleAddNew={handleHobbiesClick} activeElement={activeHobbies} />}
 
             </ul>}
-            <div className="resumEducation resumeCeriFLic">
-                <h4>CERTIFICATE & LICENSE</h4>
-                <div className="resumEducationInfo">
-                    <span className="resumeDegree">ENTER YOUR CERTIFICATE[2000]</span>
-                    <span className="resumeUniName">Institue/Online course</span>
-                    <span className="resumelocation">Date & Location</span>
-                    <span className="resumeCourse">Certification number</span>
-                </div>
-                <div className="resumEducationInfo">
-                    <span className="resumeDegree">ENTER YOUR CERTIFICATE[2000]</span>
-                    <span className="resumeUniName">Institue/Online course</span>
-                    <span className="resumelocation">Date & Location</span>
-                    <span className="resumeCourse">Certification number</span>
-                </div>
-            </div>
             {(resume_detail.sample_map && resume_detail.sample_map.certifications) && <div className="resumEducation resumeCeriFLic">
                     <h4>CERTIFICATE & LICENSE</h4>
                     {resume_detail.certifications && resume_detail.certifications.map((item, index) => (
@@ -604,10 +590,10 @@ const Index = (props) => {
                             <span className="resumelocation">{item.date ? item.date : "Date"}</span>
                             <span className="resumeCourse">{item.certificate_no ? item.certificate_no : "Certifcate No"}</span>
                         </div> : <div>
-                            {activeCertifications !== "" && <Certification handleCertificationsDelete={handleDelate} active={activeCertifications} certifications={resume_detail.certifications[activeCertifications]} handleChange={handleCertificationsChange}/>}
+                            {activeCertifications !== "" && <Certification handleSave={setActiveCertifications} handleCertificationsDelete={handleDelate} active={activeCertifications} certifications={resume_detail.certifications[activeCertifications]} handleChange={handleCertificationsChange}/>}
                         </div>
                     ))}
-                    {!props.downloads && <span onClick={() => handleCertificationsClick(activeCertifications)}>Add new certifications</span>}
+                    {!props.downloads && <AddNew handleAddNew={handleCertificationsClick} activeElement={activeCertifications} />}
 
             </div>}
 
@@ -620,10 +606,10 @@ const Index = (props) => {
                         <span className="resumeUniName">{item.date ? item.date : "Date"}</span>
                         <span className="resumeDescp">{item.description ? item.description : "Description"}</span>
                     </div> : <div>
-                        {activePublications !== "" && <Publication handlePublicationsDelete={handleDelate} active={activePublications} publications={resume_detail.publications[activePublications]} handleChange={handlePublicationsChange}/>}
+                        {activePublications !== "" && <Publication handleSave={setActivePublications} handlePublicationsDelete={handleDelate} active={activePublications} publications={resume_detail.publications[activePublications]} handleChange={handlePublicationsChange}/>}
                     </div>
                 ))}
-                {!props.downloads && <span onClick={() => handlePublicationsClick(activePublications)}>Add new publications</span>}
+                {!props.downloads && <AddNew handleAddNew={handlePublicationsClick} activeElement={activePublications} />}
 
             </div>}
             {(resume_detail.sample_map && resume_detail.sample_map.trainings) && <div className="resumEducation resumeCeriFLic">
@@ -637,10 +623,10 @@ const Index = (props) => {
                             <span className="resumeDescp">{item.description ? item.description : "Description"}</span>
                         </div>
                      : <div>
-                        {activeTrainings !== "" && <Training handleTrainingsDelete={handleDelate} active={activeTrainings} trainings={resume_detail.trainings[activeTrainings]} handleChange={handleTrainingsChange}/>}
+                        {activeTrainings !== "" && <Training handleSave={setActiveTrainings} handleTrainingsDelete={handleDelate} active={activeTrainings} trainings={resume_detail.trainings[activeTrainings]} handleChange={handleTrainingsChange}/>}
                     </div>
                 ))}
-                {!props.downloads && <span onClick={() => handleTrainingsClick(activeTrainings)}>Add new training</span>}
+                {!props.downloads && <AddNew handleAddNew={handleTrainingsClick} activeElement={activeTrainings} />}
 
             </div>}
 
@@ -680,16 +666,16 @@ const Index = (props) => {
                             <div className="resumeRightLoc" dangerouslySetInnerHTML={{ __html: (item.description ? item.description : "").replaceAll('&lt;' , '<') }}></div>
 
                             </div> : <div>
-                                {activeExperience !== "" && <Experience handleExperienceDelete={handleDelate} active={activeExperience} experience={resume_detail.employment_history[activeExperience]} handleChange={handleExperienceCB}/>}
+                                {activeExperience !== "" && <Experience handleExperienceDelete={handleDelate} handleSave={setActiveExperience} active={activeExperience} experience={resume_detail.employment_history[activeExperience]} handleChange={handleExperienceCB}/>}
                             </div>
                         ))}     
-                        {!props.downloads && <span onClick={() => handleExperienceClick(activeExperience)}>Add new Experience</span>}
+                        {!props.downloads && <AddNew handleAddNew={handleExperienceClick} activeElement={activeExperience} />}
                 </div>}
             {(resume_detail.sample_map && resume_detail.sample_map.awards) &&
                 <div className="resumeAward">
                     <h2>AWARDS</h2>
                     {renderAwards()}
-                    {!props.downloads && <span onClick={() => handleAwardsClick(activeAwards)}>Add new awards</span>}
+                    {!props.downloads && <AddNew handleAddNew={handleAwardsClick} activeElement={activeAwards} />}
 
                 </div>            
             }
@@ -703,10 +689,10 @@ const Index = (props) => {
                             <span className="location">{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</span> 
                             <span className="description">{item.description ? item.description : "Description"}</span>
                         </div> : <div>
-                            {activeConference !== "" && <Conference handleConferenceDelete={handleDelate} active={activeConference} education={resume_detail.conferences[activeConference]} handleChange={handleConferenceCB}/>}
+                            {activeConference !== "" && <Conference handleConferenceDelete={handleDelate} handleSave={setActiveConference} active={activeConference} education={resume_detail.conferences[activeConference]} handleChange={handleConferenceCB}/>}
                         </div>
                     ))}     
-                    {!props.downloads && <span onClick={() => handleConferenceClick(activeConference)}>Add new Conference</span>}
+                    {!props.downloads && <AddNew handleAddNew={handleConferenceClick} activeElement={activeConference} />}
                 </div>
             }
             {(resume_detail.sample_map && resume_detail.sample_map.achievements) && 
@@ -719,10 +705,10 @@ const Index = (props) => {
                                 <span className="location">{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</span> 
                                 <span className="description">{item.description ? item.description : "Description"}</span>
                             </div> : <div>
-                                {activeAchievement !== "" && <Achievement handleAchievementDelete={handleDelate} active={activeAchievement} education={resume_detail.achievements[activeAchievement]} handleChange={handleAchievementCB}/>}
+                                {activeAchievement !== "" && <Achievement handleSave={setActiveAchievement} handleAchievementDelete={handleDelate} active={activeAchievement} education={resume_detail.achievements[activeAchievement]} handleChange={handleAchievementCB}/>}
                             </div>
-                        ))}     
-                        {!props.downloads && <span onClick={() => handleAchievementClick(activeAchievement)}>Add new Achievement</span>}
+                        ))}  
+                        {!props.downloads && <AddNew handleAddNew={handleAchievementClick} activeElement={activeAchievement} />}
                     </div>
             }
             {(resume_detail.sample_map && resume_detail.sample_map.volunteers) && 
@@ -735,10 +721,10 @@ const Index = (props) => {
                             <span className="location">{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</span> 
                             <span className="description">{item.description ? item.description : "Description"}</span>
                         </div> : <div>
-                            {activeVolunteer !== "" && <Volunteer handleVolunteerDelete={handleDelate} active={activeVolunteer} education={resume_detail.volunteers[activeVolunteer]} handleChange={handleVolunteerCB}/>}
+                            {activeVolunteer !== "" && <Volunteer handleSave={setActiveVolunteer} handleVolunteerDelete={handleDelate} active={activeVolunteer} education={resume_detail.volunteers[activeVolunteer]} handleChange={handleVolunteerCB}/>}
                         </div>
-                    ))}     
-                    {!props.downloads && <span onClick={() => handleVolunteerClick(activeVolunteer)}>Add new Volunteer</span>}
+                    ))} 
+                    {!props.downloads && <AddNew handleAddNew={handleVolunteerClick} activeElement={activeVolunteer} />}
                 </div>
             }
             {(resume_detail.sample_map && resume_detail.sample_map.patents) && 
@@ -755,10 +741,10 @@ const Index = (props) => {
                             <span className="link"><span>URL</span> :<a href="">{item.url ? item.url : "url"}</a></span>
                         
                         </div> : <div>
-                            {activePatents !== "" && <Patent handlePatentsDelete={handleDelate} active={activePatents} education={resume_detail.patents[activePatents]} handleChange={handlePatentsCB}/>}
+                            {activePatents !== "" && <Patent handleSave={setActivePatents} handlePatentsDelete={handleDelate} active={activePatents} education={resume_detail.patents[activePatents]} handleChange={handlePatentsCB}/>}
                         </div>
                     ))}     
-                    {!props.downloads && <span onClick={() => handlePatentsClick(activePatents)}>Add new Patents</span>}
+                    {!props.downloads && <AddNew handleAddNew={handlePatentsClick} activeElement={activePatents} />}
                 </div>
             }
             {(resume_detail.sample_map && resume_detail.sample_map.references) && 
@@ -767,14 +753,6 @@ const Index = (props) => {
                     <h2>REFERENCE</h2>
                     {resume_detail.references && resume_detail.references.map((item, index) => (
                         (activeReferences !== index) ? <div className="resumeConfRecBlk resumeConfOneThBlk" onClick={() => setActiveReferences(index)}>
-                            <p>{item.title ? item.title : "Title"}</p>
-                            <p>{item.company ? item.company : "company"}</p>
-            
-                            <p>{item.location ? item.location : "location"}</p>
-                            <p>{item.position ? item.position : "position"}</p>
-                            <p>{item.phone ? item.phone : "phone"}</p>
-                            <p>{item.email ? item.email : "email"}</p>
-
                             <span className="title">{item.title ? item.title : "Title"}</span>
                             <span className="location">{item.company ? item.company : "company"}</span> 
                             <span className="location">{item.location ? item.location : "location"}</span>
@@ -782,10 +760,10 @@ const Index = (props) => {
                             <span className="contactPhNDEmail">T - {item.phone ? item.phone : "phone"}</span>
                             <span className="contactPhNDEmail">E - {item.email ? item.email : "email"}</span>
                         </div> : <div>
-                            {activeReferences !== "" && <Reference handleReferencesDelete={handleDelate} active={activeReferences} education={resume_detail.references[activeReferences]} handleChange={handleReferencesCB}/>}
+                            {activeReferences !== "" && <Reference handleSave={setActiveReferences} handleReferencesDelete={handleDelate} active={activeReferences} education={resume_detail.references[activeReferences]} handleChange={handleReferencesCB}/>}
                         </div>
                     ))}     
-                    {!props.downloads && <span onClick={() => handleReferencesClick(activeReferences)}>Add new References</span>}
+                    {!props.downloads && <AddNew handleAddNew={handleReferencesClick} activeElement={activeReferences} />}
                 </div>
             }
             {(resume_detail.sample_map && resume_detail.sample_map.custom_field) && 
@@ -798,306 +776,15 @@ const Index = (props) => {
                             <span className="location">{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</span> 
                             <span className="description">{item.description ? item.description : "Description"}</span>
                         </div> : <div>
-                            {activeCustom_field !== "" && <Custom_field handleCustom_fieldDelete={handleDelate} active={activeCustom_field} education={resume_detail.custom_field[activeCustom_field]} handleChange={handleCustom_fieldCB}/>}
+                            {activeCustom_field !== "" && <Custom_field handleSave={setActiveCustom_field} handleCustom_fieldDelete={handleDelate} active={activeCustom_field} education={resume_detail.custom_field[activeCustom_field]} handleChange={handleCustom_fieldCB}/>}
                         </div>
                     ))}     
-                    {!props.downloads && <span onClick={() => handleCustom_fieldClick(activeCustom_field)}>Add new Custom_field</span>}
+                    {!props.downloads && <AddNew  handleAddNew={handleCustom_fieldClick} activeElement={activeCustom_field} />}
+
                 </div>
             }
         </div>
     </main>
-        // <div className="temp1">
-        //     <div id="resumeOne">
-        //             <div className="container">
-        //                 <div className="resumeHeader">
-        //                     <div className="row">
-        //                         <div className="col-4">
-        //                             <div className="left">
-        //                                 {/* <img src="images/img2.jpeg" className="" /> */}
-        //                             </div>
-        //                         </div>
-        //                         <div className="col-8">
-        //                             <div className="right">
-        //                                 {basic_info && <h1 onClick={() => props.sideBarCb('info')}>{basic_info.first_name} <strong>{basic_info.last_name}</strong></h1>}
-        //                                 <ContentEditable 
-        //                                     className={"jobTitle"}
-        //                                     value={props?.resume_detail?.job_title ?  props.resume_detail.job_title :"Job Title"}
-        //                                     onChange={(value) => props.handleToolEvent(value , "job_title")}
-        //                                 />
-                                    
-        //                                 <ContentEditable 
-        //                                     value={resume_detail.summary ? resume_detail.summary : "Enter summary here"}
-        //                                     onChange={(value) => props.handleToolEvent(value , "summary")}/>
-        //                             </div>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div className="resumeBody">
-
-        //                     <div className="row">
-
-        //                         <div className="col-4 padding0">
-        //                             <div className="left">
-                                        
-        //                                 <div className="bottomBorder">
-        //                                     <h2>Contact Me</h2>
-        //                                     {basic_info && <p>{basic_info.ccode} {basic_info.contact}</p>}
-        //                                     {basic_info.email && <p>{basic_info.email}</p>}
-        //                                     {basic_info.address && <p>{basic_info.address.address}</p>}
-        //                                 </div>
-
-        //                                 <div className="bottomBorder">
-        //                                     <h2>EDUCATION</h2>
-        //                                     {resume_detail.education && resume_detail.education.map((item, index) => (
-        //                                         (activeEducation !== index) ? <div onClick={() => setActiveEducation(index)}>
-        //                                             <p>{item.degree ? item.degree : "Program"}/{item.institute_name ? item.institute_name : "Institute Name"}</p>
-        //                                             <p>{months[item.duration.from.month ? parseInt(item.duration.from.month) : 0]} {item.duration.from.year ? item.duration.from.year : "2000"} - {months[item.duration.to.month ? parseInt(item.duration.to.month) : 0]} {item.duration.to.year ? item.duration.to.year : "2003"}</p>
-        //                                             <p>{item.location ? item.location : ""}</p>
-        //                                         </div> : <div>
-        //                                             {activeEducation !== "" && <Education handleEducationDelete={handleDelate} active={activeEducation} education={resume_detail.education[activeEducation]} handleChange={handleEducationCB}/>}
-        //                                         </div>
-        //                                     ))}     
-        //                                     {!props.downloads && <span onClick={() => handleEducationClick(activeEducation)}>Add new Education</span>}
-
-        //                                 </div>
-
-        //                                 {/* <div className="bottomBorder">
-        //                                     <h2>Awards</h2>
-        //                                     <p>Lorem ipsum dolor sit amet</p>
-        //                                     <p>Lorem ipsum dolor sit amet</p>
-        //                                     <p>Lorem ipsum dolor sit amet,</p>
-        //                                 </div> */}
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.awards) && <div className="bottomBorder">
-        //                                     <h2>Awards</h2>
-        //                                     {renderAwards()}
-        //                                     {!props.downloads && <span onClick={() => handleAwardsClick(activeAwards)}>Add new awards</span>}
-
-        //                                 </div>}
-
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.skills) && <div className="bottomBorder">
-        //                                     <h2>Skills</h2>
-        //                                     {renderSkill()}
-        //                                     {!props.downloads && <span onClick={() => handleSkillClick(activeSkill)}>Add new skill</span>}
-
-        //                                     {/* <p>Software Development</p>
-        //                                     <p>Unit Testing</p>
-        //                                     <p>Lorem ipsum dolor sit amet,</p> */}
-        //                                 </div>}
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.hobbies) && <div className="bottomBorder">
-        //                                     <h2>Hobbies</h2>
-        //                                     {renderHobbies()}
-        //                                     {!props.downloads && <span onClick={() => handleHobbiesClick(activeHobbies)}>Add new hobby</span>}
-
-        //                                 </div>}
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.languages) && <div className="bottomBorder">
-        //                                     <h2>Languages</h2>
-        //                                     {renderLanguages()}
-        //                                     {!props.downloads && <span onClick={() => handleLanguagesClick(activeLanguages)}>Add new language</span>}
-
-        //                                 </div>}
-
-
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.trainings) && <div className="bottomBorder">
-        //                                         <h2>Trainings</h2>
-        //                                         {resume_detail.trainings && resume_detail.trainings.map((item, index) => (
-        //                                             (activeTrainings !== index) ? <div onClick={() => setActiveTrainings(index)}>
-        //                                                 <p>{item.title ? item.title : "Title"}</p>
-        //                                                 <p>{item.providers ? item.providers : "Training providers"}</p>
-        //                                                 <p>{item.date ? item.date : "Date"}</p>
-        //                                                 <p>{item.description ? item.description : "Description"}</p>
-        //                                             </div> : <div>
-        //                                                 {activeTrainings !== "" && <Training handleTrainingsDelete={handleDelate} active={activeTrainings} trainings={resume_detail.trainings[activeTrainings]} handleChange={handleTrainingsChange}/>}
-        //                                             </div>
-        //                                         ))}
-        //                                         {!props.downloads && <span onClick={() => handleTrainingsClick(activeTrainings)}>Add new training</span>}
-
-        //                                 </div>}
-
-
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.certifications) && <div className="bottomBorder">
-        //                                         <h2>Certifications</h2>
-        //                                         {resume_detail.certifications && resume_detail.certifications.map((item, index) => (
-        //                                             (activeCertifications !== index) ? <div onClick={() => setActiveCertifications(index)}>
-        //                                                 <p>{item.title ? item.title : "Title"}</p>
-        //                                                 <p>{item.providers ? item.providers : "Training providers"}</p>
-        //                                                 <p>{item.date ? item.date : "Date"}</p>
-        //                                                 <p>{item.certificate_no ? item.certificate_no : "Certifcate No"}</p>
-        //                                             </div> : <div>
-        //                                                 {activeCertifications !== "" && <Certification handleCertificationsDelete={handleDelate} active={activeCertifications} certifications={resume_detail.certifications[activeCertifications]} handleChange={handleCertificationsChange}/>}
-        //                                             </div>
-        //                                         ))}
-        //                                         {!props.downloads && <span onClick={() => handleCertificationsClick(activeCertifications)}>Add new certifications</span>}
-
-        //                                 </div>}
-
-
-        //                                 {(resume_detail.sample_map && resume_detail.sample_map.publications) && <div className="bottomBorder">
-        //                                         <h2>Publications</h2>
-        //                                         {resume_detail.publications && resume_detail.publications.map((item, index) => (
-        //                                             (activePublications !== index) ? <div onClick={() => setActivePublications(index)}>
-        //                                                 <p>{item.title ? item.title : "Title"}</p>
-        //                                                 <p>{item.date ? item.date : "Date"}</p>
-        //                                                 <p>{item.description ? item.description : "Description"}</p>
-        //                                             </div> : <div>
-        //                                                 {activePublications !== "" && <Publication handlePublicationsDelete={handleDelate} active={activePublications} publications={resume_detail.publications[activePublications]} handleChange={handlePublicationsChange}/>}
-        //                                             </div>
-        //                                         ))}
-        //                                         {!props.downloads && <span onClick={() => handlePublicationsClick(activePublications)}>Add new publications</span>}
-
-        //                                     </div>}
-
-        //                             </div>
-        //                         </div>
-
-        //                         <div className="right">
-        //                              <div className="col-8 padding0">
-                               
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.employment_history) && 
-        //                                 <div className="section">
-        //                                     <h2>Experience</h2>
-        //                                     {resume_detail.employment_history && resume_detail.employment_history.map((item, index) => (
-        //                                         (activeExperience !== index) ? <div onClick={() => setActiveExperience(index)}>
-        //                                             <h3 dangerouslySetInnerHTML={{ __html: (item.title ? item.title : "Job Title").replaceAll('&lt;' , '<') }}></h3><h3 dangerouslySetInnerHTML={{ __html: (item.company ? item.company : "Company").replaceAll('&lt;' , '<') }}></h3>
-        //                                             <p>{months[item.duration.from.mm ? parseInt(item.duration.from.mm) : 0]} {item.duration.from.yy ? item.duration.from.yy : "2000"} - {months[item.duration.to.mm ? parseInt(item.duration.to.yy) : 0]} {item.duration.to.yy ? item.duration.to.yy : "2003"}</p>
-        //                                             <p>{item.location ? item.location : ""}</p>
-        //                                             <p dangerouslySetInnerHTML={{ __html: (item.description ? item.description : "").replaceAll('&lt;' , '<') }}></p>
-
-        //                                         </div> : <div>
-        //                                             {activeExperience !== "" && <Experience handleExperienceDelete={handleDelate} active={activeExperience} experience={resume_detail.employment_history[activeExperience]} handleChange={handleExperienceCB}/>}
-        //                                         </div>
-        //                                     ))}     
-        //                                     {!props.downloads && <span onClick={() => handleExperienceClick(activeExperience)}>Add new Experience</span>}
-
-        //                                 </div>
-
-        //                             }
-
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.conferences) && 
-                                    
-        //                                     <div className="section">
-        //                                         <h2>Conference</h2>
-        //                                         {resume_detail.conferences && resume_detail.conferences.map((item, index) => (
-        //                                             (activeConference !== index) ? <div onClick={() => setActiveConference(index)}>
-        //                                                 <p>{item.title ? item.title : "Title"}</p>
-        //                                                 <p>{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</p>
-
-        //                                                 <p>{item.description ? item.description : "Description"}</p>
-        //                                             </div> : <div>
-        //                                                 {activeConference !== "" && <Conference handleConferenceDelete={handleDelate} active={activeConference} education={resume_detail.conferences[activeConference]} handleChange={handleConferenceCB}/>}
-        //                                             </div>
-        //                                         ))}     
-        //                                         {!props.downloads && <span onClick={() => handleConferenceClick(activeConference)}>Add new Conference</span>}
-        //                                     </div>
-        //                                 }
-
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.achievements) && 
-                                    
-        //                                     <div className="section">
-        //                                         <h2>Achievements</h2>
-        //                                         {resume_detail.achievements && resume_detail.achievements.map((item, index) => (
-        //                                             (activeAchievement !== index) ? <div onClick={() => setActiveAchievement(index)}>
-        //                                                 <p>{item.title ? item.title : "Title"}</p>
-        //                                                 <p>{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</p>
-
-        //                                                 <p>{item.description ? item.description : "Description"}</p>
-        //                                             </div> : <div>
-        //                                                 {activeAchievement !== "" && <Achievement handleAchievementDelete={handleDelate} active={activeAchievement} education={resume_detail.achievements[activeAchievement]} handleChange={handleAchievementCB}/>}
-        //                                             </div>
-        //                                         ))}     
-        //                                         {!props.downloads && <span onClick={() => handleAchievementClick(activeAchievement)}>Add new Achievement</span>}
-        //                                     </div>
-        //                             }
-
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.volunteers) && 
-                                    
-        //                                 <div className="section">
-        //                                     <h2>Volunteers</h2>
-        //                                     {resume_detail.volunteers && resume_detail.volunteers.map((item, index) => (
-        //                                         (activeVolunteer !== index) ? <div onClick={() => setActiveVolunteer(index)}>
-        //                                             <p>{item.title ? item.title : "Title"}</p>
-        //                                             <p>{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</p>
-
-        //                                             <p>{item.description ? item.description : "Description"}</p>
-        //                                         </div> : <div>
-        //                                             {activeVolunteer !== "" && <Volunteer handleVolunteerDelete={handleDelate} active={activeVolunteer} education={resume_detail.volunteers[activeVolunteer]} handleChange={handleVolunteerCB}/>}
-        //                                         </div>
-        //                                     ))}     
-        //                                     {!props.downloads && <span onClick={() => handleVolunteerClick(activeVolunteer)}>Add new Volunteer</span>}
-        //                                 </div>
-        //                             }
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.patents) && 
-                                    
-        //                                 <div className="section">
-        //                                     <h2>Patents</h2>
-        //                                     {resume_detail.patents && resume_detail.patents.map((item, index) => (
-        //                                         (activePatents !== index) ? <div onClick={() => setActivePatents(index)}>
-        //                                             <p>{item.title ? item.title : "Title"}</p>
-        //                                             <p>{item.application_no ? item.application_no : "Application No"}</p>
-        //                                             <p>{item.location ? item.location : "location"} {item.date ? item.date : "date"}</p>
-                                    
-        //                                             <p>{item.description ? item.description : "Description"}</p>
-        //                                             <p>{item.url ? item.url : "url"}</p>
-
-        //                                         </div> : <div>
-        //                                             {activePatents !== "" && <Patent handlePatentsDelete={handleDelate} active={activePatents} education={resume_detail.patents[activePatents]} handleChange={handlePatentsCB}/>}
-        //                                         </div>
-        //                                     ))}     
-        //                                     {!props.downloads && <span onClick={() => handlePatentsClick(activePatents)}>Add new Patents</span>}
-        //                                 </div>
-        //                             }
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.references) && 
-                                        
-        //                                 <div className="section">
-        //                                     <h2>References</h2>
-        //                                     {resume_detail.references && resume_detail.references.map((item, index) => (
-        //                                         (activeReferences !== index) ? <div onClick={() => setActiveReferences(index)}>
-        //                                             <p>{item.title ? item.title : "Title"}</p>
-        //                                             <p>{item.company ? item.company : "company"}</p>
-                                    
-        //                                             <p>{item.location ? item.location : "location"}</p>
-        //                                             <p>{item.position ? item.position : "position"}</p>
-        //                                             <p>{item.phone ? item.phone : "phone"}</p>
-        //                                             <p>{item.email ? item.email : "email"}</p>
-
-        //                                         </div> : <div>
-        //                                             {activeReferences !== "" && <Reference handleReferencesDelete={handleDelate} active={activeReferences} education={resume_detail.references[activeReferences]} handleChange={handleReferencesCB}/>}
-        //                                         </div>
-        //                                     ))}     
-        //                                     {!props.downloads && <span onClick={() => handleReferencesClick(activeReferences)}>Add new References</span>}
-        //                                 </div>
-        //                             }
-        //                             {(resume_detail.sample_map && resume_detail.sample_map.custom_field) && 
-                                    
-        //                                 <div className="section">
-        //                                     <h2>Custom Fields</h2>
-        //                                     {resume_detail.custom_field && resume_detail.custom_field.map((item, index) => (
-        //                                         (activeCustom_field !== index) ? <div onClick={() => setActiveCustom_field(index)}>
-        //                                             <p>{item.title ? item.title : "Title"}</p>
-        //                                             <p>{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</p>
-                                    
-        //                                             <p>{item.description ? item.description : "Description"}</p>
-        //                                         </div> : <div>
-        //                                             {activeCustom_field !== "" && <Custom_field handleCustom_fieldDelete={handleDelate} active={activeCustom_field} education={resume_detail.custom_field[activeCustom_field]} handleChange={handleCustom_fieldCB}/>}
-        //                                         </div>
-        //                                     ))}     
-        //                                     {!props.downloads && <span onClick={() => handleCustom_fieldClick(activeCustom_field)}>Add new Custom_field</span>}
-        //                                 </div>
-        //                             }
-
-        //                         </div>
-        //                     </div>
-
-        //                     </div>
-                            
-                            
-        //                 </div>
-        //                 <div className="resumeFooter">
-                            
-        //                 </div>
-        //             </div>
-
-        //     </div>
-        // </div>
     )
 }
 

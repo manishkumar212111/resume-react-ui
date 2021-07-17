@@ -56,34 +56,61 @@ const Experience = (props) => {
         }
     }
     return(
-        <div>
-            <h3><ContentEditable 
-                value={experience.title ? experience.title : "Job Title"}
-                onChange={(value) => handleChange('title', value)}  
-            /></h3>
-            <ContentEditable 
-                value={experience.institute_name ? experience.institute_name : "Company Name"}
-                onChange={(value) => handleChange('company', value)}  
-            />
-        <input type="number" placeholder={"mm"} value={experience.duration.from.mm} min= "1" max="12" name="mm" onChange={(e) => onDateChange("from", e.target.value, 12,e )}/>/
-        <input type="number" name="yy" value={experience.duration.from.yy} placeholder={"yyyy"}  min= "1950" max="2050" onChange={(e) => onDateChange("from", e.target.value, 2030,e )} />-
-        <input type="number" placeholder={"mm"} value={experience.duration.to.mm}  min= "1" max="12" name="mm" max={12} onChange={(e) => onDateChange("to", e.target.value, 12,e )} />/
-        <input type="number" name="yy" value={experience.duration.to.yy} placeholder={"yyyy"} min= "1950" max="2050" onChange={(e) => onDateChange("to", e.target.value, 2030,e )}/>
-        <input type="radio" value="currently_working" onChange={(e) => handleCurrentChange(e)}></input> Currenlty Working here
+        <div className="card">
+            <div className="card-body">
+                <div className="card">   
+                    <h3>
+                        <ContentEditable 
+                            className="card-body"
+                            value={experience.title ? experience.title : "Job Title"}
+                            onChange={(value) => handleChange('title', value)}  
+                        />
+                    </h3>
+                </div>
+                <div className="card mt-4">
+                    <ContentEditable 
+                        className="card-body"
+                        value={experience.institute_name ? experience.institute_name : "Company Name"}
+                        onChange={(value) => handleChange('company', value)}  
+                    />
+                </div>
+            <div className="mt-4 form-inline ml-4">
+                <div className="row">
+                    <label for="from">Working From:</label>
+                    <input type="number" id="from" className="form-control" placeholder={"mm"} value={experience.duration.from.mm} min= "1" max="12" name="mm" onChange={(e) => onDateChange("from", e.target.value, 12,e )}/>
+                    <input type="number" className="form-control" name="yy" value={experience.duration.from.yy} placeholder={"yyyy"}  min= "1950" max="2050" onChange={(e) => onDateChange("from", e.target.value, 2030,e )} />
 
-        <input placeholder="Location" type="text" value={experience.location} onChange={(e) => handleChange('location', e.target.value)}/>
-        <ContentEditable 
-            value={experience.institute_name ? experience.institute_name : "Enter description here"}
-            onChange={(value) => handleChange('description', value)}  
-        />
-        <span onClick={() =>  props.handleExperienceDelete(props.active, "experience")}>delete</span>    
-        {/* <MonthPicker
-          name="MonthYear"
-          hintText="MM/YY"
-          onChange={(e) => handleChange("from" , e)}
-        //   allowedYears={{ "after": new Date().getFullYear() - 2 }}
-        /> */}
-        </div>
+                </div>
+            </div>
+
+            <div className="mt-4 form-inline ml-4">
+                <div className="row">
+                    <label for="from">Worked Upto:</label>
+                    <input type="number" className="form-control" placeholder={"mm"} value={experience.duration.to.mm}  min= "1" max="12" name="mm" max={12} onChange={(e) => onDateChange("to", e.target.value, 12,e )} />
+                    <input type="number" className="form-control" name="yy" value={experience.duration.to.yy} placeholder={"yyyy"} min= "1950" max="2050" onChange={(e) => onDateChange("to", e.target.value, 2030,e )}/>
+                </div>
+                <div className="ml-4 float-right">
+                    <input type="radio" className="form-control" value="currently_working" onChange={(e) => handleCurrentChange(e)}></input> Currenlty Working here
+                </div>
+            </div>
+
+            <div className="mt-4 form-inline">
+                <input placeholder="Location" className="form-control" type="text" value={experience.location} onChange={(e) => handleChange('location', e.target.value)}/>
+            </div>
+            <div className="card mt-4">
+
+                <ContentEditable 
+                    className="card-body"
+                    value={experience.institute_name ? experience.institute_name : "Enter description here"}
+                    onChange={(value) => handleChange('description', value)}  
+                />
+            </div>
+
+            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handleExperienceDelete(props.active, "experience")}>delete</span>    
+            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>    
+            
+            </div>
+    </div>
     )
 }
 

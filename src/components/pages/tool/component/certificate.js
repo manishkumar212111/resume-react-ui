@@ -25,20 +25,43 @@ const Certification = (props) => {
     }, [props.certifications]);
 
     return(
-        <div>
-            <ContentEditable
-                value={certification.title ? certification.title : "Certificate Title"}
-                onChange={(value) => handleChange('title', value)}  
-            />
-            <ContentEditable
-                value={certification.providers ? certification.providers : "Certificate Provider"}
-                onChange={(value) => handleChange('providers', value)} 
-            />
-            <input type="date" placeholder="Date" value={certification.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
-            <input type="text" placeholder="Certification No" value={certification.certificate_no} onChange={(e) => handleChange('certificate_no' , e.target.value)}></input>
+        <div className="card" style={{color : "black" , width : "224px"}}>
+            <div className="card-body">
+                <div className="card">   
+                    <h3>
+                        <ContentEditable
+                            value={certification.title ? certification.title : "Certificate Title"}
+                            onChange={(value) => handleChange('title', value)}  
+                            className="card-body"
+            
+                        />
+                    </h3>
+                </div>
+                <div className="card mt-4">
+                    <ContentEditable
+                        className="card-body"
+                        value={certification.providers ? certification.providers : "Certificate Provider"}
+                        onChange={(value) => handleChange('providers', value)} 
+                    />
+                    
+                </div>
 
-            <span onClick={() =>  props.handleCertificationsDelete(props.active, "certifications")}>delete</span>
-        </div>
+
+            <div className="mt-4 form-group">
+                <input type="date" className="form-control" placeholder="Date" value={certification.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+            
+            </div>
+            
+            <div className="mt-4 form-group">
+                <input type="text" className="form-control" placeholder="Certification No" value={certification.certificate_no} onChange={(e) => handleChange('certificate_no' , e.target.value)}></input>
+            </div>
+            
+            
+            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handleCertificationsDelete(props.active, "certifications")}>delete</span>    
+            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>    
+            
+            </div>
+    </div>
     )
 }
 

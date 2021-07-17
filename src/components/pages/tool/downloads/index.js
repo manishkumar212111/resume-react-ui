@@ -48,25 +48,13 @@ function Download (props){
     }
 
     console.log(resume_detail , props)
-    return (
-        // <section className="mt-5 pt-2">
-        //     <div className="tool bg-dark mt-5">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-10">
-                            <div className="row">
-                                <div className="col-md-12">
-                                    {/* <canvas> */}
-                                        {getResume(resume_detail.template_id)}
-                                    {/* </canvas> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        //     </div>
-
-        // </section>
+    return (    
+            <div className="">
+                {/* <canvas> */}
+                    {getResume(resume_detail.template_id)}
+                {/* </canvas> */}
+            </div>
+                            
     )    
 }
 

@@ -23,18 +23,38 @@ const Publication = (props) => {
     }, [props.publications]);
 
     return(
-        <div>
-            <ContentEditable
-                value={publications.title ? publications.title : "Description"}
-                onChange={(value) => handleChange('title', value)}  
-            />
-            <input type="date" placeholder="Date" value={publications.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
-            <ContentEditable
-                value={publications.description ? publications.description : "Description"}
-                onChange={(value) => handleChange('description', value)} 
-            />
-            <span onClick={() =>  props.handlePublicationsDelete(props.active, "publications")}>delete</span>
-        </div>
+        <div className="card" style={{color : "black" , width : "224px"}}>
+            <div className="card-body">
+                <div className="card">   
+                    <h3>
+                        <ContentEditable
+                            value={publications.title ? publications.title : "Description"}
+                            onChange={(value) => handleChange('title', value)}   
+                            className="card-body"
+            
+                        />
+                    </h3>
+                </div>
+            
+
+            <div className="mt-4 form-group">
+                <input type="date" className="form-control" placeholder="Date" value={publications.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+
+            
+            </div>
+            
+            <div className="card">   
+                    <ContentEditable
+                        value={publications.description ? publications.description : "Description"}
+                        onChange={(value) => handleChange('description', value)}  
+                        className="card-body"
+                    />
+            </div>
+            
+            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handlePublicationsDelete(props.active, "publications")}>delete</span>    
+            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>                
+            </div>
+    </div>
     )
 }
 

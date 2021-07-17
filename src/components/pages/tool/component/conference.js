@@ -24,20 +24,42 @@ const Conference = (props) => {
     }, [props.conference]);
 
     return(
-        <div>
-            <ContentEditable
-                value={conference.title ? conference.title : "Institute Name"}
-                onChange={(value) => handleChange('title', value)}  
-            />
-            <ContentEditable
-                value={conference.description ? conference.description : "Institute Name"}
-                onChange={(value) => handleChange('description', value)} 
-            />
-            <input type="text" placeholder="Location" value={conference.location} onChange={(e) => handleChange('location' , e.target.value)}></input><br></br>
-            <input type="date" placeholder="Date" value={conference.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+        <div className="card">
+            <div className="card-body">
+                <div className="card">   
+                    <h3>
+                        <ContentEditable
+                            value={conference.title ? conference.title : "Institute Name"}
+                            onChange={(value) => handleChange('title', value)}  
+                            className="card-body"
+            
+                        />
+                    </h3>
+                </div>
+                <div className="card mt-4">
+                    <ContentEditable
+                        className="card-body"
+                        value={conference.description ? conference.description : "Institute Name"}
+                        onChange={(value) => handleChange('description', value)} 
+                    />
+                    
+                </div>
 
-            <span onClick={() =>  props.handleConferenceDelete(props.active, "conference")}>delete</span>
-        </div>
+
+            <div className="mt-4 form-inline">
+                <input type="text" placeholder="Location" className="form-control" value={conference.location} onChange={(e) => handleChange('location' , e.target.value)}></input><br></br>            
+            </div>
+            
+            <div className="mt-4 form-inline">
+                <input type="date" className="form-control" placeholder="Date" value={conference.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+            </div>
+            
+            
+            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handleConferenceDelete(props.active, "conference")}>delete</span>    
+            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>    
+            
+            </div>
+    </div>
     )
 }
 

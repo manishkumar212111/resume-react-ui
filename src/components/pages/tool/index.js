@@ -6,6 +6,8 @@ import { getLocalStorageItem, setLocalStorageItem } from "../../../utils/globals
 import Auth from "../../pages/Auth";
 import Shimmer from "../../widgets/shimmerEffect";
 import Temp1 from "./templates/temp-1";
+import Temp2 from "./templates/temp-2";
+
 import { BASE_URL } from "../../../API/config"
 function Index (props){
     const [showLogin , setShowLogin] = useState(false);
@@ -156,9 +158,12 @@ function Index (props){
     }
     const getResume = (template_id) => {
         switch(parseInt(template_id)){
-            case 2:
-            default:
+            case 1:
                 return <Temp1 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+            case 2:
+                return <Temp2 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+
+            default:
         }
     }
 
