@@ -448,10 +448,10 @@ const Index = (props) => {
         let h = [];
         resume_detail.skills && resume_detail.skills.skills.map((itm,index)=> h.push(
             (activeSkill !== index) ? 
-            <><span onClick={() => setActiveSkill(index)}>
+            <><li onClick={() => setActiveSkill(index)}>
                 <span className="resumeSkillsTitle">{itm.name}</span>
                 <span className="resumeSkillsPer">{itm.score ? itm.score : 0}%</span>
-                </span></> : <Skills active={activeSkill} handleDone={() => setActiveSkill("")} handleSkillDelete={handleDelate} handleSkillsChange={handleSkillsChange} value={resume_detail.skills.skills[activeSkill]}/>
+                </li></> : <Skills active={activeSkill} handleDone={() => setActiveSkill("")} handleSkillDelete={handleDelate} handleSkillsChange={handleSkillsChange} value={resume_detail.skills.skills[activeSkill]}/>
         ))
             
         return <DragAndDrop htmlContent={h} items={resume_detail.skills ? resume_detail.skills.skills : []} handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
@@ -558,14 +558,14 @@ const Index = (props) => {
             {(resume_detail.sample_map && resume_detail.sample_map.languages) && <ul className="resumeSkills resumeLangSpoke">
                 <h4>LANGUAGES</h4>
                 {renderLanguages()}
-                {!props.downloads && <span onClick={() => handleLanguagesClick(activeLanguages)}>Add new language</span>}
+                {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handleLanguagesClick(activeLanguages)}>Add new language</span>}
 
             </ul>}
             {(resume_detail.sample_map && resume_detail.sample_map.awards) &&
                 <div className="resumEducation resumeCeriFLic">
                     <h4>AWARDS</h4>
                     {renderAwards()}
-                    {!props.downloads && <span onClick={() => handleAwardsClick(activeAwards)}>Add new awards</span>}
+                    {!props.downloads && <div className="py-2 mb-2 d-block" onClick={() => handleAwardsClick(activeAwards)}>Add new awards</div>}
 
                 </div>            
             }
@@ -581,7 +581,7 @@ const Index = (props) => {
                         {activeCertifications !== "" && <Certification handleCertificationsDelete={handleDelate} active={activeCertifications} certifications={resume_detail.certifications[activeCertifications]} handleChange={handleCertificationsChange}/>}
                     </div>
                 ))}
-                {!props.downloads && <span onClick={() => handleCertificationsClick(activeCertifications)}>Add new certifications</span>}
+                {!props.downloads && <div className="py-2 mb-2" onClick={() => handleCertificationsClick(activeCertifications)}>Add new certifications</div>}
             </div>}
             {(resume_detail.sample_map && resume_detail.sample_map.publications) && <div className="resumEducation resumeCeriFLic">
                 <h4>PUBLICATION & APPEARENCES</h4>
@@ -594,7 +594,7 @@ const Index = (props) => {
                         {activePublications !== "" && <Publication handlePublicationsDelete={handleDelate} active={activePublications} publications={resume_detail.publications[activePublications]} handleChange={handlePublicationsChange}/>}
                     </div>
                 ))}
-                {!props.downloads && <span onClick={() => handlePublicationsClick(activePublications)}>Add new publications</span>}
+                {!props.downloads && <div className="py-2 mb-2" onClick={() => handlePublicationsClick(activePublications)}>Add new publications</div>}
 
             </div>}
 
@@ -652,7 +652,7 @@ const Index = (props) => {
                                 {activeExperience !== "" && <Experience handleExperienceDelete={handleDelate} active={activeExperience} experience={resume_detail.employment_history[activeExperience]} handleChange={handleExperienceCB}/>}
                             </div>
                         ))}     
-                        {!props.downloads && <span onClick={() => handleExperienceClick(activeExperience)}>Add new Experience</span>}
+                        {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handleExperienceClick(activeExperience)}>Add new Experience</span>}
                 </div>}      
             {/* <div class="resumeExperince">
                 <h2>EXPERIENCE</h2>
@@ -683,7 +683,7 @@ const Index = (props) => {
                                 {activeConference !== "" && <Conference handleConferenceDelete={handleDelate} active={activeConference} education={resume_detail.conferences[activeConference]} handleChange={handleConferenceCB}/>}
                             </div>
                         ))}     
-                        {!props.downloads && <span onClick={() => handleConferenceClick(activeConference)}>Add new Conference</span>}
+                        {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handleConferenceClick(activeConference)}>Add new Conference</span>}
                     </div>
                 }
 
@@ -700,7 +700,7 @@ const Index = (props) => {
                                     {activeAchievement !== "" && <Achievement handleAchievementDelete={handleDelate} active={activeAchievement} education={resume_detail.achievements[activeAchievement]} handleChange={handleAchievementCB}/>}
                                 </div>
                             ))}     
-                            {!props.downloads && <span onClick={() => handleAchievementClick(activeAchievement)}>Add new Achievement</span>}
+                            {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handleAchievementClick(activeAchievement)}>Add new Achievement</span>}
                         </div>
                 }
                 {(resume_detail.sample_map && resume_detail.sample_map.custom_field) && 
@@ -716,7 +716,7 @@ const Index = (props) => {
                                     {activeCustom_field !== "" && <Custom_field handleCustom_fieldDelete={handleDelate} active={activeCustom_field} education={resume_detail.custom_field[activeCustom_field]} handleChange={handleCustom_fieldCB}/>}
                                 </div>
                             ))}     
-                            {!props.downloads && <span onClick={() => handleCustom_fieldClick(activeCustom_field)}>Add new Custom_field</span>}
+                            {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handleCustom_fieldClick(activeCustom_field)}>Add new Custom_field</span>}
                         </div>
                     }
                     
@@ -737,7 +737,7 @@ const Index = (props) => {
                                 {activePatents !== "" && <Patent handlePatentsDelete={handleDelate} active={activePatents} education={resume_detail.patents[activePatents]} handleChange={handlePatentsCB}/>}
                             </div>
                         ))}     
-                        {!props.downloads && <span onClick={() => handlePatentsClick(activePatents)}>Add new Patents</span>}
+                        {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handlePatentsClick(activePatents)}>Add new Patents</span>}
                     </div>
                 }
                 {(resume_detail.sample_map && resume_detail.sample_map.references) && 
@@ -756,7 +756,7 @@ const Index = (props) => {
                                 {activeReferences !== "" && <Reference handleReferencesDelete={handleDelate} active={activeReferences} education={resume_detail.references[activeReferences]} handleChange={handleReferencesCB}/>}
                             </div>
                         ))}     
-                        {!props.downloads && <span onClick={() => handleReferencesClick(activeReferences)}>Add new References</span>}
+                        {!props.downloads && <span className="py-2 mb-2 d-block" onClick={() => handleReferencesClick(activeReferences)}>Add new References</span>}
                     </div>
                 }          
         </div>
