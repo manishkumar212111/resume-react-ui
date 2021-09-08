@@ -660,8 +660,7 @@ const Index = (props) => {
                         (activeExperience !== index) ? <div className="resumeJobTitleBlock" onClick={() => setActiveExperience(index)}>
                             <h3 dangerouslySetInnerHTML={{ __html: (item.title ? item.title : "Job Title").replaceAll('&lt;' , '<') }}></h3>
                             <div className="resumeComName" dangerouslySetInnerHTML={{ __html: (item.company ? item.company : "Company").replaceAll('&lt;' , '<') }}></div>
-                            <div className="resumeRightLoc">{months[item.duration.from.mm ? parseInt(item.duration.from.mm) : 0]} {item.duration.from.yy ? item.duration.from.yy : "2000"} - {months[item.duration.to.mm ? parseInt(item.duration.to.yy) : 0]} {item.duration.to.yy ? item.duration.to.yy : "2003"}</div>
-                            <div className="resumeRightLoc">{item.location ? item.location : ""}</div>
+                            <div className="resumeRightLoc">{item.location ? item.location : ""} {months[item.duration.from.mm ? parseInt(item.duration.from.mm) : 0]} {item.duration.from.yy ? item.duration.from.yy : "2000"} - {months[item.duration.to.mm ? parseInt(item.duration.to.yy) : 0]} {item.duration.to.yy ? item.duration.to.yy : "2003"}</div>                            
 
                             <div className="resumeRightLoc" dangerouslySetInnerHTML={{ __html: (item.description ? item.description : "").replaceAll('&lt;' , '<') }}></div>
 

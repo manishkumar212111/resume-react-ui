@@ -297,13 +297,18 @@ h1 {
     line-height: 10px;
     letter-spacing: 0.1em;
     color: #646464;
+    [draggable="true"] {
+      margin-bottom: 8px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
     li {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
+      justify-content: space-between;      
       padding-left: 29px;
       position: relative;
       &:before {
@@ -316,10 +321,7 @@ h1 {
         display: inline-block;
         background: #000;
         border-radius: 50%;
-      }
-      &:last-child {
-        margin-bottom: 0;
-      }
+      }      
       .resumeSkillsBar {
         width: 75px;
         height: 5px;

@@ -11,10 +11,10 @@ const DragAndDrop = (props) => {
     const handleDrag = (ev) => {
         setDragId(ev.currentTarget.id);
         //setDragId(ev.currentTarget.id);
-      };
-    
-      const handleDrop = (ev) => {
-        if(ev.currentTarget.id == dragId){
+    };
+
+    const handleDrop = (ev) => {
+        if (ev.currentTarget.id == dragId) {
             return;
         }
         
@@ -23,33 +23,33 @@ const DragAndDrop = (props) => {
         
       };
 
-      const array_move = (arr, old_index, new_index) => {
+    const array_move = (arr, old_index, new_index) => {
         if (new_index >= arr.length) {
-                var k = new_index - arr.length + 1;
-                while (k--) {
-                    arr.push(undefined);
-                }
+            var k = new_index - arr.length + 1;
+            while (k--) {
+                arr.push(undefined);
             }
-            arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-            return arr; // for testing
-        };
-        
-    return(
-        <div>
+        }
+        arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+        return arr; // for testing
+    };
+
+    return (
+        <>
             {contents.map((itm, index) => (
-                <li
+                <div
                     draggable={true}
                     id={index}
                     onDragOver={(ev) => ev.preventDefault()}
                     onDragStart={handleDrag}
                     onDrop={handleDrop}
                     className={props.className}
-                    style={{listStyle : 'none'}}
+                    style={{ listStyle: 'none' }}
                 >
                     {itm}
-                </li>
+                </div>
             ))}
-        </div>
+        </>
     )
 }
 
