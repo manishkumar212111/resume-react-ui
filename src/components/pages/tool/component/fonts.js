@@ -28,9 +28,9 @@ const Fonts = (props) => {
     
     console.log(props.font_detail)
     return (
-        <>
-        <h6>Fonts</h6>
-            <div className="row">
+        <><br></br>
+        <h6 className="p-2" style={{fontWeight: 700}}>Fonts</h6>
+            <div className="row p-2">
             {fonts.map((itm) => (
                 <div className="col-md-6">
                     <div className="custom-control custom-radio mb-3">
@@ -41,7 +41,7 @@ const Fonts = (props) => {
             ))}
                 
             <div className="col-md-12 mt-4">
-                <h6>Font Weight</h6>
+                <h6 className="p-2" style={{fontWeight: 700}}>Font Weight</h6><br></br>
 
             </div>
             {fontPairing.map((itm) => (
@@ -55,7 +55,7 @@ const Fonts = (props) => {
             ))}
 
             <div className="col-md-12 mt-4">
-                <h6>Font Size</h6>
+                <h6 className="p-2" style={{fontWeight: 700}}>Font Size</h6><br></br>
 
             </div>
             {fontSize.map((itm) => (
@@ -69,7 +69,7 @@ const Fonts = (props) => {
             ))}
 
                 <div className="col-md-12 mt-4">
-                    <h6>Style</h6>
+                    <h6 className="p-2" style={{fontWeight: 700}}>Style</h6><br></br>
 
                 </div>
                 <div className="col-md-12">
@@ -88,7 +88,7 @@ const Fonts = (props) => {
 
 
                 <div className="col-md-12 mt-4">
-                    <h6>Icons</h6>
+                    <h6 className="p-2" style={{fontWeight: 700}}>Icons</h6><br></br>
                 </div>
 
                 {iconList.map((itm , i) => (

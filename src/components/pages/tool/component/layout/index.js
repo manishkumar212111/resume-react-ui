@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import './index.scss';
 let draggedId = '';
 const Layout = (props) => {
     const [sample_map , setSampleMap] = useState(props.sample_map);
@@ -12,7 +12,7 @@ const Layout = (props) => {
     }
     
     const handleInActiveDrop = (e) => {
-
+        console.log(e);
         if(e.target.id && sample_map[draggedId] && draggedId){
             let field = {};
             field[draggedId] = false;
@@ -24,6 +24,7 @@ const Layout = (props) => {
     }
 
     const handleActiveDrop = (e) => {
+        console.log(e)
         if(e.target.id && !sample_map[draggedId] && draggedId){
             console.log(e.target.id, "in drop" , sample_map[draggedId]);
             let field = {};
@@ -49,35 +50,36 @@ const Layout = (props) => {
             }
         }
         if(h.length == 0){
-            h.push(<li 
-                style={{listStyle : "none"}}
+            h.push(<span 
+                style={{width : "250px", display : "inline-block"}}
                 id={0} 
-                draggable={true} 
+                //draggable={true} 
                 onDragOver={(ev) => ev.preventDefault()}
-                onDragStart={handleDrag}
+                //onDragStart={handleDrag}
                 
-            >Empty</li>
+            >No {`${status ? "active" : "inactive"}`} elements here</span>
             )
         }
         return h;
     }
     
     return(
-    <div>
-        Active
-       <div id="active" onDrop={handleActiveDrop}>
-        <span>
-           {getData(true)}
-           </span>
+    <div >
+        {/* Active */}
+       <div id="active" className="card active" onDragOver={(ev) => ev.preventDefault()}  onDrop={handleActiveDrop}>
+            <ul id="ul-active" className="card-body">
+                {getData(true)}
+            </ul>
        </div>
-       Inactive
        <div 
         id="inactive" 
+        className="card inactive"
         onDrop={handleInActiveDrop}
+        onDragOver={(ev) => ev.preventDefault()}
        >
-         <span>  
-        {getData(false)}   
-        </span>
+            <ul id="ul-inactive" className="card-body">
+                {getData(false)}   
+            </ul>
         </div> 
     </div>
     )

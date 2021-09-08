@@ -9,12 +9,13 @@ import Temp1 from "./templates/temp-1";
 import Temp2 from "./templates/temp-2";
 
 import { BASE_URL } from "../../../API/config"
+import Form from './form/Form';
 function Index (props){
     const [showLogin , setShowLogin] = useState(false);
     const [resume_detail , setResumeDetail] = useState({});
     const [basic_info , setBasicInfo] = useState({});
     const [type , setType] = useState("");
-    
+    const [sidebarOpened , setSideBarOpen] = useState(false);
     useEffect(() => {
         if(!getLocalStorageItem('userDetail').user){ 
             window.login_redirect = window.location.href ? window.location.href : "";
@@ -83,10 +84,10 @@ function Index (props){
     }
 
     const handleToolEvent = (value , key) => {
-        // console.log(value.target.innerHTML)
+        console.log(value , key)
         switch(key){
             case "job_title":
-                props.updateLocalState({...resume_detail, extra : {...(resume_detail.extra || {}), job_title : value }})
+                props.updateLocalState({...resume_detail, job_title : value })
                 break;
             case 'education':
                 props.updateLocalState({...resume_detail, education : value})
@@ -175,10 +176,13 @@ function Index (props){
     return (
         <section className="mt-5 pt-2">
             <div className="tool bg-dark mt-5">
-                <div className="container">
+                <div className="container" style={{marginRight : 0, marginLeft : 0, display : "initial"}}>
                     <div className="row">
-                        <SideBar handleSidebar={handleSidebar} type={type} setType={setType} resume_detail={resume_detail} basic_info={props.basic_info}/>
-                        <div className="col-md-10 p-5">
+                        <SideBar setSideBarOpen={setSideBarOpen} handleSidebar={handleSidebar} type={type} setType={setType} resume_detail={resume_detail} basic_info={props.basic_info}/>
+                        <div className={`${sidebarOpened ? "col-md-6" :  "col-md-6"} p-5`}>
+                        <Form basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>
+                        </div>
+                        <div className={`${sidebarOpened ? "col-md-5" :  "col-md-5"} p-5`}>
                             <div className="row">
                                 <div className="col-md-12 text-center">
                                     <button className="btn btn-primary d-inline-block"><span className="mdi mdi-share"></span>Share</button>

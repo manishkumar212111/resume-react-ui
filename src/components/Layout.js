@@ -60,10 +60,10 @@ class Layout extends React.Component {
 
     handleScroll(e) {
       let elem = document.querySelector(".navbar");
-      if(document.getElementById('main').getBoundingClientRect().top < -55){
-        elem.classList && elem.classList.add('nav-sticky')
+      if((document.getElementById('main') && document.getElementById('main').getBoundingClientRect().top) < -55){
+        elem && elem.classList && elem.classList.add('nav-sticky')
       } else {
-        elem.classList && elem.classList.remove('nav-sticky')
+        elem && elem.classList && elem.classList.remove('nav-sticky')
 
       }
 

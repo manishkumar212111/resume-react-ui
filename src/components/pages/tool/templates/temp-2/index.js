@@ -488,15 +488,11 @@ const Index = (props) => {
     const renderLanguages = () => {
         let h = [];
         resume_detail.languages && resume_detail.languages.map((itm,index)=> h.push(
-            (activeLanguages !== index) ? 
-            <span onClick={() => setActiveLanguages(index)}>
+            <li >
                 <span className="resumeSkillsTitle">{itm}</span>
-                {/* <span className="resumeSkillsBar"><span className="leftTextSize"></span></span> */}
-            </span>
-            : <Languages active={activeLanguages} handleDone={() => setActiveLanguages("")} handleLanguagesDelete={handleDelate} handleLanguagesChange={handleLanguagesChange} value={resume_detail.languages[activeLanguages]}/>
+            </li>
         ))            
-        return <DragAndDrop htmlContent={h} items={resume_detail.languages ? resume_detail.languages : []} handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
-                
+        return h; 
     }
     
     return(
@@ -505,12 +501,8 @@ const Index = (props) => {
             <div class="resumeProfile">
                 <div class="resumePP"><img src={Img} alt=""/></div>
                 {basic_info && <h1 onClick={() => props.sideBarCb('info')}>{basic_info.first_name} <strong>{basic_info.last_name}</strong></h1>}
-                <ContentEditable 
-                    className={"resumePosTitle"}
-                    value={props?.resume_detail?.job_title ?  props.resume_detail.job_title :"Job Title"}
-                    onChange={(value) => props.handleToolEvent(value , "job_title")}
-                />
-                {/* <div class="resumePosTitle">Mechanical Engineer</div> */}
+                <div dangerouslySetInnerHTML={{__html: (props?.resume_detail?.job_title ?  props.resume_detail.job_title :"Job Title").replaceAll('&lt;' , '<')}} className={"resumePosTitle"} />
+                
             </div>
             <div className="resumEducation">
                 <h4>EDUCATION</h4>
@@ -558,8 +550,7 @@ const Index = (props) => {
             {(resume_detail.sample_map && resume_detail.sample_map.languages) && <ul className="resumeSkills resumeLangSpoke">
                 <h4>LANGUAGES</h4>
                 {renderLanguages()}
-                {!props.downloads && <span onClick={() => handleLanguagesClick(activeLanguages)}>Add new language</span>}
-
+                
             </ul>}
             {(resume_detail.sample_map && resume_detail.sample_map.awards) &&
                 <div className="resumEducation resumeCeriFLic">
@@ -572,16 +563,13 @@ const Index = (props) => {
             {(resume_detail.sample_map && resume_detail.sample_map.certifications) && <div className="resumEducation resumeCeriFLic">
                 <h4>CERTIFICATE & LICENSE</h4>
                 {resume_detail.certifications && resume_detail.certifications.map((item, index) => (
-                    (activeCertifications !== index) ? <div className="resumEducationInfo" onClick={() => setActiveCertifications(index)}>
+                    <div className="resumEducationInfo">
                         <span className="resumeDegree">{item.title ? item.title : "Title"}</span>
                         <span className="resumeUniName">{item.providers ? item.providers : "Training providers"}</span>
                         <span className="resumelocation">{item.date ? item.date : "Date"}</span>
                         <span className="resumeCourse">{item.certificate_no ? item.certificate_no : "Certifcate No"}</span>
-                    </div> : <div>
-                        {activeCertifications !== "" && <Certification handleCertificationsDelete={handleDelate} active={activeCertifications} certifications={resume_detail.certifications[activeCertifications]} handleChange={handleCertificationsChange}/>}
                     </div>
                 ))}
-                {!props.downloads && <span onClick={() => handleCertificationsClick(activeCertifications)}>Add new certifications</span>}
             </div>}
             {(resume_detail.sample_map && resume_detail.sample_map.publications) && <div className="resumEducation resumeCeriFLic">
                 <h4>PUBLICATION & APPEARENCES</h4>
@@ -601,18 +589,15 @@ const Index = (props) => {
             {(resume_detail.sample_map && resume_detail.sample_map.trainings) && <div className="resumEducation resumeCeriFLic">
                 <h4>TRAINING</h4>
                 {resume_detail.trainings && resume_detail.trainings.map((item, index) => (
-                    (activeTrainings !== index) ? 
+                    
                         <div onClick={() => setActiveTrainings(index)} className="resumEducationInfo">
                             <span className="resumeDegree">{item.title ? item.title : "Title"}</span>
                             <span className="resumeUniName">{item.providers ? item.providers : "Training providers"}</span>
                             <span className="resumeUniName">{item.date ? item.date : "Date"}</span>
                             <span className="resumeDescp">{item.description ? item.description : "Description"}</span>
                         </div>
-                    : <div>
-                        {activeTrainings !== "" && <Training handleTrainingsDelete={handleDelate} active={activeTrainings} trainings={resume_detail.trainings[activeTrainings]} handleChange={handleTrainingsChange}/>}
-                    </div>
+                    
                 ))}
-                {!props.downloads && <span onClick={() => handleTrainingsClick(activeTrainings)}>Add new training</span>}
 
             </div>}
         </div>
@@ -630,12 +615,8 @@ const Index = (props) => {
                 </ul>
             </div>
             <h2>ABOUT ME</h2>
-            <ContentEditable 
-                value={resume_detail.summary ? resume_detail.summary : "Enter summary here"}
-                onChange={(value) => props.handleToolEvent(value , "summary")}
-                className={"resumeAboutMe"}
-            />      
-            
+            <div dangerouslySetInnerHTML={{__html: (resume_detail.summary || "Your Resume Summary").replaceAll('&lt;' , '<')}} className={"resumeAboutMe"} />
+                
             {(resume_detail.sample_map && resume_detail.sample_map.employment_history) && 
                 <div className="resumeExperince">
                     <h2>EXPERIENCE</h2>

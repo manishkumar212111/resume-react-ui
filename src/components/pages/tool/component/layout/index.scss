@@ -1,0 +1,40 @@
+.active {
+    border-width: 3px;
+    border-color: green;
+    border-radius: 8px;
+    li {
+        list-style: none;
+        background-color: grey;
+        padding: 9px;
+        width: auto;
+        margin: 5px;
+        border-radius: 5px;
+        color : white;
+        align-items: center;
+        width: 50%;
+        white-space: nowrap;
+        display: inline;
+        line-height: 2.5;
+    }
+}
+
+.inactive {
+    border-width: 3px;
+    border-color: red;
+    border-radius: 8px;
+    margin-top: 10px;
+    li {
+        list-style: none;
+        background-color: grey;
+        padding: 9px;
+        width: auto;
+        margin: 5px;
+        border-radius: 5px;
+        color : white;
+        align-items: center;
+        width: 50%;
+        white-space: nowrap;
+        display: inline;
+        line-height: 2.5;
+    }
+}

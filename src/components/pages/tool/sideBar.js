@@ -9,7 +9,7 @@ import Template from "./component/template"
 import Background from "./component/background";
 import Fonts from "./component/fonts";
 import BasicInfo from "./component/basic_info";
-import Layout from "./component/layout";
+import Layout from "./component/layout/index";
 
 import { updateUserInfo } from "../../../actions/tool";
 import { connect } from "react-redux";
@@ -19,6 +19,7 @@ function SideBar(props){
     const handleSideBarClick = (type) => {
         type == "" && props.setType("");
         setType(type);
+        props.setSideBarOpen(type);
     }
 
     useEffect(() =>{
@@ -32,7 +33,7 @@ function SideBar(props){
     console.log(type)
     return(
         <>
-        <div className="col-md-2">
+        <div className="col-md-1">
             <ul className="nav nav-pills mb-3 " id="pills-tab1" role="tablist">
                 <li className="nav-item col-md-12 mt-3 p-0" role="presentation" onClick={() => handleSideBarClick(type == 'template' ? "" : "template")}>
                     <div className="nav-link bg-white text-center p-4" id="pills-home-tab" data-toggle="pill" href="#f1" role="tab" aria-controls="pills-home" aria-selected="false">
@@ -42,10 +43,10 @@ function SideBar(props){
                     <div className="nav-link  p-4 bg-white  text-center" id="pills-profile-tab " data-toggle="pill" href="#f2" role="tab" aria-controls="pills-profile" aria-selected="false">
                         <img className="d-block w-50" src={layout} alt="work-img" />Layout</div>
                 </li>
-                <li className="nav-item col-md-12 mt-3  p-0" role="presentation" onClick={() => handleSideBarClick(type =='info' ? "" : "info")}>
+                {/* <li className="nav-item col-md-12 mt-3  p-0" role="presentation" onClick={() => handleSideBarClick(type =='info' ? "" : "info")}>
                     <div className="nav-link  p-4 bg-white  text-center" id="pills-contact-tab" data-toggle="pill" href="#f3" role="tab" aria-controls="pills-contact" aria-selected="false"><img className="d-block w-50" src={user} alt="work-img" />Account info
                         & Social account</div>
-                </li>
+                </li> */}
                 <li className="nav-item col-md-12 mt-3 p-0" role="presentation" onClick={() => handleSideBarClick(type=='background' ? "" : "background")}>
                     <div className="nav-link  p-4 bg-white  text-center" id="pills-contact-tab" data-toggle="pill" href="#f4" role="tab" aria-controls="pills-contact" aria-selected="false"><img className="d-block w-50" src={color} alt="work-img" />Background
                         & colors                               </div>
@@ -54,17 +55,17 @@ function SideBar(props){
                 <li className="nav-item col-md-12 mt-3 p-0" role="presentation" onClick={() => handleSideBarClick(type == 'font' ? "" : "font")}>
                     <div className="nav-link  p-4 bg-white  text-center" id="pills-contact-tab " data-toggle="pill" href="#f5" role="tab" aria-controls="pills-contact" aria-selected="false"><img className="d-block w-50" src={font} alt="work-img" />Fonts</div>
                 </li>
-                <li className="nav-item col-md-12 mt-3 p-0" role="presentation" onClick={() => handleSideBarClick(type == 'content' ? "" : "content")}>
+                {/* <li className="nav-item col-md-12 mt-3 p-0" role="presentation" onClick={() => handleSideBarClick(type == 'content' ? "" : "content")}>
                     <div className="nav-link  p-4 bg-white  text-center" id="pills-contact-tab " data-toggle="pill" href="#f6" role="tab" aria-controls="pills-contact" aria-selected="false"><img className="d-block w-50" src={content} alt="work-img" /> Content
                         Management</div>
-                </li>
+                </li> */}
 
             </ul>
 
         </div>
         
             {type == 'template' && 
-                <div className="col-md-4 ">
+                <div className="col-md-3 ">
                     <div className="tab-content" id="pills-tabContent">
                         <div className="col-md-12 bg-white pt-3 pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "110vh","overflow-x": "hidden"}}>
                             <Template handleSidebar = { (value , key) => {props.handleSidebar(value , key); setType(null)}} />
@@ -75,7 +76,7 @@ function SideBar(props){
                 }
 
             {type == 'background' && 
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className="tab-content  pt-3" id="pills-tabContent">
 
                         <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
@@ -86,7 +87,7 @@ function SideBar(props){
                 }
 
             {type == 'font' && 
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className="tab-content  pt-3" id="pills-tabContent">
 
                         <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
@@ -96,7 +97,7 @@ function SideBar(props){
                 </div>
             }
             {type == 'info' && 
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className="tab-content  pt-3" id="pills-tabContent">
 
                         <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
@@ -106,10 +107,10 @@ function SideBar(props){
                 </div>
             }
             {type == 'layout' && 
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className="tab-content  pt-3" id="pills-tabContent">
 
-                        <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh"}}>
+                        <div className="col-md-12 bg-white pb-5 rounded" id="f1" role="tabpanel" aria-labelledby="pills-home-tab" style={{"overflow-y": "auto","height": "160vh", padding : "8px"}}>
                             <Layout sample_map={props.resume_detail ? props.resume_detail.sample_map : {}} handleSidebar = { (value , key) => {props.handleSidebar(value , key)}} />
                         </div>   
                     </div>                    

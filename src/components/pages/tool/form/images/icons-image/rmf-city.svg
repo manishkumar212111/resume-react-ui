@@ -1,0 +1,18 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.66602 28H29.3327" stroke="black" stroke-opacity="0.85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.33398 17.3334H6.66732C5.93094 17.3334 5.33398 17.9303 5.33398 18.6667V26.6667C5.33398 27.4031 5.93094 28 6.66732 28H9.33398C10.0704 28 10.6673 27.4031 10.6673 26.6667V18.6667C10.6673 17.9303 10.0704 17.3334 9.33398 17.3334Z" stroke="black" stroke-opacity="0.85" stroke-width="2" stroke-linejoin="round"/>
+<path d="M8 22.6666H8.66667" stroke="black" stroke-opacity="0.85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.3346 2.66675H13.0013C12.2649 2.66675 11.668 3.2637 11.668 4.00008V26.6667C11.668 27.4031 12.2649 28.0001 13.0013 28.0001H26.3346C27.071 28.0001 27.668 27.4031 27.668 26.6667V4.00008C27.668 3.2637 27.071 2.66675 26.3346 2.66675Z" stroke="black" stroke-opacity="0.85" stroke-width="2" stroke-linejoin="round"/>
+<path d="M17.3327 6.66663H14.666V9.33329H17.3327V6.66663Z" fill="black" fill-opacity="0.85"/>
+<path d="M14.916 9.08329V6.91663H17.0827V9.08329H14.916Z" stroke="black" stroke-opacity="0.85" stroke-width="0.5"/>
+<path d="M22.6667 6.66663H20V9.33329H22.6667V6.66663Z" fill="black" fill-opacity="0.85"/>
+<path d="M20.25 9.08329V6.91663H22.4167V9.08329H20.25Z" stroke="black" stroke-opacity="0.85" stroke-width="0.5"/>
+<path d="M17.3327 11.3334H14.666V14H17.3327V11.3334Z" fill="black" fill-opacity="0.85"/>
+<path d="M14.916 13.75V11.5834H17.0827V13.75H14.916Z" stroke="black" stroke-opacity="0.85" stroke-width="0.5"/>
+<path d="M22.6667 11.3334H20V14H22.6667V11.3334Z" fill="black" fill-opacity="0.85"/>
+<path d="M20.25 13.75V11.5834H22.4167V13.75H20.25Z" stroke="black" stroke-opacity="0.85" stroke-width="0.5"/>
+<path d="M22.6667 16H20V18.6667H22.6667V16Z" fill="black" fill-opacity="0.85"/>
+<path d="M20.25 18.4167V16.25H22.4167V18.4167H20.25Z" stroke="black" stroke-opacity="0.85" stroke-width="0.5"/>
+<path d="M22.6667 20.6666H20V23.3333H22.6667V20.6666Z" fill="black" fill-opacity="0.85"/>
+<path d="M20.25 23.0833V20.9166H22.4167V23.0833H20.25Z" stroke="black" stroke-opacity="0.85" stroke-width="0.5"/>
+</svg>

@@ -2,7 +2,7 @@ import React from 'react';
 import {background_color , text_color , theme} from "../../../../configs"
 const Background = (props) => {
     return(
-        <div>
+        <div className="p-3">
             <h6>Background</h6>
                 <ul class="color">
                     {background_color.map(item => (

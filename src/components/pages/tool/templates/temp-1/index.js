@@ -454,7 +454,7 @@ const Index = (props) => {
                 </li></> : <Skills active={activeSkill} handleDone={() => setActiveSkill("")} handleSkillDelete={handleDelate} handleSkillsChange={handleSkillsChange} value={resume_detail.skills.skills[activeSkill]}/>
         ))
             
-        return <DragAndDrop htmlContent={h} items={resume_detail.skills ? resume_detail.skills.skills : []} handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
+        return <DragAndDrop htmlContent={h} items={resume_detail.skills ? resume_detail.skills.skills : []} keys="skills" handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
         
     }
 
@@ -464,7 +464,7 @@ const Index = (props) => {
             (activeAwards !== index) ? <p className="resumeAwardRec" onClick={() => setActiveAwards(index)}>{itm.title}</p> : <Awards active={activeAwards} handleDone={() => setActiveAwards("")} handleAwardsDelete={handleDelate} handleAwardsChange={handleAwardsChange} value={resume_detail.awards[activeAwards]}/>
         ))
             
-        return <DragAndDrop htmlContent={h} items={resume_detail.awards ? resume_detail.awards : []} handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
+        return <DragAndDrop htmlContent={h} items={resume_detail.awards ? resume_detail.awards : []} keys="awards" handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
         
     }
 
@@ -477,7 +477,7 @@ const Index = (props) => {
             </li>
              : <Hobbies active={activeHobbies} handleDone={() => setActiveHobbies("")} handleHobbiesDelete={handleDelate} handleHobbiesChange={handleHobbiesChange} value={resume_detail.hobbies[activeHobbies]}/>
         ))            
-        return <DragAndDrop htmlContent={h} items={resume_detail.hobbies ? resume_detail.hobbies : []} handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
+        return <DragAndDrop htmlContent={h} items={resume_detail.hobbies ? resume_detail.hobbies : []} keys="hobbies" handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
                 
     }
 
@@ -491,7 +491,7 @@ const Index = (props) => {
             </li>
             : <Languages active={activeLanguages} handleDone={() => setActiveLanguages("")} handleLanguagesDelete={handleDelate} handleLanguagesChange={handleLanguagesChange} value={resume_detail.languages[activeLanguages]}/>
         ))            
-        return <DragAndDrop htmlContent={h} items={resume_detail.languages ? resume_detail.languages : []} handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
+        return <DragAndDrop htmlContent={h} items={resume_detail.languages ? resume_detail.languages : []} keys="languages" handleToolEvent={(value , key) => props.handleToolEvent(value , key)}/>
                 
     }
     

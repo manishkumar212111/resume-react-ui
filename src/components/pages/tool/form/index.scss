@@ -1,0 +1,473 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  // margin: 0;
+  // padding: 0;
+  // border: 0;
+  // font-size: 100%;
+  // font: inherit;
+  // vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 12px;
+  background-color: #DADADA;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, *:after , *:before {
+  box-sizing: border-box;
+}
+/*For Clear*/
+.clearfix { *zoom: 1; }
+.clearfix:before, .clearfix:after { display:block; content: ""; line-height: 0; }
+.clearfix:after { clear: both; }
+.clear { clear: both; }
+
+.clearfix:after, .clearfix:before {
+    display: block;
+    content: "";
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+
+// custom scrollbars
+.rmf_thin_scroll{width:100%;overflow:auto;position:relative;}
+.rmf_thin_scroll::-webkit-scrollbar{width:6px;}
+.rmf_thin_scroll::-webkit-scrollbar-thumb,.rmf_thin_scroll::-webkit-scrollbar-track{border-radius:5px;background:#f8f8f8;}
+.rmf_thin_scroll::-webkit-scrollbar-thumb{background:rgba(119, 126, 134, 0.55);border-radius: 5px;}
+// .rmf_thin_scroll::-webkit-scrollbar-thumb:hover{background:#f8f8f8; border-radius: 5px;}
+
+.rmfromwrpr {
+  background: #F1F1F1;
+  box-shadow: 0px 15px 40px rgba(222, 222, 222, 0.1);
+  border-radius: 41px;
+  padding: 20px 24px;
+  font-family: 'Open Sans', sans-serif;
+  .rmf_thin_scroll {
+    height: 100vh;
+    padding: 0 10px;
+  }
+
+  .rmf_control{display:block;position:relative;padding-left:24px;cursor:pointer;font-size:18px}
+  .rmf_control input{position:absolute;z-index:-1;opacity:0}
+  .rmf_control__indicator{position:absolute;top:0;left:0;height:16px;width:16px;background:#333333;border-radius: 2px;border: solid 2px #333333;transition: all 0.3s ease-in 0s;}
+  .rmf_radio .rmf_control__indicator{border-radius:50%}
+  .rmf_control input:disabled~.rmf_control__indicator{background:#e6e6e6;opacity:.6;pointer-events:none}
+  .rmf_control__indicator:after{content:'';position:absolute;display:none}
+  .rmf_control input:checked~.rmf_control__indicator:after{display:block}
+  .rmf_checkbox .rmf_control__indicator:after{
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border: solid #fff;
+      border-width: 0 1.5px 1.5px 0;
+      transform: rotate(45deg);
+  }
+  .rmf_checkbox input:disabled~.rmf_control__indicator:after{border-color:#7b7b7b}
+  .rmf_radio .rmf_control__indicator:after{left:7px;top:7px;height:6px;width:6px;border-radius:50%;background:#fff}
+  .rmf_radio input:disabled~.rmf_control__indicator:after{background:#7b7b7b}
+
+  .range-slider-group {
+    input {
+      width: 100%;
+    }
+  }
+  .rmfImg {
+     width: 228px;
+     height: 264px;          
+     margin: 0 auto 16px;
+     position: relative;
+     .rmfImgIcon {
+        position: absolute;
+        top: -18px;
+        right: -28px;
+        img {
+          width: 28px;
+        }
+     }
+     .rmfImgBox {
+      overflow: hidden;
+      border-radius: 8px;
+      img {
+         display: block;
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+        }
+      }
+  }
+  .rmfImgSelect {
+    text-align: center;    
+    span {
+      width: 100px;
+      height: 86px;
+      display: inline-block;
+      vertical-align: top;
+      background: #D3F6D0;
+      border-radius: 16px;
+      text-align: center;
+      line-height: 86px;
+      cursor: pointer;
+      margin-right: 13px;
+      &:last-child {
+        margin-right: 0;
+        margin-left: 13px;
+      }
+    }
+  }
+  .m24 {
+    margin-bottom: 24px;
+  }
+  .m60 {
+    margin-bottom: 60px;
+  }
+  .rmfbuttom {
+    background: #E6EDF7;
+    border: 1px dashed #0029FF;
+    backdrop-filter: blur(40px);
+    border-radius: 8px;
+    font-weight: 600;
+    color: #4267B2;
+    font-size: 14px;
+    border: 1px dashed #0029FF;
+    height: 48px;
+    line-height: 47px;
+    padding: 0 20px;
+    cursor: pointer;
+    outline: none;
+    img {
+      vertical-align: middle;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+    }
+  }
+  .rmfDeletebutton {
+    background: #FFCCCB;
+    border: 1px dashed #0029FF;
+    backdrop-filter: blur(40px);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 47px;
+    font-weight: 600;
+    color: #fff;
+    height: 48px;
+    line-height: 47px;
+    padding: 0 20px;
+    cursor: pointer;
+    outline: none;
+    img {
+      vertical-align: middle;
+      width: 14px;
+      margin-right: 6px;
+    }
+  }
+  .rmfButtonWrpr {
+    margin-bottom: 0;
+  }
+
+  .rmfInputfiled {
+    position: relative;
+    label {
+      font-size: 14px;
+      line-height: 16px;
+      display: block;
+      margin-bottom: 12px;
+      img {
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      label {
+        font-size: 10px;
+      }
+    }
+    input[type=text],input[type=number], input[type=tel],input[type=date], select, textarea {
+      padding: 8px 16px;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      background: #F5F5F5;
+      border-radius: 12px;
+      border:solid 1px #F5F5F5;
+      outline: none;
+      font-size: 14px;
+      color: #000;
+      font-weight: 300;
+      &:hover {
+        border-color: #4E46B4;
+      }
+    }
+    .rmf-calendar-icon {
+      display: block;
+      position: absolute;
+      width: 18px;
+      right: 16px;
+      bottom: 16px;
+      cursor: pointer;
+      img {
+        width: 100%;
+      }
+    }
+    textarea {
+      height: auto;
+      line-height: normal;
+      padding: 20px 16px;
+    }
+    &.rmfInputMobile {
+      .rmCountryCode {
+        background: #F5F5F5;        
+        border: 0;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        appearance: none;
+        padding: 0 12px;
+        margin-right: 16px;
+        display: inline-block;
+        color: #000;
+        border-radius: 12px;
+      }
+      input {
+        width: calc(100% - 72px);
+        display: inline-block;
+      }
+    }
+  }
+  .rmfInputwitCheck {
+    & > label {
+       position: relative;
+       label {
+         position: absolute;
+         right: 0;
+         top: 0;
+       }
+    }
+  }
+  .rmfShadow {
+    background: #fff;
+    box-shadow: 0px 15px 40px rgba(222, 222, 222, 0.1);
+    border-radius: 41px;
+    padding: 32px 42px;
+    margin-bottom: 17px;
+    .rmfShadowBrdr {
+      border: 1px dashed #000000;
+      filter: drop-shadow(0px 15px 40px rgba(222, 222, 222, 0.1));
+      border-radius: 8px;
+      padding: 38px 55px 27px;
+      &.rmfOpenAcc {
+         .rmfAccHeader {
+            transform: unset;
+         }
+         .rmfAccContainer {
+           display: block;
+         }
+      }
+    }
+    .rmfAccHeader {
+      font-size: 24px;
+      font-weight: 600;
+      color: #000;
+      position: relative;      
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        margin-right: 15px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      i {
+        font-size: 12px;
+      }
+      .rmfAccIcon {
+         position: absolute;
+         margin: 0;
+         right: 0;
+         top: 10px;
+         cursor: pointer;
+        transform: rotate(180deg);
+         img {
+            width: 30px;
+            height: auto;
+            margin: 0;
+         }
+      }
+      .softSkillsIcon {
+        width: 40px;
+        height: 40px;
+        line-height: 36px;
+        background: #E6EDF7;
+        border-radius: 8px;
+        margin-right: 15px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        img {
+           width: 20px;
+           height: auto;
+           display: inline-block;
+           margin: 0;
+        }
+      }
+    }
+    .rmfAccContainer {
+      transition: max-height 1s ease-in-out;
+      margin-top: 34px;
+      display: none;
+      .rmfAccTopTitle {
+        font-size: 14px;
+        line-height: 16px;
+        display: block;
+        margin-bottom: 12px;
+        font-weight: 700;
+        img {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 6px;
+        }
+      }
+    } 
+    .rmfbuttom {
+      width: 100%;
+    }   
+  }
+  .rmfTitleBox {
+    text-align: center;
+    max-width: 622px;
+    margin: 69px auto 67px;
+  }
+  .rmfProfileBox {
+     padding: 91px 42px;
+  }
+  .rmfPreFilled {
+    border: 0.5px dashed #000000;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 15px 40px rgba(222, 222, 222, 0.1));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    line-height: 1.6;
+    word-break: break-all;
+    h4 {
+      font-size: 20px;
+      span {
+        font-size: 14px;
+        color: #8D8D8D;
+        display: block;
+        line-height: 1.5;
+      }
+    }
+    .rmfbuttom img {
+      vertical-align: middle;
+      width: 14px;
+      height: 14px;
+      margin-right: 9px;
+    }
+    .rmfbuttom {
+      width: auto;
+    }
+    .rmfDeletebutton {
+      margin-left: 20px;
+      img {
+        vertical-align: -2px;
+      }
+    }
+  }
+  .rmfPreFilledBox {
+     display: flex;
+     align-items: center;
+     margin-bottom: 30px;
+     position: relative;
+    .rmfPreDragDropIcon {
+      flex: 0 0 16px;
+       img {
+        width: 16px;
+       }
+    }
+    .rmfPreFilled {
+      flex: 0 0 calc(100% - 36px);
+      margin-left: 20px;
+    }
+    &.rmfPreFilledSmall {
+      margin-left: -16px;
+       h4 {
+        font-size: 14px;
+        color: #000;
+        font-weight: 300;
+      }
+      .rmfPreFilled {
+        flex: auto;
+         padding: 12px 100px 12px 16px;
+         margin-left: 0;
+         min-height: 50px;
+         .rmfPreFilButton {
+           position: absolute;
+           right: 16px;
+         }
+      }
+      .rmfPreDragDropIcon {
+        img {
+          width: 8px;
+        }
+      }
+      .rmfbuttom, .rmfDeletebutton {
+         height: 28px;
+         width: 28px;
+         line-height: 27px;
+         padding: 0;
+         border-radius: 4px;
+         img {
+          margin: 0;
+          width: 10px;
+          height: auto;
+         }
+      }
+      .rmfDeletebutton {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.ck-voice-label {
+    display: none !important;
+}
+
+.ck-editor__editable {
+  min-height: 150px;
+}

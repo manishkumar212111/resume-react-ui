@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const DragAndDrop = (props) => {
+    console.log(props);
     const [ dragId , setDragId ] = useState(null);
     const [contents , setContents] = useState(props.htmlContent);
 
@@ -18,8 +19,7 @@ const DragAndDrop = (props) => {
         }
         
         let newItem = array_move(props.items , parseInt(dragId) , parseInt(ev.currentTarget.id))
-        console.log(newItem)
-        props.handleToolEvent(newItem , 'skills')
+        props.handleToolEvent(newItem , props.keys)
         
       };
 
