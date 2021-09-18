@@ -5,6 +5,7 @@ import ContentEditable from "../../../elements/contentEditable";
 import Education from "../component/education";
 import Experience from "../component/experience";
 import Skills from "../component/skills";
+import SoftSkills from "../component/softSkill";
 import DragAndDrop from "../component/elements/dragAndDrop";
 import Awards from "../component/awards";
 import Conference from "../component/conference";
@@ -22,13 +23,24 @@ import Reference from "../component/reference";
 import AddNew from "../component/elements/addNew";
 
 import rmfEdit from "./images/icons-image/rmf-edit.svg";
+import rmfSettings from "./images/icons-image/rmf-settings.svg";
 import rmfDeleteWhite from "./images/icons-image/rmf-delete-white.svg";
 import dotsGroup from "./images/icons-image/rmf-dotsGroup.svg";
+import rmfSport from "./images/icons-image/rmf-sport.svg"
 import rmfTopDashed from "./images/icons-image/rmf-top-dashed.svg";
+import rmfHash from "./images/icons-image/rmf-hash.svg"
+import iconSettingCOnfig from "./images/icons-image/icon-setting-config.svg";
+import rmfReference from "./images/icons-image/rmf-References.svg"
+import rmfVolunteerExperience from "./images/icons-image/rmf-VolunteerExperience.svg"
+import rmfProjectConference from "./images/icons-image/rmf-Projects-Conferences.svg"
+import rmfPaperFolding from "./images/icons-image/rmf-paper-folding.svg";
+import  rmfPatient from "./images/icons-image/rmf-patient.svg";
+import rmfPublication from "./images/icons-image/rmf-publication.svg";
 import rmfDown from "./images/icons-image/rmf-down.svg";
 import rmfLangIntr from "./images/icons-image/rmf-lang-intr.svg";
 import rmfTranslate from "./images/icons-image/rmf-trasnlate.svg";
 import rmfBgPlus from "./images/icons-image/rmf-bg-plus.svg";
+import rmfSoftSkills from "./images/icons-image/rmf-soft-skills.svg"
 import rmfBgResumeSummary from "./images/icons-image/rmf-bg-Resume-Summary.svg";
 import rmfPresentationLine from "./images/icons-image/rmf-presentation-line.svg";
 import rmfNameOnCertificate from "./images/icons-image/rmf-nameoncertificate.svg";
@@ -36,6 +48,7 @@ import rmfCerifNo from "./images/icons-image/rmf-cerif-no.svg";
 import rmfFiMapPin from "./images/icons-image/rmf-fi_map-pin.svg";
 import rmfCalender from "./images/icons-image/rmf-calendar.svg";
 import rmfOnceRif from "./images/icons-image/rmf-oncerifName.svg";
+
 const Form = (props) => {
   const [basic_info, setBasicInfo] = useState({});
   const [activeEducation, setActiveEducation] = useState("");
@@ -54,6 +67,7 @@ const Form = (props) => {
 
   const [activeExperience, setActiveExperience] = useState("");
   const [activeSkill, setActiveSkill] = useState("");
+  const [activeSoftSkill, setActiveSoftSkill] = useState("");
   const [activeAwards, setActiveAwards] = useState("");
   const [resume_detail, setResumeDetail] = useState(props.resume_detail);
   const [active, setActive] = useState("");
@@ -73,12 +87,14 @@ const Form = (props) => {
       courses: [],
       degree: "Study Program",
       degree_major: "",
-      duration: { from: { mm: "12", yy: "12" }, to: { mm: "01", yy: "2022" } },
+      startDate: "",
+      endDate: "",
       institute_name: "Institute Name",
       location: "",
       marks: { value: "", type: "" },
       projects: [],
       thesis: [],
+      description: ""
     });
     setResumeDetail((fld) => ({ ...fld, ...{ education: education } }));
     setActiveEducation(education.length - 1);
@@ -132,6 +148,22 @@ const Form = (props) => {
     props.handleToolEvent(skills, "skills");
   };
 
+  const handleSoftSkillClick = (active) => {
+    let softSkills = resume_detail.skills.softSkills;
+    softSkills.push({ name: "" });
+    setActiveSoftSkill(softSkills.length - 1);
+    setResumeDetail((fld) => ({
+      ...fld,
+       skills: { ...resume_detail.skills, softSkills: softSkills } ,
+    }));
+  };
+
+  const handleSoftSkillsChange = (key, value, active) => {
+    let softSkills = resume_detail.skills.softSkills;
+    softSkills[active][key] = value;
+    props.handleToolEvent(softSkills, "softSkills");
+  };
+
   const handleAwardsClick = (active) => {
     let awards = resume_detail.awards;
     awards.push({ title: "" });
@@ -168,7 +200,7 @@ const Form = (props) => {
     console.log(value);
     let achievements = resume_detail.achievements;
     achievements[index] = value;
-    props.handleToolEvent(achievements, "achievement");
+    props.handleToolEvent(achievements, "achievements");
   };
 
   const handleAchievementClick = () => {
@@ -196,7 +228,8 @@ const Form = (props) => {
       title: "Title",
       description: "Description",
       location: "",
-      date: "",
+      startDate: "",
+      endDate: "",
     });
     setResumeDetail((fld) => ({ ...fld, ...{ volunteers: volunteers } }));
     setActiveVolunteer(volunteers.length - 1);
@@ -339,12 +372,11 @@ const Form = (props) => {
   const handleReferencesClick = () => {
     let references = resume_detail.references;
     references.push({
-      title: "Title",
+      name: "name",
       company: "Company reference",
       location: "location",
       position: "Position of reference",
-      phone: "",
-      email: "",
+      contact: "",
     });
     setResumeDetail((fld) => ({ ...fld, ...{ references: references } }));
     setActiveReferences(references.length - 1);
@@ -363,6 +395,12 @@ const Form = (props) => {
         skills.splice(active, 1);
         setActiveSkill("");
         props.handleToolEvent(skills, "skills");
+        break;
+      case "softSkills":
+        let softSkills = resume_detail.skills.softSkills;
+        softSkills.splice(active, 1);
+        setActiveSoftSkill("");
+        props.handleToolEvent(softSkills, "softSkills");
         break;
       case "awards":
         let awards = resume_detail.awards;
@@ -386,7 +424,7 @@ const Form = (props) => {
         let achievements = resume_detail.achievements;
         achievements.splice(active, 1);
         setActiveAchievement("");
-        props.handleToolEvent(achievements, "achievement");
+        props.handleToolEvent(achievements, "achievements");
         break;
 
       case "volunteer":
@@ -460,15 +498,28 @@ const Form = (props) => {
         h.push(
           activeSkill !== index ? (
             <>
-              <li onClick={() => setActiveSkill(index)}>
-                <span className="resumeSkillsTitle">{itm.name}</span>
-                <span className="resumeSkillsBar">
-                  <span
-                    className="leftTextSize"
-                    style={{ width: itm.score ? itm.score : 0 }}
-                  ></span>
-                </span>
-              </li>
+              <div className="rmfPreFilledBox rmfPreFilledSmall">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>{itm.name}</h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    onClick={() => setActiveSkill(index)}
+                    className="rmfbuttom"
+                  >
+                    <img src={rmfEdit} alt="" />
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "skills")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
             </>
           ) : (
             <Skills
@@ -492,18 +543,194 @@ const Form = (props) => {
     );
   };
 
+  const renderSoftSkill = () => {
+    let h = [];
+    resume_detail.skills &&
+      resume_detail.skills.softSkills.map((itm, index) =>
+        h.push(
+          activeSoftSkill !== index ? (
+            <>
+              <div className="rmfPreFilledBox rmfPreFilledSmall">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>{itm.name}</h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    onClick={() => setActiveSoftSkill(index)}
+                    className="rmfbuttom"
+                  >
+                    <img src={rmfEdit} alt="" />
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "softSkills")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            </>
+          ) : (
+            <SoftSkills
+              active={activeSoftSkill}
+              handleDone={() => setActiveSoftSkill("")}
+              handleSoftSkillDelete={handleDelate}
+              handleSoftSkillsChange={handleSoftSkillsChange}
+              value={resume_detail.skills.softSkills[activeSoftSkill]}
+            />
+          )
+        )
+      );
+
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.skills ? resume_detail.skills.softSkills : []}
+        keys="softSkills"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderEducation = () => {
+    let h = [];
+    resume_detail.education &&
+      resume_detail.education.map((itm, index) =>
+        h.push(
+          activeEducation !== index ? (
+            <>
+            <div className="rmfPreFilledBox">
+                <span className="rmfPreDragDropIcon">
+                  <img src={dotsGroup} alt="" />
+                </span>
+                <div className="rmfPreFilled">
+                  <h4>
+                    {itm.degree}
+                    <span>
+                      {itm.institute_name} {itm.startDate} -- {itm.endDate}
+                    </span>
+                  </h4>
+                  <div className="rmfPreFilButton">
+                    <button className="rmfbuttom" onClick={() => setActiveEducation(index)}>
+                      <img src={rmfEdit} alt="" />
+                      Edit/Update
+                    </button>
+                    <button className="rmfDeletebutton" onClick={() => handleDelate(index, "education")}>
+                      <img src={rmfDeleteWhite} alt="" />
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+            </>
+          ) : (
+            <Education
+              active={activeEducation}
+              handleSave={() => setActiveEducation("")}
+              handleEducationDelete={handleDelate}
+              handleEducationsChange={handleEducationCB}
+              value={resume_detail.education[activeEducation]}
+            />
+          )
+        )
+      );
+
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.education ? resume_detail.education : []}
+        keys="education"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderExperience = () => {
+    let h = [];
+    resume_detail.employment_history &&
+      resume_detail.employment_history.map((itm, index) =>
+        h.push(
+          activeExperience !== index ? (
+            <>
+            <div className="rmfPreFilledBox">
+                <span className="rmfPreDragDropIcon">
+                  <img src={dotsGroup} alt="" />
+                </span>
+                <div className="rmfPreFilled">
+                  <h4>
+                    {itm.title}
+                    <span>
+                      {itm.company} {itm.duration.from.mm}/{itm.duration.from.yy} -- {itm.duration.to.mm}/{itm.duration.to.yy}
+                    </span>
+                  </h4>
+                  <div className="rmfPreFilButton">
+                    <button className="rmfbuttom" onClick={() => setActiveExperience(index)}>
+                      <img src={rmfEdit} alt="" />
+                      Edit/Update
+                    </button>
+                    <button className="rmfDeletebutton" onClick={() => handleDelate(index, "experience")}>
+                      <img src={rmfDeleteWhite} alt="" />
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+            </>
+          ) : (
+            <Experience
+              active={activeExperience}
+              handleSave={() => setActiveExperience("")}
+              handleExperienceDelete={handleDelate}
+              handleExperiencesChange={handleExperienceCB}
+              value={resume_detail.employment_history[activeExperience]}
+            />
+          )
+        )
+      );
+
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.employment_history ? resume_detail.employment_history : []}
+        keys="employment_history"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+              
   const renderAwards = () => {
     let h = [];
     resume_detail.awards &&
       resume_detail.awards.map((itm, index) =>
         h.push(
           activeAwards !== index ? (
-            <p
-              className="resumeAwardRec"
-              onClick={() => setActiveAwards(index)}
-            >
-              {itm.title}
-            </p>
+            <div className="rmfPreFilledBox rmfPreFilledSmall">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>{itm.title}</h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    onClick={() => setActiveAwards(index)}
+                    className="rmfbuttom"
+                  >
+                    <img src={rmfEdit} alt="" />
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "awards")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
           ) : (
             <Awards
               active={activeAwards}
@@ -515,7 +742,6 @@ const Form = (props) => {
           )
         )
       );
-
     return (
       <DragAndDrop
         htmlContent={h}
@@ -525,6 +751,7 @@ const Form = (props) => {
       />
     );
   };
+  
 
   const renderHobbies = () => {
     let h = [];
@@ -532,15 +759,34 @@ const Form = (props) => {
       resume_detail.hobbies.map((itm, index) =>
         h.push(
           activeHobbies !== index ? (
-            <li onClick={() => setActiveHobbies(index)}>
-              <span className="resumeSkillsTitle">{itm}</span>
-            </li>
+            <div className="rmfPreFilledBox rmfPreFilledSmall">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>{itm}</h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    onClick={() => setActiveHobbies(index)}
+                    className="rmfbuttom"
+                  >
+                    <img src={rmfEdit} alt="" />
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "hobbies")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
           ) : (
             <Hobbies
               active={activeHobbies}
               handleDone={() => setActiveHobbies("")}
               handleHobbiesDelete={handleDelate}
-              handleHobbiesChange={handleHobbiesChange}
+              handleHobbiessChange={handleHobbiesChange}
               value={resume_detail.hobbies[activeHobbies]}
             />
           )
@@ -618,6 +864,70 @@ const Form = (props) => {
       />
     );
   };
+
+  const renderConference = () => {
+    let h = [];
+    resume_detail.conferences &&
+      resume_detail.conferences.map((item, index) =>
+        h.push(
+          activeConference !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.title ? item.title : "Title"}
+                  <span>
+                    {item.location ? item.location : ""}{" "}
+                    {item.date ? item.date : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActiveConference(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "conference")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activeConference !== "" && (
+                <Conference
+                  handleSave={() => setActiveConference("")}
+                  handleConferencesDelete={handleDelate}
+                  active={activeConference}
+                  conferences={
+                    resume_detail.conferences[activeConference]
+                  }
+                  handleChange={handleConferenceCB}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.conferences ? resume_detail.conferences : []}
+        keys="conferences"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
   const renderLanguages = () => {
     let h = [];
     resume_detail.languages &&
@@ -722,6 +1032,375 @@ const Form = (props) => {
         htmlContent={h}
         items={resume_detail.trainings ? resume_detail.trainings : []}
         keys="trainings"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderPatents = () => {
+    let h = [];
+    resume_detail.patents &&
+      resume_detail.patents.map((item, index) =>
+        h.push(
+          activePatents !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.title ? item.title : "Title"}
+                  <span>
+                    {item.application_no ? item.application_no : "App No"}{" "}
+                    {item.date ? item.date : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActivePatents(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "patents")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activePatents !== "" && (
+                <Patent
+                  handleSave={() => setActivePatents("")}
+                  handlePatentsDelete={handleDelate}
+                  active={activePatents}
+                  patents={resume_detail.patents[activePatents]}
+                  handleChange={handlePatentsCB}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.patents ? resume_detail.patents : []}
+        keys="patents"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderAchievements = () => {
+    let h = [];
+    resume_detail.achievements &&
+      resume_detail.achievements.map((item, index) =>
+        h.push(
+          activeAchievement !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.title ? item.title : "Title"}
+                  <span>
+                    {item.location ? item.location : "Location"}
+                    {item.date ? item.date : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActiveAchievement(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "achievement")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activeAchievement !== "" && (
+                <Achievement
+                  handleSave={() => setActiveAchievement("")}
+                  handleAchievementsDelete={handleDelate}
+                  active={activeAchievement}
+                  achievements={resume_detail.achievements[activeAchievement]}
+                  handleChange={handleAchievementCB}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.achievements ? resume_detail.achievements : []}
+        keys="achievements"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderPublications = () => {
+    let h = [];
+    resume_detail.publications &&
+      resume_detail.publications.map((item, index) =>
+        h.push(
+          activePublications !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.title ? item.title : "Title"}
+                  <span>
+                    {/* {item.location ? item.application_no : "App No"}{" "} */}
+                    {item.date ? item.date : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActivePublications(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "publications")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activePublications !== "" && (
+                <Publication
+                  handleSave={() => setActivePublications("")}
+                  handlePublicationsDelete={handleDelate}
+                  active={activePublications}
+                  publications={resume_detail.publications[activePublications]}
+                  handleChange={handlePublicationsChange}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.publications ? resume_detail.publications : []}
+        keys="publications"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderCustomField = () => {
+    let h = [];
+    resume_detail.custom_field &&
+      resume_detail.custom_field.map((item, index) =>
+        h.push(
+          activeCustom_field !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.title ? item.title : "Title"}
+                  <span>
+                    {item.date ? item.date : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActiveCustom_field(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "custom_field")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activeCustom_field !== "" && (
+                <Custom_field
+                  handleSave={() => setActiveCustom_field("")}
+                  handleCustom_fieldsDelete={handleDelate}
+                  active={activeCustom_field}
+                  custom_fields={resume_detail.custom_field[activeCustom_field]}
+                  handleChange={handleCustom_fieldCB}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.custom_field ? resume_detail.custom_field : []}
+        keys="custom_field"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderVolunteer = () => {
+    let h = [];
+    resume_detail.volunteers &&
+      resume_detail.volunteers.map((item, index) =>
+        h.push(
+          activeVolunteer !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.title ? item.title : "Title"}
+                  <span>
+                    {item.location ? item.location : ""}{" "}
+                    {item.startDate ? item.startDate : ""} to {item.endDate ? item.endDate : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActiveVolunteer(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "volunteer")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activeVolunteer !== "" && (
+                <Volunteer
+                  handleSave={() => setActiveVolunteer("")}
+                  handleVolunteersDelete={handleDelate}
+                  active={activeVolunteer}
+                  volunteers={
+                    resume_detail.volunteers[activeVolunteer]
+                  }
+                  handleChange={handleVolunteerCB}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.volunteers ? resume_detail.volunteers : []}
+        keys="volunteers"
+        handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
+      />
+    );
+  };
+
+  const renderReference = () => {
+    let h = [];
+    resume_detail.references &&
+      resume_detail.references.map((item, index) =>
+        h.push(
+          activeReferences !== index ? (
+            <div className="rmfPreFilledBox">
+              <span className="rmfPreDragDropIcon">
+                <img src={dotsGroup} alt="" />
+              </span>
+              <div className="rmfPreFilled">
+                <h4>
+                  {item.name ? item.name : "Title"}
+                  <span>
+                    {item.company ? item.company : ""}{" "}
+                    {item.position ? item.position : ""}  {item.contact ? item.contact : ""}
+                  </span>
+                </h4>
+                <div className="rmfPreFilButton">
+                  <button
+                    className="rmfbuttom"
+                    onClick={() => setActiveReferences(index)}
+                  >
+                    <img src={rmfEdit} alt="" />
+                    Edit/Update
+                  </button>
+                  <button
+                    onClick={() => handleDelate(index, "references")}
+                    className="rmfDeletebutton"
+                  >
+                    <img src={rmfDeleteWhite} alt="" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              {activeReferences !== "" && (
+                <Reference
+                  handleSave={() => setActiveReferences("")}
+                  handleReferencesDelete={handleDelate}
+                  active={activeReferences}
+                  references={
+                    resume_detail.references[activeReferences]
+                  }
+                  handleChange={handleReferencesCB}
+                />
+              )}
+            </div>
+          )
+        )
+      );
+    return (
+      <DragAndDrop
+        htmlContent={h}
+        items={resume_detail.references ? resume_detail.references : []}
+        keys="references"
         handleToolEvent={(value, key) => props.handleToolEvent(value, key)}
       />
     );
@@ -1082,132 +1761,22 @@ const Form = (props) => {
                 <img src={rmfBgResumeSummary} alt="" />
               </span>
               Work Experience{" "}
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "experience" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "experience" ? "" : "experience")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Business Analust{" "}
-                    <span>
-                      Google / New York, USA /08/202109/2021 -- 09/2021
-                    </span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+          {active == "experience" && <div className="rmfAccContainer">
+              {renderExperience()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-title.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Job Title/Position
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-city.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Company/Employer{" "}
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>Start Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>End Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-settings.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Area of Work/Industry
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
                 <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Job Description{" "}
-                    </label>
-                    <textarea rows="6">E.g. Finance or IT</textarea>
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={handleExperienceClick}>
                     <img src={rmfBgPlus} alt="" />
                     Add Work Experience{" "}
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- Work Experience  HTML --> */}
@@ -1218,149 +1787,22 @@ const Form = (props) => {
                 <img src={rmfBgResumeSummary} alt="" />
               </span>
               Education{" "}
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "education" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "education" ? "" : "education")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Bachlors of Engineering
-                    <span>
-                      Information Technology /08/202109/2021 -- 09/2021
-                    </span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+          {active == "education" &&  <div className="rmfAccContainer">
+              {renderEducation()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-degree-name.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Degree Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-degree-major.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Degree Major
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Finance, Electronic "
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>Start Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled rmfInputwitCheck m24">
-                    <label>
-                      End Date
-                      <label className="rmf_control rmf_checkbox">
-                        Present
-                        <input type="checkbox" />
-                        <span className="rmf_control__indicator"></span>
-                      </label>
-                    </label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-school-building.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      School/College/University
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
                 <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6">
-                      Cources/Projects/Thesis/GPA/CGPA/Percentage/Grades
-                    </textarea>
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={handleEducationClick}>
                     <img src={rmfBgPlus} alt="" />
-                    Add Work Experience{" "}
+                    Add Education{" "}
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- Skills HTML --> */}
@@ -1368,14 +1810,14 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
-                <img src="images/icons-image/rmf-hash.svg" alt="" />
+                <img src={rmfHash} alt="" />
               </span>
               Skills
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "skills" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "skills" ? "" : "skills")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
+          { active == "skills" && <div className="rmfAccContainer">
               <div className="row">
                 <div className="col-12 col-md-6">
                   <div className="row">
@@ -1383,42 +1825,18 @@ const Form = (props) => {
                       <div className="rmfInputfiled rmfInputwitCheck m24">
                         <label>
                           <img
-                            src="images/icons-image/rmf-settings.svg"
+                            src={rmfSettings}
                             alt=""
                             width="18px"
                             height="18px"
                           />
                           Skills
-                          <label className="rmf_control rmf_checkbox">
-                            Present
-                            <input type="checkbox" />
-                            <span className="rmf_control__indicator"></span>
-                          </label>
                         </label>
-                        <div className="rmfPreFilledBox rmfPreFilledSmall">
-                          <span className="rmfPreDragDropIcon">
-                            <img src={dotsGroup} alt="" />
-                          </span>
-                          <div className="rmfPreFilled">
-                            <h4>SQL</h4>
-                            <div className="rmfPreFilButton">
-                              <button className="rmfbuttom">
-                                <img src={rmfEdit} alt="" />
-                              </button>
-                              <button className="rmfDeletebutton">
-                                <img src={rmfDeleteWhite} alt="" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                    {renderSkill()}
+                        
                       </div>
                     </div>
-                    <div className="col-12 col-md-12">
-                      <div className="rmfInputfiled rmfInputwitCheck m24">
-                        <input type="text" name="" placeholder="" />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-12 m24">
+                    {/* <div className="col-12 col-md-12 m24">
                       <div className="range-slider-group range-slider-group-blue">
                         <input
                           type="range"
@@ -1430,10 +1848,10 @@ const Form = (props) => {
                           id="range-slider-blue"
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-12 col-md-12">
-                      <button className="rmfbuttom">
-                        <img src={rmfBgPlus} alt="" />
+                      <button className="rmfbuttom" onClick={handleSkillClick}>
+                        <img src={rmfBgPlus} alt=""  />
                         Add Skills
                       </button>
                     </div>
@@ -1445,56 +1863,18 @@ const Form = (props) => {
                       <div className="rmfInputfiled rmfInputwitCheck m24">
                         <label>
                           <img
-                            src="images/icons-image/rmf-soft-skills.svg"
+                            src={rmfSoftSkills}
                             alt=""
                             width="18px"
                             height="18px"
                           />
                           Soft Skills
-                          <label className="rmf_control rmf_checkbox">
-                            Present
-                            <input type="checkbox" />
-                            <span className="rmf_control__indicator"></span>
-                          </label>
                         </label>
-                        <div className="rmfPreFilledBox rmfPreFilledSmall">
-                          <span className="rmfPreDragDropIcon">
-                            <img src={dotsGroup} alt="" />
-                          </span>
-                          <div className="rmfPreFilled">
-                            <h4>Cross Culture Communication</h4>
-                            <div className="rmfPreFilButton">
-                              <button className="rmfbuttom">
-                                <img src={rmfEdit} alt="" />
-                              </button>
-                              <button className="rmfDeletebutton">
-                                <img src={rmfDeleteWhite} alt="" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                        {renderSoftSkill()}
                       </div>
                     </div>
                     <div className="col-12 col-md-12">
-                      <div className="rmfInputfiled rmfInputwitCheck m24">
-                        <input type="text" name="" placeholder="" />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-12 m24">
-                      <div className="range-slider-group range-slider-group-blue">
-                        <input
-                          type="range"
-                          min="0"
-                          max="255"
-                          value="121"
-                          data-color="#00f"
-                          className="range-slider range-slider-blue"
-                          id="range-slider-blue"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-12">
-                      <button className="rmfbuttom">
+                      <button className="rmfbuttom" onClick={handleSoftSkillClick}>
                         <img src={rmfBgPlus} alt="" />
                         Add Soft Skills
                       </button>
@@ -1503,7 +1883,7 @@ const Form = (props) => {
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- Skills HTML --> */}
@@ -1513,12 +1893,12 @@ const Form = (props) => {
               <span className="icon softSkillsIcon">
                 <img src={rmfLangIntr} alt="" />
               </span>
-              Languages and Interests{" "}
-              <span className="rmfAccIcon">
+              Languages and Interests
+              <span className="rmfAccIcon" style={{transform:  active == "language" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "language" ? "" : "language")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
+            {active== "language" && <div className="rmfAccContainer">
               <div className="row">
                 <div className="col-12 col-md-6">
                   <div className="row">
@@ -1552,13 +1932,13 @@ const Form = (props) => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="col-12 col-md-6">
+                <div className="col-12 col-md-6">
                   <div className="row">
                     <div className="col-12 col-md-12">
                       <div className="rmfInputfiled rmfInputwitCheck m24">
                         <label>
                           <img
-                            src="images/icons-image/rmf-sport.svg"
+                            src={rmfSport}
                             alt=""
                             width="18px"
                             height="18px"
@@ -1570,62 +1950,20 @@ const Form = (props) => {
                             <span className="rmf_control__indicator"></span>
                           </label>
                         </label>
-                        <div className="rmfPreFilledBox rmfPreFilledSmall">
-                          <span className="rmfPreDragDropIcon">
-                            <img
-                              src={dotsGroup}
-                              alt=""
-                            />
-                          </span>
-                          <div className="rmfPreFilled">
-                            <h4></h4>
-                            <div className="rmfPreFilButton">
-                              <button className="rmfbuttom">
-                                <img
-                                  src={rmfEdit}
-                                  alt=""
-                                />
-                              </button>
-                              <button className="rmfDeletebutton">
-                                <img
-                                  src={rmfDeleteWhite}
-                                  alt=""
-                                />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                        {renderHobbies()}
                       </div>
                     </div>
                     <div className="col-12 col-md-12">
-                      <div className="rmfInputfiled rmfInputwitCheck m24">
-                        <input type="text" name="" placeholder="" />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-12 m24">
-                      <div className="range-slider-group range-slider-group-blue">
-                        <input
-                          type="range"
-                          min="0"
-                          max="255"
-                          value="121"
-                          data-color="#00f"
-                          className="range-slider range-slider-blue"
-                          id="range-slider-blue"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-12">
-                      <button className="rmfbuttom">
+                      <button className="rmfbuttom" onClick={() => handleHobbiesClick(activeHobbies)}>
                         <img src={rmfBgPlus} alt="" />
                         Add Interests
                       </button>
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
         {/* <!-- Certificates & Licences  --> */}
         <div className="rmfShadow">
@@ -1692,241 +2030,53 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
-                <img src="images/icons-image/rmf-paper-folding.svg" alt="" />
+                <img src={rmfPaperFolding} alt="" />
               </span>
               Patents and Publications
-              <span className="rmfAccIcon">
-                <img src={rmfTopDashed} alt="" />
+              <span className="rmfAccIcon"  style={{transform:  active == "publication" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "publication" ? "" : "publication")}>
+                <img src={rmfTopDashed} alt=""/>
               </span>
             </div>
-            <div className="rmfAccContainer">
-              {/* <!-- Patents HTML --> */}
+            {active == "publication" && <div className="rmfAccContainer">
               <div className="rmfAccTopTitle">
                 <img
-                  src="images/icons-image/rmf-patient.svg"
+                  src={rmfPatient}
                   alt=""
                   width="18px"
                   height="18px"
                 />
                 Patents
               </div>
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {renderPatents()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-patient.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Patent Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-cerif-no.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Application Number
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Finance, Electronic "
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>Filing Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
                 <div className="col-12 col-md-12 m60">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handlePatentsClick(activePatents)}>
                     <img src={rmfBgPlus} alt="" />
                     Add Patent
                   </button>
                 </div>
               </div>
 
-              {/* <!-- Publication HTML --> */}
               <div className="rmfAccTopTitle">
                 <img
-                  src="images/icons-image/rmf-publication.svg"
+                  src={rmfPublication}
                   alt=""
                   width="18px"
                   height="18px"
                 />
                 Publication
               </div>
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {renderPublications()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-edit-line.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Title
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-organization.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Publisher
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Finance, Electronic "
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>Publication date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
                 <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handlePublicationsClick(activePublications)}>
                     <img src={rmfBgPlus} alt="" />
                     Add Publication
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
+              </div>
+          }</div>
         </div>
 
         {/* <!-- Achievements and Awards --> */}
@@ -1934,121 +2084,27 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
-                <img src="images/icons-image/rmf-paper-folding.svg" alt="" />
+                <img src={rmfPaperFolding} alt="" />
               </span>
               Achievements and Awards
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "achievement" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "achievement" ? "" : "achievement")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
-              {/* <!-- Achievements HTML --> */}
+          {active === "achievement" &&  <div className="rmfAccContainer">
               <div className="rmfAccTopTitle">
                 <img
-                  src="images/icons-image/rmf-patient.svg"
+                  src={rmfPatient}
                   alt=""
                   width="18px"
                   height="18px"
                 />
                 Achievements
               </div>
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {renderAchievements()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-patient.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Title
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-cerif-no.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Associated with
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Finance, Electronic "
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
                 <div className="col-12 col-md-12 m60">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handleAchievementClick(activeAchievement)}>
                     <img src={rmfBgPlus} alt="" />
                     Add Achievements
                   </button>
@@ -2058,326 +2114,51 @@ const Form = (props) => {
               {/* <!-- Awards HTML --> */}
               <div className="rmfAccTopTitle">
                 <img
-                  src="images/icons-image/rmf-publication.svg"
+                  src={rmfPublication}
                   alt=""
                   width="18px"
                   height="18px"
                 />
                 Awards
               </div>
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-edit-line.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Title
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-organization.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Issuer
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Finance, Electronic "
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-3">
-                  <div className="rmfInputfiled m24">
-                    <label>Publication date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
+                {renderAwards()}
                 <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handleAwardsClick(activeAwards)}>
                     <img src={rmfBgPlus} alt="" />
                     Add Award
                   </button>
-                </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
-        {/* <!-- Projects and Conferences --> */}
         <div className="rmfShadow">
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
                 <img
-                  src="images/icons-image/rmf-Projects-Conferences.svg"
+                  src={rmfProjectConference}
                   alt=""
                 />
               </span>
               Projects and Conferences
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "conference" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "conference" ? "" : "conference")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
+          {active == "conference" && <div className="rmfAccContainer">
               {/* <!-- Projects HTML --> */}
-              <div className="rmfAccTopTitle">
-                <img
-                  src="images/icons-image/rmf-project.svg"
-                  alt=""
-                  width="18px"
-                  height="18px"
-                />
-                Projects
-              </div>
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {renderConference()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-edit-line.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Project Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
                 <div className="col-12 col-md-12 m60">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handleConferenceClick(activeAwards)}>
                     <img src={rmfBgPlus} alt="" />
-                    Add Project
-                  </button>
-                </div>
-              </div>
-
-              {/* <!-- Conferences HTML --> */}
-              <div className="rmfAccTopTitle">
-                <img
-                  src="images/icons-image/rmf-publication.svg"
-                  alt=""
-                  width="18px"
-                  height="18px"
-                />
-                Conferences
-              </div>
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-edit-line.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Topic Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <button className="rmfbuttom">
-                    <img src={rmfBgPlus} alt="" />
-                    Add Conferences
+                    Add New
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- Projects and Conferences --> */}
@@ -2386,118 +2167,27 @@ const Form = (props) => {
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
                 <img
-                  src="images/icons-image/rmf-VolunteerExperience.svg"
+                  src={rmfVolunteerExperience}
                   alt=""
                 />
               </span>
               Volunteer Experience
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "volunteer" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "volunteer" ? "" : "volunteer")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+          {active == "volunteer" &&  <div className="rmfAccContainer">
+              {renderVolunteer()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-training-prov.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Organization Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-2">
-                  <div className="rmfInputfiled m24">
-                    <label>Start Date</label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-2">
-                  <div className="rmfInputfiled rmfInputwitCheck m24">
-                    <label>
-                      End Date
-                      <label className="rmf_control rmf_checkbox">
-                        Present
-                        <input type="checkbox" />
-                        <span className="rmf_control__indicator"></span>
-                      </label>
-                    </label>
-                    <span className="rmf-calendar-icon">
-                      <img src={rmfCalender} alt="" />
-                    </span>
-                    <input type="text" name="" placeholder="MM/YYY" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
                 <div className="col-12 col-md-12 m60 rmfButtonWrpr">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handleVolunteerClick()}>
                     <img src={rmfBgPlus} alt="" />
                     Add Volenteer Experience
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- References --> */}
@@ -2505,122 +2195,25 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
-                <img src="images/icons-image/rmf-References.svg" alt="" />
+                <img src={rmfReference} alt="" />
               </span>
               References
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "reference" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "reference" ? "" : "reference")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+            {active == "reference" && <div className="rmfAccContainer">
+              {renderReference()}
+              
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_user.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Person Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-city.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-Position-Refrence.svg"
-                        alt=""
-                        width="14px"
-                        height="14px"
-                      />
-                      Position of Refrence
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_mail.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Contact Details
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
                 <div className="col-12 col-md-12 m60 rmfButtonWrpr">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={() => handleReferencesClick()}>
                     <img src={rmfBgPlus} alt="" />
                     Add Reference
                   </button>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
 
@@ -2629,101 +2222,25 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon softSkillsIcon">
-                <img src="images/icons-image/icon-setting-config.svg" alt="" />
+                <img src={iconSettingCOnfig} alt="" />
               </span>
               Custom Section
-              <span className="rmfAccIcon">
+              <span className="rmfAccIcon" style={{transform:  active == "custom" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "custom" ? "" : "custom")}>
                 <img src={rmfTopDashed} alt="" />
               </span>
             </div>
-            <div className="rmfAccContainer">
-              <div className="rmfPreFilledBox">
-                <span className="rmfPreDragDropIcon">
-                  <img src={dotsGroup} alt="" />
-                </span>
-                <div className="rmfPreFilled">
-                  <h4>
-                    Certified Ethical hacker
-                    <span>EC-Council 08/202109/2021 -- 09/2021</span>
-                  </h4>
-                  <div className="rmfPreFilButton">
-                    <button className="rmfbuttom">
-                      <img src={rmfEdit} alt="" />
-                      Edit/Update
-                    </button>
-                    <button className="rmfDeletebutton">
-                      <img src={rmfDeleteWhite} alt="" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+          {active == "custom" &&  <div className="rmfAccContainer">
+            {renderCustomField()}
               <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-edit-line.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Title
-                    </label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>Date</label>
-                    <input
-                      type="text"
-                      name=""
-                      placeholder="E. g. Bachlors/Masters"
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Location
-                    </label>
-                    <input type="text" name="" placeholder="City, Country" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-12">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-job-disp.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Description
-                    </label>
-                    <textarea rows="6"></textarea>
-                  </div>
-                </div>
                 <div className="col-12 col-md-12 m60 rmfButtonWrpr">
-                  <button className="rmfbuttom">
+                  <button className="rmfbuttom" onClick={handleCustom_fieldClick}>
                     <img src={rmfBgPlus} alt="" />
                     Add Custom Section
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
       </div>
     </div>

@@ -4,10 +4,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Done from "@material-ui/icons/Done";
 import rmfNameOnCertificate from "./../form/images/icons-image/rmf-nameoncertificate.svg";
 
-const Skills = (props) => {
+const SoftSkills = (props) => {
   const handleChange = (key, value) => {
     console.log(key, value);
-    props.handleSkillsChange(key, value, props.active);
+    props.handleSoftSkillsChange(key, value, props.active);
   };
 
   return (
@@ -16,12 +16,12 @@ const Skills = (props) => {
         <div className="rmfInputfiled m24">
           <label>
             <img src={rmfNameOnCertificate} alt="" width="18px" height="18px" />
-            Enter New Skills
+            Enter New SoftSkills
           </label>
           <input
             type="text"
             className="form-control"
-            placeholder="Enter New Skills"
+            placeholder="Enter New SoftSkills"
             value={props.value.name}
             onChange={(e) => handleChange("name", e.target.value)}
           />
@@ -34,7 +34,7 @@ const Skills = (props) => {
       <div className="row">
         <button
           className="btn btn-danger m-2"
-          onClick={() => props.handleSkillDelete(props.active, "skills")}
+          onClick={() => props.handleSoftSkillDelete(props.active, "softSkills")}
         >
           {" "}
           Delete
@@ -51,4 +51,4 @@ const Skills = (props) => {
   );
 };
 
-export default Skills;
+export default SoftSkills;

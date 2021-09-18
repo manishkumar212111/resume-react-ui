@@ -1,68 +1,134 @@
-import React, { useEffect, useState } from 'react';
-import ContentEditable from "../../../elements/contentEditable";
-const defaultProps = {
-    volunteer : {
-        title : "Title",
-        location: "",
-        date: "",
-        description : "Description"
-    }
-}
 
-const Volunteer = (props) => {
-    const [volunteer , setVolunteer] = useState(props.volunteer);
-
-    const handleChange = (key , value) => {
+    
+    import React, { useEffect, useState } from "react";
+    import ContentEditable from "../../../elements/contentEditable";
+    
+    import rmfNameOnCertificate from "./../form/images/icons-image/rmf-nameoncertificate.svg";
+    import rmfCerifNo from "./../form/images/icons-image/rmf-cerif-no.svg";
+    import rmfFiMapPin from "./../form/images/icons-image/rmf-fi_map-pin.svg";
+    import rmfCalender from "./../form/images/icons-image/rmf-calendar.svg";
+    import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
+    
+    const defaultProps = {
+        volunteer : {
+            title : "Title",
+            location: "",
+            startDate: "",
+            endDate: "",
+            description : "Description"
+        }
+    };
+    
+    const Volunteer = (props) => {
+      const [volunteer, setVolunteer] = useState(props.volunteers);
+    
+      const handleChange = (key, value) => {
         let fields = {};
         fields[key] = value;
-        setVolunteer(fld => ({ ...fld , ...fields}));
-        props.handleChange(key,{ ...volunteer , ...fields} , props.active);
-    }
-
-    useEffect(() => {
-        setVolunteer(props.volunteer)
-    }, [props.volunteer]);
-
-    return(
-        <div className="card">
-            <div className="card-body">
-                <div className="card">   
-                    <h3>
-                        <ContentEditable
-                            value={volunteer.title ? volunteer.title : "Institute Name"}
-                            onChange={(value) => handleChange('title', value)}  
-                            className="card-body"
-            
-                        />
-                    </h3>
-                </div>
-                <div className="card mt-4">
-                    <ContentEditable
-                        className="card-body"
-                        value={volunteer.description ? volunteer.description : "Institute Name"}
-                        onChange={(value) => handleChange('description', value)} 
-                    />
-                    
-                </div>
-
-
-            <div className="mt-4 form-inline">
-                <input type="text" placeholder="Location" className="form-control" value={volunteer.location} onChange={(e) => handleChange('location' , e.target.value)}></input><br></br>            
+        setVolunteer((fld) => ({ ...fld, ...fields }));
+        props.handleChange(key, { ...volunteer, ...fields }, props.active);
+      };
+    
+      useEffect(() => {
+        setVolunteer(props.volunteers);
+      }, [props.volunteers]);
+    
+      return (
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfNameOnCertificate} alt="" width="18px" height="18px" />
+                Organisation Name
+              </label>
+              <input
+                type="text"
+                value={volunteer.title ? volunteer.title : "Certificate Title"}
+                onChange={(e) => handleChange("title", e.target.value)}
+                placeholder="Enter traning title"
+              />
             </div>
+          </div>
             
-            <div className="mt-4 form-inline">
-                <input type="date" className="form-control" placeholder="Date" value={volunteer.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+          <div className="col-12 col-md-4">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfFiMapPin} alt="" width="18px" height="18px" />
+                Location
+              </label>
+              <input
+                type="text"
+                value={volunteer.location}
+                onChange={(e) => handleChange("location", e.target.value)}
+                placeholder="Certificate No"
+                placeholder="City, Country"
+              />
             </div>
-            
-            
-            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handleVolunteerDelete(props.active, "volunteer")}>delete</span>    
-            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>    
-            
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="rmfInputfiled rmfInputwitCheck m24">
+              <label>
+                Start Date
+              </label>
+              <input
+                type="date"
+                name="startDate"
+                value={volunteer.startDate}
+                onChange={(e) => handleChange("startDate", e.target.value)}
+                placeholder="MM/YYY"
+              />
             </div>
-    </div>
-       
-    )
-}
+          </div>
 
-Volunteer.defaultProps = defaultProps;
-export default Volunteer;
+          <div className="col-12 col-md-6">
+            <div className="rmfInputfiled rmfInputwitCheck m24">
+              <label>
+                End Date
+              </label>
+              <input
+                type="date"
+                name="endDate"
+                value={volunteer.endDate}
+                onChange={(e) => handleChange("endDate", e.target.value)}
+                placeholder="MM/YYY"
+              />
+            </div>
+          </div>
+    
+          <div className="col-12 col-md-12">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfFiMapPin} ahandleSavelt="" width="18px" height="18px" />
+                Description
+              </label>
+              <ContentEditable 
+                value={volunteer.description}
+                onChange={(value) => handleChange('description', value)}  
+              />
+            </div>
+          </div>
+          <div className="row">
+              <button
+                className="btn btn-danger m-2"
+                onClick={() =>
+                  props.handleVolunteersDelete(props.active, "volunteer")
+                }
+              >
+                {" "}
+                Delete
+              </button>
+              <button
+                className="btn btn-success m-2"
+                onClick={() => props.handleSave(props.active)}
+              >
+                {" "}
+                Submit
+              </button>
+            </div>
+        </div>
+      );
+    };
+    
+    Volunteer.defaultProps = defaultProps;
+    export default Volunteer;
+    

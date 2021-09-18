@@ -98,6 +98,10 @@ function Index (props){
             case 'skills':
                 props.updateLocalState({...resume_detail, skills : {...resume_detail.skills , skills : value}})
                 break;
+            case 'softSkills':
+                props.updateLocalState({...resume_detail, softSkills : {...resume_detail.skills , softSkills : value}})
+                break;
+            
             case 'awards':
                 props.updateLocalState({...resume_detail, awards : value})
                 break;
@@ -127,6 +131,9 @@ function Index (props){
                 break;
             case 'trainings':
                 props.updateLocalState({...resume_detail, trainings : value})
+                break;
+            case 'achievements':
+                props.updateLocalState({...resume_detail, achievements : value})
                 break;
             case 'patents':
                 props.updateLocalState({...resume_detail, patents : value})

@@ -1,92 +1,151 @@
-import React, { useEffect, useState } from 'react';
-import ContentEditable from "../../../elements/contentEditable";
-const defaultProps = {
-    patents : {
-        title : "Title",
-        application_no : "Application number",
-        date : "Date",
-        location : "Location",
-        url : "https://",
-        description: "Description",
-    }
-}
-
-const Patent = (props) => {
-    const [patents , setPublication] = useState(props.patents);
-
-    const handleChange = (key , value) => {
+    
+    import React, { useEffect, useState } from "react";
+    import ContentEditable from "../../../elements/contentEditable";
+    
+    import rmfNameOnCertificate from "./../form/images/icons-image/rmf-nameoncertificate.svg";
+    import rmfCerifNo from "./../form/images/icons-image/rmf-cerif-no.svg";
+    import rmfFiMapPin from "./../form/images/icons-image/rmf-fi_map-pin.svg";
+    import rmfCalender from "./../form/images/icons-image/rmf-calendar.svg";
+    import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
+    
+    const defaultProps = {
+        patents : {
+            title : "Title",
+            application_no : "Application number",
+            date : "Date",
+            location : "Location",
+            url : "https://",
+            description: "Description",
+        }
+    };
+    
+    const Patent = (props) => {
+      const [patent, setPatent] = useState(props.patents);
+    
+      const handleChange = (key, value) => {
         let fields = {};
         fields[key] = value;
-        setPublication(fld => ({ ...fld , ...fields}));
-        props.handleChange(key,{ ...patents , ...fields} , props.active);
-    }
-
-    useEffect(() => {
-        setPublication(props.patents)
-    }, [props.patents]);
-
-    return(
-        <div className="card">
-            <div className="card-body">
-                <div className="card">   
-                    <h3>
-                        <ContentEditable
-                            value={patents.title ? patents.title : "Description"}
-                            onChange={(value) => handleChange('title', value)}  
-                            className="card-body"
-            
-                        />
-                    </h3>
-                </div>
-
-
-            <div className="mt-4 form-inline">
-                <input type="text" placeholder="Application Number" className="form-control" value={patents.application_no} onChange={(e) => handleChange('application_no' , e.target.value.toString())}></input>
+        setPatent((fld) => ({ ...fld, ...fields }));
+        props.handleChange(key, { ...patent, ...fields }, props.active);
+      };
+    
+      useEffect(() => {
+        setPatent(props.patents);
+      }, [props.patents]);
+    
+      return (
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfNameOnCertificate} alt="" width="18px" height="18px" />
+                Patent Title
+              </label>
+              <input
+                type="text"
+                value={patent.title ? patent.title : "Certificate Title"}
+                onChange={(e) => handleChange("title", e.target.value)}
+                placeholder="Enter traning title"
+              />
+            </div>
+          </div>
+          <div className="col-12 col-md-4">
+              <div className="rmfInputfiled m24">
+                <label>
+                  <img src={rmfOnceRif} alt="" width="18px" height="18px" />
+                  Application No
+                </label>
+                <input
+                  type="text"
+                  placeholder="Application Number"
+                  value={
+                    patent.application_no
+                      ? patent.application_no
+                      : ""
+                  }
+                  onChange={(e) => handleChange("application_no", e.target.value)}
+                />
+              </div>
             </div>
             
-            <div className="mt-4 form-inline">
-                <input type="date" placeholder="Date" className="form-control" value={patents.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
+          <div className="col-12 col-md-4">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfFiMapPin} alt="" width="18px" height="18px" />
+                Location
+              </label>
+              <input
+                type="text"
+                value={patent.location}
+                onChange={(e) => handleChange("location", e.target.value)}
+                placeholder="Certificate No"
+                placeholder="City, Country"
+              />
             </div>
-            
-            <div className="mt-4 form-inline">
-                <input type="text" placeholder="Location" className="form-control" value={patents.location} onChange={(e) => handleChange('location' , e.target.value.toString())}></input><br></br>
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="rmfInputfiled rmfInputwitCheck m24">
+              <label>
+                Filling Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={patent.date}
+                onChange={(e) => handleChange("date", e.target.value)}
+                placeholder="MM/YYY"
+              />
             </div>
-            <div className="mt-4 form-inline">
-                <input type="text" placeholder="Url" className="form-control" value={patents.url} onChange={(e) => handleChange('url' , e.target.value.toString())}></input><br></br>
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="rmfInputfiled rmfInputwitCheck m24">
+              <label>
+                Url
+              </label>
+              <input
+                type="text"
+                name="url"
+                value={patent.url}
+                onChange={(e) => handleChange("url", e.target.value)}
+                placeholder="Any url"
+              />
             </div>
-            
-            <div className="card mt-4">   
-                    <ContentEditable
-                        value={patents.description ? patents.description : "Description"}
-                        onChange={(value) => handleChange('description', value)} 
-                        className="card-body"
-        
-                    />
+          </div>
+    
+          <div className="col-12 col-md-12">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfFiMapPin} alt="" width="18px" height="18px" />
+                Description
+              </label>
+              <ContentEditable 
+                value={patent.description}
+                onChange={(value) => handleChange('description', value)}  
+              />
             </div>
-            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handlePatentDelete(props.active, "patent")}>delete</span>    
-            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>    
-            
+          </div>
+          <div className="row">
+              <button
+                className="btn btn-danger m-2"
+                onClick={() =>
+                  props.handlePatentsDelete(props.active, "patents")
+                }
+              >
+                {" "}
+                Delete
+              </button>
+              <button
+                className="btn btn-success m-2"
+                onClick={() => props.handleSave(props.active)}
+              >
+                {" "}
+                Submit
+              </button>
             </div>
-    </div>
-       
-        // <div>
-        //     <ContentEditable
-        //         value={patents.title ? patents.title : "Description"}
-        //         onChange={(value) => handleChange('title', value)}  
-        //     />
-        //     <input type="text" placeholder="Application Number" value={patents.application_no} onChange={(e) => handleChange('application_no' , e.target.value.toString())}></input><br></br>
-        //     <input type="date" placeholder="Date" value={patents.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input><br></br>
-        //     <input type="text" placeholder="Location" value={patents.location} onChange={(e) => handleChange('location' , e.target.value.toString())}></input><br></br>
-        //     <input type="text" placeholder="Url" value={patents.url} onChange={(e) => handleChange('url' , e.target.value.toString())}></input><br></br>
-            
-        //     <ContentEditable
-        //         value={patents.description ? patents.description : "Description"}
-        //         onChange={(value) => handleChange('description', value)} 
-        //     />
-        //     <span onClick={() =>  props.handlePatentsDelete(props.active, "patents")}>delete</span>
-        // </div>
-    )
-}
-
-Patent.defaultProps = defaultProps;
-export default Patent;
+        </div>
+      );
+    };
+    
+    Patent.defaultProps = defaultProps;
+    export default Patent;
+    

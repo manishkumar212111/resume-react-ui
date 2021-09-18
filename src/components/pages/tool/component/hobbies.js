@@ -1,27 +1,56 @@
-import React, { useEffect } from 'react';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Done from '@material-ui/icons/Done';
+import React, { useEffect } from "react";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Done from "@material-ui/icons/Done";
 
 const Hobbies = (props) => {
-    const handleChange = (key , value) => {
-        props.handleHobbiesChange(key , value, props.active)
-    }
+  const handleChange = (key, value) => {
+    props.handleHobbiessChange(key, value, props.active);
+  };
 
-    return(
-        
-        <div className="card" style={{width : "224px", color : "black"}}>
-            <div className="card-body">
-                <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Enter New Hobbies" value={props.value} onChange={(e) => handleChange('name', e.target.value)}></input>
-                
-                </div>
-                <div className="row float-right">
-                    <span onClick={() => props.handleHobbiesDelete(props.active, "hobbies")}><DeleteIcon style={{ color: "red", cursor: "pointer" }} /></span>
-                    <span onClick={() => props.handleDone(props.active)}><Done style={{ color: "green",cursor: "pointer" }}/></span>
-                </div>
-            </div>
+  return (
+    <>
+      <div className="col-12 col-md-12">
+        <div className="rmfInputfiled rmfInputwitCheck m24">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter new interests"
+            value={props.value}
+            onChange={(e) => handleChange("name", e.target.value)}
+          ></input>
         </div>
-    )
-}
+      </div>
+      <div className="row">
+        <button
+          className="btn btn-danger m-2"
+          onClick={() => props.handleHobbiesDelete(props.active, "hobbies")}
+        >
+          {" "}
+          Delete
+        </button>
+        <button
+          className="btn btn-success m-2"
+          onClick={() => props.handleDone()}
+        >
+          {" "}
+          Submit
+        </button>
+      </div>
+      {/* <div className="col-12 col-md-12 m24">
+            <div className="range-slider-group range-slider-group-blue">
+            <input
+                type="range"
+                min="0"
+                max="255"
+                value="121"
+                data-color="#00f"
+                className="range-slider range-slider-blue"
+                id="range-slider-blue"
+            />
+            </div>
+        </div> */}
+    </>
+  );
+};
 
 export default Hobbies;

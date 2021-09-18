@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import rmfNameOnCertificate from "./../form/images/icons-image/rmf-nameoncertificate.svg";
 
 const Awards = (props) => {
     const handleChange = (key , value) => {
@@ -6,15 +7,36 @@ const Awards = (props) => {
     }
 
     return(
-        
-        <div className="card">
-            <div className="card-body">
-                <div className="form-inline">
-                    <input type="text" className="form-control" placeholder="Enter New Awards" value={props.value.title} onChange={(e) => handleChange('title', e.target.value)}></input>
-                </div>
-                <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handleAwardsDelete(props.active, "awards")}>delete</span>    
-                <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleDone(props.active)}>Save</span>    
-            
+        <div className="">
+          <div className="col-12 col-md-6">
+            <div className="rmfInputfiled m24">
+              <label>
+                <img src={rmfNameOnCertificate} alt="" width="18px" height="18px" />
+                Awards Title
+              </label>
+              <input
+                type="text"
+                value={props.value.title}
+                onChange={(e) => handleChange('title', e.target.value)}
+                placeholder="Enter awards title"
+              />
+            </div>
+          </div>
+          <div className="row">
+              <button
+                className="btn btn-danger m-2"
+                onClick={() =>  props.handleAwardsDelete(props.active, "awards")}
+              >
+                {" "}
+                Delete
+              </button>
+              <button
+                className="btn btn-success m-2"
+                onClick={() => props.handleDone(props.active)}
+              >
+                {" "}
+                Submit
+              </button>
             </div>
         </div>
     )

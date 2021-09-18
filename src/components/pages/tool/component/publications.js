@@ -1,62 +1,101 @@
-import React, { useEffect, useState } from 'react';
+
+    
+import React, { useEffect, useState } from "react";
 import ContentEditable from "../../../elements/contentEditable";
+
+import rmfNameOnCertificate from "./../form/images/icons-image/rmf-nameoncertificate.svg";
+import rmfCerifNo from "./../form/images/icons-image/rmf-cerif-no.svg";
+import rmfFiMapPin from "./../form/images/icons-image/rmf-fi_map-pin.svg";
+import rmfCalender from "./../form/images/icons-image/rmf-calendar.svg";
+import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
+
 const defaultProps = {
     publications : {
         title : "Title",
         date: "",
         description : "Description"
     }
-}
+};
 
 const Publication = (props) => {
-    const [publications , setPublication] = useState(props.publications);
+  const [publication, setPublication] = useState(props.publications);
 
-    const handleChange = (key , value) => {
-        let fields = {};
-        fields[key] = value;
-        setPublication(fld => ({ ...fld , ...fields}));
-        props.handleChange(key,{ ...publications , ...fields} , props.active);
-    }
+  const handleChange = (key, value) => {
+    let fields = {};
+    fields[key] = value;
+    setPublication((fld) => ({ ...fld, ...fields }));
+    props.handleChange(key, { ...publication, ...fields }, props.active);
+  };
 
-    useEffect(() => {
-        setPublication(props.publications)
-    }, [props.publications]);
+  useEffect(() => {
+    setPublication(props.publications);
+  }, [props.publications]);
 
-    return(
-        <div className="card" style={{color : "black" , width : "224px"}}>
-            <div className="card-body">
-                <div className="card">   
-                    <h3>
-                        <ContentEditable
-                            value={publications.title ? publications.title : "Description"}
-                            onChange={(value) => handleChange('title', value)}   
-                            className="card-body"
-            
-                        />
-                    </h3>
-                </div>
-            
+  return (
+    <div className="row">
+      <div className="col-12 col-md-4">
+        <div className="rmfInputfiled m24">
+          <label>
+            <img src={rmfNameOnCertificate} alt="" width="18px" height="18px" />
+            Publication Title
+          </label>
+          <input
+            type="text"
+            value={publication.title ? publication.title : "Certificate Title"}
+            onChange={(e) => handleChange("title", e.target.value)}
+            placeholder="Enter traning title"
+          />
+        </div>
+      </div>
+      
+      <div className="col-12 col-md-6">
+        <div className="rmfInputfiled rmfInputwitCheck m24">
+          <label>
+            Date
+          </label>
+          <input
+            type="date"
+            name="date"
+            value={publication.date}
+            onChange={(e) => handleChange("date", e.target.value)}
+            placeholder="MM/YYY"
+          />
+        </div>
+      </div>
 
-            <div className="mt-4 form-group">
-                <input type="date" className="form-control" placeholder="Date" value={publications.date} onChange={(e) => handleChange('date' , e.target.value.toString())}></input>
-
-            
-            </div>
-            
-            <div className="card">   
-                    <ContentEditable
-                        value={publications.description ? publications.description : "Description"}
-                        onChange={(value) => handleChange('description', value)}  
-                        className="card-body"
-                    />
-            </div>
-            
-            <span class="btn btn-sm btn-danger mt-4" onClick={() =>  props.handlePublicationsDelete(props.active, "publications")}>delete</span>    
-            <span class="btn btn-sm btn-success mt-4 ml-4" onClick={() =>  props.handleSave('')}>Save</span>                
-            </div>
+      <div className="col-12 col-md-12">
+        <div className="rmfInputfiled m24">
+          <label>
+            <img src={rmfFiMapPin} alt="" width="18px" height="18px" />
+            Description
+          </label>
+          <ContentEditable 
+            value={publication.description}
+            onChange={(value) => handleChange('description', value)}  
+          />
+        </div>
+      </div>
+      <div className="row">
+          <button
+            className="btn btn-danger m-2"
+            onClick={() =>
+              props.handlePublicationsDelete(props.active, "publications")
+            }
+          >
+            {" "}
+            Delete
+          </button>
+          <button
+            className="btn btn-success m-2"
+            onClick={() => props.handleSave(props.active)}
+          >
+            {" "}
+            Submit
+          </button>
+        </div>
     </div>
-    )
-}
+  );
+};
 
 Publication.defaultProps = defaultProps;
 export default Publication;
