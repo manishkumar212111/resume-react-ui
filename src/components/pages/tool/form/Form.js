@@ -48,7 +48,33 @@ import rmfCerifNo from "./images/icons-image/rmf-cerif-no.svg";
 import rmfFiMapPin from "./images/icons-image/rmf-fi_map-pin.svg";
 import rmfCalender from "./images/icons-image/rmf-calendar.svg";
 import rmfOnceRif from "./images/icons-image/rmf-oncerifName.svg";
+import LinkedIN from "./images/icons-image/rmf-LinkedinLogo.svg";
+import FaceBook from "./images/icons-image/rmf-FacebookLogo.svg";
+import userRectangle from "./images/icons-image/rmf-UserRectangle.svg";
+import InstaGram from "./images/icons-image/rmf-InstagramLogo.svg";
+import Twitter from "./images/icons-image/rmf-Twitter.svg";
+import SocialDetails from "./images/icons-image/rmf-Social-Details.svg";
+import starMarked from "./images/icons-image/rmf-star-marked.svg";
+import rmfFileUpload from "./images/icons-image/rmf-file-upload.svg";
+import rmfDelete from "./images/icons-image/rmf-delete.svg";
+import rmfBgUser from "./images/icons-image/rmf-bg-user.svg";
+import rmfFiUserName from "./images/icons-image/rmf-fi_users-last.svg";
+import rmfFiPhoneCall from "./images/icons-image/rmf-fi_phone-call.svg";
+import rmfFiMail from "./images/icons-image/rmf-fi_mail.svg";
+import rmfArchway from "./images/icons-image/rmf-u_archway.svg";
+import rmfGift from "./images/icons-image/rmf-gift.svg";
+import rmfUAlign from "./images/icons-image/rmf-u_align-alt.svg";
+import rmfAirplaneTakeOff from "./images/icons-image/rmf-AirplaneTakeoff.svg";
+import pp2 from "./images/pp2.jpg";
 
+const socialUrl = [
+  { name: "LinkedIN", value : "linkedin", imgUrl : LinkedIN },
+  { name: "Facebook", value : "facebook", imgUrl : FaceBook },
+  { name: "Instagram", value : "instagram", imgUrl : InstaGram },
+  { name: "Twitter", value : "twitter", imgUrl : Twitter },
+  { name: "GitLab", value : "gitlab", imgUrl : Twitter },
+  { name: "GitHub", value : "github", imgUrl : Twitter },
+]
 const Form = (props) => {
   const [basic_info, setBasicInfo] = useState({});
   const [activeEducation, setActiveEducation] = useState("");
@@ -80,6 +106,47 @@ const Form = (props) => {
     setBasicInfo(props.basic_info);
   }, [props.basic_info]);
 
+  const handleBasicInfoChange = (type , value) => {
+    let basicInfo = basic_info.social_account;
+
+    let basic =  basicInfo.map(itm => { 
+      if(itm.type == type){
+        itm.url = value;
+      }
+      return itm;
+      }
+    )
+
+    setBasicInfo(itm => ({...itm , social_account : basic}));
+
+    props.handleToolEvent("basic_info" , basic)
+  }
+
+  const handleBasicInfoChangePersonal = (type , val, subObject) => {
+
+    if(subObject){
+      let basicInfo = basic_info[subObject];
+      if(type == "address"){
+        console.log(basicInfo[type] , type, val)
+        basicInfo["address"] = val;
+        setBasicInfo(itm => ({...itm , [subObject] : basicInfo }));
+      } else{
+        basicInfo[type].value = val;
+        setBasicInfo(itm => ({...itm , [subObject] : basicInfo }));  
+      }
+      props.handleToolEvent({...basic_info , [subObject] : basicInfo } , "basic_info")
+  
+    } else{
+      console.log(val , type)
+      setBasicInfo(itm => ({...itm , [type] : val }));
+      if(type == "dob"){
+        val = new Date(val).toISOString()
+      }
+      props.handleToolEvent({...basic_info , [type] : val } , "basic_info")
+  
+    }
+  }
+  
   const handleEducationClick = () => {
     let education = resume_detail.education;
     education.push({
@@ -1405,23 +1472,23 @@ const Form = (props) => {
       />
     );
   };
-
+  console.log(basic_info, "Basic info")
   return (
     <div className="rmfromwrpr">
       <div className="rmf_thin_scroll">
         <div className="rmfShadow rmfProfileBox">
           <div className="rmfImg">
             <span className="rmfImgIcon">
-              <img src="./images/icons-image/rmf-star-marked.svg" alt="" />
+              <img src={starMarked} alt="" />
             </span>
             <div className="rmfImgBox">
-              <img src="images/pp2.jpg" alt="" />
+              <img src={pp2} alt="" />
             </div>
           </div>
           <div className="rmfImgSelect">
             <span className="rmfSelect">
               <img
-                src="images/icons-image/rmf-file-upload.svg"
+                src={rmfFileUpload}
                 alt=""
                 width="24px"
                 height="24px"
@@ -1429,7 +1496,7 @@ const Form = (props) => {
             </span>
             <span className="rmfDelete">
               <img
-                src="images/icons-image/rmf-delete.svg"
+                src={rmfDelete}
                 alt=""
                 width="24px"
                 height="24px"
@@ -1440,7 +1507,7 @@ const Form = (props) => {
             <div className="rmfInputfiled">
               <label>
                 <img
-                  src="images/icons-image/rmf-UserRectangle.svg"
+                  src={userRectangle}
                   alt=""
                   width="18px"
                   height="18px"
@@ -1461,135 +1528,138 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon">
-                <img src="images/icons-image/rmf-bg-user.svg" alt="" />
+                <img src={rmfBgUser} alt="" />
               </span>
               Personal Details
+              <span className="rmfAccIcon" style={{transform:  active == "personal" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "personal" ? "" : "personal")}>
+                <img src={rmfTopDashed} alt="" />
+              </span>
             </div>
-            <div className="rmfAccContainer">
+            {active =="personal" && <div className="rmfAccContainer">
               <div className="row">
                 <div className="col-12 col-md-6">
                   <div className="rmfInputfiled m24">
                     <label>
                       <img
-                        src="images/icons-image/rmf-UserRectangle.svg"
+                        src={userRectangle}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your First Name
                     </label>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.first_name} onChange={(e) => handleBasicInfoChangePersonal("first_name" , e.target.value)} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-6">
                   <div className="rmfInputfiled m24">
                     <label>
                       <img
-                        src="images/icons-image/rmf-fi_users-last.svg"
+                        src={rmfFiUserName}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your Last Name
                     </label>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.last_name} onChange={(e) => handleBasicInfoChangePersonal("last_name" , e.target.value)} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-6">
                   <div className="rmfInputfiled rmfInputMobile m24">
                     <label>
                       <img
-                        src="images/icons-image/rmf-fi_phone-call.svg"
+                        src={rmfFiPhoneCall}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your Phone Number
                     </label>
-                    <select className="rmCountryCode">
+                    <select className="rmCountryCode" value={basic_info.ccode} onChange={(e) => handleBasicInfoChangePersonal("ccode" , e.target.value)} >
                       <option>+48</option>
                       <option>+91</option>
                       <option>+80</option>
                       <option>+81</option>
                     </select>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.contact} onChange={(e) => handleBasicInfoChangePersonal("contact" , e.target.value)} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-6 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-fi_mail.svg"
+                        src={rmfFiMail}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your E-Mail Address
                     </label>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.email} onChange={(e) => handleBasicInfoChangePersonal("email" , e.target.value)} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-3 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-u_archway.svg"
+                        src={rmfArchway}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your City
                     </label>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.address.city.value} onChange={(e) => handleBasicInfoChangePersonal("city" , e.target.value , "address" )} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-4 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-fi_map.svg"
+                        src={rmfFiMapPin}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your Country
                     </label>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.address.country.value} onChange={(e) => handleBasicInfoChangePersonal("country" , e.target.value , "address" )} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-5 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-fi_map-pin.svg"
+                        src={rmfFiMapPin}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Your Address
                     </label>
-                    <input type="text" name="" placeholder="" />
+                    <input type="text" value={basic_info.address.address} onChange={(e) => handleBasicInfoChangePersonal("address" , e.target.value , "address" )} placeholder="" />
                   </div>
                 </div>
                 <div className="col-12 col-md-4 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-gift.svg"
+                        src={rmfGift}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Date of Birth
                     </label>
-                    <input type="text" name="" placeholder="DD/MM/YYY" />
+                    <input type="date" value={basic_info.dob ? basic_info.dob.split("T")[0] : ""} onChange={(e) => handleBasicInfoChangePersonal("dob" , e.target.value)} placeholder="DD/MM/YYY" />
                   </div>
                 </div>
-                <div className="col-12 col-md-4 m24">
+                {/* <div className="col-12 col-md-4 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-u_align-alt.svg"
+                        src={rmfUAlign}
                         alt=""
                         width="18px"
                         height="18px"
@@ -1598,27 +1668,27 @@ const Form = (props) => {
                     </label>
                     <input type="text" name="" placeholder="DD/MM/YYY" />
                   </div>
-                </div>
+                </div> */}
                 <div className="col-12 col-md-4 m24">
                   <div className="rmfInputfiled">
                     <label>
                       <img
-                        src="images/icons-image/rmf-AirplaneTakeoff.svg"
+                        src={rmfAirplaneTakeOff}
                         alt=""
                         width="18px"
                         height="18px"
                       />
                       Willing to Relocate?
                     </label>
-                    <select>
-                      <option>Yes</option>
-                      <option>No</option>
+                    <select value={basic_info.willing_to_relocate} onChange={(e) => handleBasicInfoChangePersonal("willing_to_relocate" , e.target.value)}>
+                      <option value={true}>Yes</option>
+                      <option value={false}>No</option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- Social Details HTML --> */}
@@ -1626,99 +1696,36 @@ const Form = (props) => {
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon">
-                <img src="images/icons-image/rmf-Social-Details.svg" alt="" />
+                <img src={SocialDetails} alt="" />
               </span>
               Social Details
+              <span className="rmfAccIcon" style={{transform:  active == "socialUrl" ? "none": "rotate(180deg)"}} onClick={() => setActive(active == "socialUrl" ? "" : "socialUrl")}>
+                <img src={rmfTopDashed} alt="" />
+              </span>
             </div>
-            <div className="rmfAccContainer">
+          { active == "socialUrl" && <div className="rmfAccContainer">
               <div className="row">
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-LinkedinLogo.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      LinkedIN
-                    </label>
-                    <input type="text" name="" placeholder="" />
+                {
+                  socialUrl.map((itm) => (
+                    <div className="col-12 col-md-6">
+                      <div className="rmfInputfiled m24">
+                        <label>
+                          <img
+                            src={itm.imgUrl}
+                            alt=""
+                            width="18px"
+                            height="18px"
+                          />
+                          {itm.name}
+                        </label>
+                        <input type="text" onChange= {(e) => handleBasicInfoChange(basic_info?.social_account?.filter(item => (item.type == itm.value))[0].type , e.target.value )} value={basic_info?.social_account?.filter(item => (item.type == itm.value))[0].url} name={basic_info?.social_account?.filter(item => (item.type == itm.value))[0].type} placeholder="Enter Url" />
+                      </div>
                   </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-FacebookLogo.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Facebook
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-InstagramLogo.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Instagram
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-fi_users-last.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Skype
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-Twitter.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Twitter
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="rmfInputfiled m24">
-                    <label>
-                      <img
-                        src="images/icons-image/rmf-website.svg"
-                        alt=""
-                        width="18px"
-                        height="18px"
-                      />
-                      Website/URL
-                    </label>
-                    <input type="text" name="" placeholder="" />
-                  </div>
-                </div>
+                  ))
+                }
               </div>
             </div>
-          </div>
+          }</div>
         </div>
 
         {/* <!-- Resume Summary HTML --> */}

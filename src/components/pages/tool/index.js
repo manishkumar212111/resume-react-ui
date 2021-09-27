@@ -1,7 +1,7 @@
 import React, { useEffect , useState } from 'react';
 import { connect } from "react-redux";
 import SideBar from "./sideBar";
-import { createResume , updateLocalState , getResumeById , updateResume , downLoadResume } from "../../../actions/tool";
+import { createResume , updateLocalState , getResumeById , updateResume , downLoadResume, updateUserInfo } from "../../../actions/tool";
 import { getLocalStorageItem, setLocalStorageItem } from "../../../utils/globals";
 import Auth from "../../pages/Auth";
 import Shimmer from "../../widgets/shimmerEffect";
@@ -141,13 +141,19 @@ function Index (props){
             case 'references':
                 props.updateLocalState({...resume_detail, references : value})
                 break;
-    
+            case "social_account":
+                setBasicInfo(basic => ({ ...basic , social_account : value} )  )
+                break;
+            case "basic_info":
+                console.log(value, "dfv dfkj ")
+                setBasicInfo(basic => ({ ...basic , ...value} )  )
+                break;
             default:
                 // props.updateLocalState({...resume_detail , summary : value})
             
         }
     }
-
+    console.log(basic_info)
     const downloadResume = () => {
         var link = document.createElement('a');
         link.href = BASE_URL + "api/common/template?product_id="+resume_detail.id;
@@ -178,6 +184,7 @@ function Index (props){
     const saveResume = () => {
         console.log(resume_detail)
         props.updateResume(resume_detail.id , resume_detail);
+        props.updateUserInfo(basic_info);
     }
     console.log(resume_detail , props)
     return (
@@ -223,6 +230,7 @@ const mapDispatchToProps = {
     createResume,
     updateLocalState,
     getResumeById,
+    updateUserInfo,
     updateResume,
     downLoadResume
 };

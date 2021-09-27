@@ -279,25 +279,25 @@ const Index = (props) => {
           <h2>CONTACT</h2>
           <ul class="clearfix" onClick={() => props.sideBarCb("info")}>
             <li>
-              <i class="icon-Vector"></i>+91 998877-447788
+              <i class="icon-Vector"></i>{basic_info.ccode} {basic_info.contact}
             </li>
             <li>
-              <i class="icon-expend"></i>oswaldgemi@gmail.com
+              <i class="icon-expend"></i>{basic_info.email}
             </li>
             <li>
-              <i class="icon-calendar"></i>12/06/1990
+              <i class="icon-calendar"></i>{basic_info?.dob?.split("T")[0]}
             </li>
             <li>
               <i class="icon-linkedin"></i>linkedin.com/username
             </li>
             <li>
-              <i class="icon-mail"></i>oswaldgemi@gmail.com
+              <i class="icon-mail"></i>{basic_info.email}
             </li>
             <li>
-              <i class="icon-location1"></i>Willing to Relocate - YES
+              <i class="icon-location1"></i>Willing to Relocate - {basic_info.willing_to_relocate ? "Yes" : "No"}
             </li>
             <li>
-              <i class="icon-home"></i>123 Street no, Locailty, City, Country
+              <i class="icon-home"></i>{basic_info.address?.address} {basic_info.address?.city?.value} {basic_info.address?.country?.value}
             </li>
           </ul>
         </div>
