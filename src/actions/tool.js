@@ -71,6 +71,40 @@ export const updateResume = (id , updateBody) => dispatch => {
     console.log(err)
   }
 }
+
+export const updateUserProfileImage = (id , image) => dispatch => {
+  try{
+    dispatch({
+        type : "LOADING_TOOLS",
+        data : true
+    })
+    // delete updateBody.id;
+    let formData = new FormData();
+    if(image){
+      formData.append("file" , image)
+    }
+    API.post(image ? 'profileImageUpload' : 'profileImageDelete' , formData , id , function(res){
+      
+      if(res && res.data){
+        dispatch(getResumeById(id))
+          dispatch(setAlert("Data updated successfully" , 'success'));
+        } else {
+            // //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
+        }
+
+      dispatch({
+        type : "LOADING_TOOLS",
+        data : false
+        })
+    })
+    
+  } catch (err) {
+    console.log(err)
+    console.log(err)
+  }
+}
+
 export const getResumeById = (id) => dispatch =>{
   try{
       dispatch({

@@ -1,7 +1,7 @@
 import React, { useEffect , useState } from 'react';
 import { connect } from "react-redux";
 import SideBar from "./sideBar";
-import { createResume , updateLocalState , getResumeById , updateResume , downLoadResume, updateUserInfo } from "../../../actions/tool";
+import { createResume , updateLocalState ,updateUserProfileImage, getResumeById , updateResume , downLoadResume, updateUserInfo } from "../../../actions/tool";
 import { getLocalStorageItem, setLocalStorageItem } from "../../../utils/globals";
 import Auth from "../../pages/Auth";
 import Shimmer from "../../widgets/shimmerEffect";
@@ -84,7 +84,7 @@ function Index (props){
     }
 
     const handleToolEvent = (value , key) => {
-        console.log(value , key)
+        console.log(value , key, "fdvlkdnfvn in handle tool")
         switch(key){
             case "job_title":
                 props.updateLocalState({...resume_detail, job_title : value })
@@ -142,7 +142,7 @@ function Index (props){
                 props.updateLocalState({...resume_detail, references : value})
                 break;
             case "social_account":
-                setBasicInfo(basic => ({ ...basic , social_account : value} )  )
+                setBasicInfo(basic => ({ ...basic , social_account : value } )  )
                 break;
             case "basic_info":
                 console.log(value, "dfv dfkj ")
@@ -194,17 +194,17 @@ function Index (props){
                     <div className="row">
                         <SideBar setSideBarOpen={setSideBarOpen} handleSidebar={handleSidebar} type={type} setType={setType} resume_detail={resume_detail} basic_info={props.basic_info}/>
                         <div className={`${sidebarOpened ? "col-md-6" :  "col-md-6"} p-5`}>
-                        <Form basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>
+                        <Form updateUserProfileImage={props.updateUserProfileImage} basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>
                         </div>
                         <div className={`${sidebarOpened ? "col-md-5" :  "col-md-5"} p-5`}>
                             <div className="row">
-                                <div className="col-md-12 text-center">
-                                    <button className="btn btn-primary d-inline-block"><span className="mdi mdi-share"></span>Share</button>
-                                    <button className="btn btn-danger d-inline-block" onClick={saveResume}><span className="mdi mdi-eye"></span>Save</button>
-                                    <button className="btn btn-success d-inline-block" onClick={downloadResume}><span className="mdi mdi-download"></span>Download</button>
-                                    <button className="btn btn-white d-inline-block"><span className="mdi mdi-plus"></span> </button>
+                                <div className="col-md-12 text-center mb-4">
+                                    <button className="btn btn-primary d-inline-block mr-2"><span className="mdi mdi-share"></span>Share</button>
+                                    <button className="btn btn-danger d-inline-block mr-2" onClick={saveResume}><span className="mdi mdi-eye"></span>Save</button>
+                                    <button className="btn btn-success d-inline-block mr-2" onClick={downloadResume}><span className="mdi mdi-download"></span>Download</button>
+                                    <button className="btn btn-white d-inline-block mr-2"><span className="mdi mdi-plus"></span> </button>
                                 </div>
-                                <div className="col-md-12">
+                                <div className="col-md-12 rmf_thin_scroll">
                                     {/* <canvas> */}
                                         {getResume(resume_detail.template_id)}
                                     {/* </canvas> */}
@@ -232,7 +232,8 @@ const mapDispatchToProps = {
     getResumeById,
     updateUserInfo,
     updateResume,
-    downLoadResume
+    downLoadResume,
+    updateUserProfileImage
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )( Index );

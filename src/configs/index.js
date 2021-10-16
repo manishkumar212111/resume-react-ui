@@ -20,19 +20,19 @@ const templates = [
 ]
 const categories = ['All', 'New'];
 
-const background_color = ['#545454','#545454','#545454','#545454','#545454','#545454'];
+const background_color = ['red','green','blue','yellow','violet','grey', 'white'];
 
-const text_color = ['#545454','#545454','#545454','#545454','#545454','#545454','#545454','#545454'];
+const text_color = ['red','green','blue','yellow','violet','grey'];;
 const theme = ['theme1', 'theme2', 'theme3','theme4']
 
 const fonts = ['fjvkjdfvbjfd', 'dfvhbjhdbvdhf','fdvbhdfjhdfvbh','fdhvbjdfvbjhdf','fdjvbjdfvbjdfh'];
-const fontPairing = ['dfvdfvdf','bfgbfgbfg','ffgbfgbfgb','gbfgbfgbfg','bfgbfgbfgb','bgfbfgbfgbfg'];
+const fontPairing = ['600','700','800','900'];
 
 const fontSize = [
-    { text : "small" , value:"10" },
-    { text : "Medium" , value:"14" },
-    { text : "Large" , value:"18" },
-    { text : "Extra Large" , value:"25" }
+    { text : "Small" , value:12 },
+    { text : "Medium" , value:14 },
+    { text : "Large" , value:16 },
+    { text : "Extra Large" , value:18 }
 ]
 
 const icons = [

@@ -31,17 +31,17 @@ const Skills = (props) => {
           handleChange={(value) => handleChange("score", value)}
         />
       </div>
-      <div className="row">
+      <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
         <button
-          className="btn btn-danger m-2"
+          className="btn cancel_button m-2"
           onClick={() => props.handleSkillDelete(props.active, "skills")}
         >
           {" "}
           Delete
         </button>
         <button
-          className="btn btn-success m-2"
-          onClick={() => props.handleDone(props.active)}
+          className="btn submit_button m-2"
+          onClick={() => {props.value.name ? props.handleDone(props.active) : () => {}}}
         >
           {" "}
           Submit

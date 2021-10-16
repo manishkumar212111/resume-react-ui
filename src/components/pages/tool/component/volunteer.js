@@ -10,7 +10,7 @@
     import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
     
     const defaultProps = {
-        volunteer : {
+        value : {
             title : "Title",
             location: "",
             startDate: "",
@@ -20,18 +20,19 @@
     };
     
     const Volunteer = (props) => {
-      const [volunteer, setVolunteer] = useState(props.volunteers);
+      const [volunteer, setVolunteer] = useState(props.value);
     
+
+      useEffect(() => {
+        setVolunteer(props.value)
+      }, [props.value]);
+
       const handleChange = (key, value) => {
         let fields = {};
         fields[key] = value;
         setVolunteer((fld) => ({ ...fld, ...fields }));
         props.handleChange(key, { ...volunteer, ...fields }, props.active);
       };
-    
-      useEffect(() => {
-        setVolunteer(props.volunteers);
-      }, [props.volunteers]);
     
       return (
         <div className="row">
@@ -71,7 +72,7 @@
                 Start Date
               </label>
               <input
-                type="date"
+                type="month"
                 name="startDate"
                 value={volunteer.startDate}
                 onChange={(e) => handleChange("startDate", e.target.value)}
@@ -86,7 +87,7 @@
                 End Date
               </label>
               <input
-                type="date"
+                type="month"
                 name="endDate"
                 value={volunteer.endDate}
                 onChange={(e) => handleChange("endDate", e.target.value)}
@@ -107,9 +108,9 @@
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
               <button
-                className="btn btn-danger m-2"
+                className="btn cancel_button m-2"
                 onClick={() =>
                   props.handleVolunteersDelete(props.active, "volunteer")
                 }
@@ -118,7 +119,7 @@
                 Delete
               </button>
               <button
-                className="btn btn-success m-2"
+                className="btn submit_button m-2"
                 onClick={() => props.handleSave(props.active)}
               >
                 {" "}

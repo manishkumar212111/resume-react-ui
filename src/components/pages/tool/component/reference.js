@@ -9,7 +9,7 @@ import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
 import rmFiMail from "./../form/images/icons-image/rmf-fi_mail.svg";
 import rmfPositionReference from "./../form/images/icons-image/rmf-Position-Refrence.svg"
 const defaultProps = {
-  reference: {
+  value: {
     name: "name",
     company: "Company reference",
     location: "location",
@@ -19,7 +19,12 @@ const defaultProps = {
 };
 
 const Reference = (props) => {
-  const [reference, setReference] = useState(props.references);
+  const [reference, setReference] = useState(props.value);
+
+
+  useEffect(() => {
+    setReference(props.value)
+  }, [props.value]);
 
   const handleChange = (key, value) => {
     let fields = {};
@@ -29,8 +34,8 @@ const Reference = (props) => {
   };
 
   useEffect(() => {
-    setReference(props.references);
-  }, [props.references]);
+    setReference(props.value);
+  }, [props.value]);
 
   return (
     <div className="row">
@@ -110,9 +115,9 @@ const Reference = (props) => {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
         <button
-          className="btn btn-danger m-2"
+          className="btn cancel_button m-2"
           onClick={() =>
             props.handleReferencesDelete(props.active, "references")
           }
@@ -121,7 +126,7 @@ const Reference = (props) => {
           Delete
         </button>
         <button
-          className="btn btn-success m-2"
+          className="btn submit_button m-2"
           onClick={() => props.handleSave(props.active)}
         >
           {" "}

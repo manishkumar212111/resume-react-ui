@@ -1,6 +1,7 @@
 .active {
     border-width: 3px;
-    border-color: green;
+    min-height: 300px;
+    // border-color: green;
     border-radius: 8px;
     li {
         list-style: none;
@@ -20,9 +21,11 @@
 
 .inactive {
     border-width: 3px;
-    border-color: red;
+    min-height: 300px;
+
+    // border-color: red;
     border-radius: 8px;
-    margin-top: 10px;
+    // margin-top: 10px;
     li {
         list-style: none;
         background-color: grey;

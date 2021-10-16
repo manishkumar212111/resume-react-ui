@@ -20,16 +20,16 @@ const Hobbies = (props) => {
           ></input>
         </div>
       </div>
-      <div className="row">
+      <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
         <button
-          className="btn btn-danger m-2"
+          className="btn cancel_button m-2"
           onClick={() => props.handleHobbiesDelete(props.active, "hobbies")}
         >
           {" "}
           Delete
         </button>
         <button
-          className="btn btn-success m-2"
+          className="btn submit_button m-2"
           onClick={() => props.handleDone()}
         >
           {" "}

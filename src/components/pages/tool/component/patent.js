@@ -22,6 +22,11 @@
     const Patent = (props) => {
       const [patent, setPatent] = useState(props.patents);
     
+
+      useEffect(() => {
+        setPatent(props.value)
+      }, [props.value]);
+
       const handleChange = (key, value) => {
         let fields = {};
         fields[key] = value;
@@ -89,7 +94,7 @@
                 Filling Date
               </label>
               <input
-                type="date"
+                type="month"
                 name="date"
                 value={patent.date}
                 onChange={(e) => handleChange("date", e.target.value)}
@@ -97,21 +102,7 @@
               />
             </div>
           </div>
-          <div className="col-12 col-md-6">
-            <div className="rmfInputfiled rmfInputwitCheck m24">
-              <label>
-                Url
-              </label>
-              <input
-                type="text"
-                name="url"
-                value={patent.url}
-                onChange={(e) => handleChange("url", e.target.value)}
-                placeholder="Any url"
-              />
-            </div>
-          </div>
-    
+          
           <div className="col-12 col-md-12">
             <div className="rmfInputfiled m24">
               <label>
@@ -124,9 +115,9 @@
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
               <button
-                className="btn btn-danger m-2"
+                className="btn cancel_button m-2"
                 onClick={() =>
                   props.handlePatentsDelete(props.active, "patents")
                 }
@@ -135,7 +126,7 @@
                 Delete
               </button>
               <button
-                className="btn btn-success m-2"
+                className="btn submit_button m-2"
                 onClick={() => props.handleSave(props.active)}
               >
                 {" "}

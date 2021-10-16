@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import rmfCalender from "./../form/images/icons-image/rmf-calendar.svg";
 import rmfDegreeName from "./../form/images/icons-image/rmf-degree-name.svg";
@@ -12,11 +12,11 @@ const defaultProps = {
   education: {
     awards: [],
     courses: [],
-    degree: "Study Program",
+    degree: "",
     degree_major: "",
     startDate: "",
     endDate: "",
-    institute_name: "Institute Name",
+    institute_name: "",
     location: "",
     marks: { value: "", type: "" },
     projects: [],
@@ -28,12 +28,15 @@ const defaultProps = {
 const Education = (props) => {
   const [education, setEducation] = useState(props.education);
 
+  useEffect(() => {
+    setEducation(education)
+  }, [props.education]);
   const handleChange = (key, value) => {
     console.log(key, value);
     let fields = {};
     fields[key] = value;
     setEducation((fld) => ({ ...fld, ...fields }));
-    props.handleEducationsChange(key, education, props.active);
+    props.handleEducationsChange(key, { ...education, ...fields }, props.active);
   };
 
   //   const onDateChange = (key, value, max, e) => {
@@ -62,7 +65,7 @@ const Education = (props) => {
           </label>
           <input
             type="text"
-            value={education.degree ? education.degree : "Study Program"}
+            value={education.degree ? education.degree : ""}
             onChange={(e) => handleChange("degree", e.target.value)}
             placeholder="E. g. Bachlors/Masters"
           />
@@ -78,7 +81,7 @@ const Education = (props) => {
             type="text"
             name=""
             value={
-              education.degree_major ? education.degree_major : "Study Program"
+              education.degree_major ? education.degree_major : ""
             }
             onChange={(value) =>
               handleChange("degree_major", value.target.value)
@@ -105,12 +108,12 @@ const Education = (props) => {
       <div className="col-12 col-md-3">
         <div className="rmfInputfiled m24">
           <label>Start Date</label>
-          <span className="rmf-calendar-icon">
+          {/* <span className="rmf-calendar-icon">
             <img src={rmfCalender} alt="" />
-          </span>
+          </span> */}
           <input
-            type="date"
-            name=""
+            type="month"
+            name="date"
             value={education.startDate ? education.startDate : ""}
             onChange={(value) => handleChange("startDate", value.target.value)}
             // placeholder="MM/YYY"
@@ -127,11 +130,11 @@ const Education = (props) => {
               <span className="rmf_control__indicator"></span>
             </label> */}
           </label>
-          <span className="rmf-calendar-icon">
+          {/* <span className="rmf-calendar-icon">
             <img src={rmfCalender} alt="" />
-          </span>
+          </span> */}
           <input
-            type="date"
+            type="month"
             name=""
             value={education.endDate ? education.endDate : ""}
             onChange={(value) => handleChange("endDate", value.target.value)}
@@ -177,16 +180,16 @@ const Education = (props) => {
           />
         </div>
       </div>
-      <div className="row">
+      <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
         <button
-          className="btn btn-danger m-2"
+          className="btn cancel_button m-2"
           onClick={() => props.handleEducationDelete(props.active, "education")}
         >
           {" "}
           Delete
         </button>
         <button
-          className="btn btn-success m-2"
+          className="btn submit_button m-2"
           onClick={() => props.handleSave(props.active)}
         >
           {" "}

@@ -18,6 +18,10 @@ const defaultProps = {
 const Certification = (props) => {
   const [certification, setCertification] = useState(props.certifications);
 
+  useEffect(() => {
+    setCertification(props.value)
+  }, [props.value]);
+
   const handleChange = (key, value) => {
     let fields = {};
     fields[key] = value;
@@ -99,7 +103,7 @@ const Certification = (props) => {
                       <img src={rmfCalender} alt="" />
                     </span> */}
           <input
-            type="date"
+            type="month"
             name="date"
             value={certification.date}
             onChange={(e) => handleChange("date", e.target.value)}
@@ -124,9 +128,9 @@ const Certification = (props) => {
           />
         </div>
       </div>
-      {/* <div className="row">
+      <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
         <button
-          className="btn btn-danger m-2"
+          className="btn cancel_button m-2"
           onClick={() =>
             props.handleCertificationsDelete(props.active, "certifications")
           }
@@ -135,13 +139,13 @@ const Certification = (props) => {
           Delete
         </button>
         <button
-          className="btn btn-success m-2"
+          className="btn submit_button m-2"
           onClick={() => props.handleSave(props.active)}
         >
           {" "}
           Submit
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };

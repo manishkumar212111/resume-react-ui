@@ -15,6 +15,26 @@ const ContentEditable = (props) => {
     <CKEditor
       editor={ClassicEditor}
       data={props.value.replaceAll('&lt;' , '<')}
+      config={{
+        removePlugins: [
+          "undo",
+          "redo",
+          "blockQuote",
+          "ckfinder",
+          "imageTextAlternative",
+          "imageUpload",
+          "imageStyle:full",
+          "imageStyle:side",
+          "link",
+          "mediaEmbed",
+          "insertTable",
+          "tableColumn",
+          "tableRow",
+          "mergeTableCells"
+        ],
+
+        toolbar: ["heading","bold", "italic", "bulletedList", "numberedList"]
+      }}
       onReady={(editor) => {
         // You can store the "editor" and use when it is needed.
         console.log("Editor is ready to use!", editor);

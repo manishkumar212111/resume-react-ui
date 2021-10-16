@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ContentEditable from "../../../elements/contentEditable";
 import MonthPicker from "month-year-picker";
 import rmfJobTitle from "./../form/images/icons-image/rmf-job-title.svg";
 
 import rmfNameOnCertificate from "./../form/images/icons-image/rmf-nameoncertificate.svg";
-    import rmfCerifNo from "./../form/images/icons-image/rmf-cerif-no.svg";
-    import rmfFiMapPin from "./../form/images/icons-image/rmf-fi_map-pin.svg";
-    import rmfCalender from "./../form/images/icons-image/rmf-calendar.svg";
-    import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
-    
+import rmfCerifNo from "./../form/images/icons-image/rmf-cerif-no.svg";
+import rmfFiMapPin from "./../form/images/icons-image/rmf-fi_map-pin.svg";
+import rmfCalender from "./../form/images/icons-image/rmf-calendar.svg";
+import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
+
 const defaultProps = {
   experience: {
     title: "",
@@ -21,12 +21,16 @@ const defaultProps = {
     },
     achievements: "",
     description: "",
+    areaOfWork: "",
   },
 };
 
 const Experience = (props) => {
   const [experience, setExperience] = useState(props.experience);
 
+  useEffect(() => {
+    setExperience(experience);
+  }, [props.experience]);
   const handleChange = (key, value) => {
     console.log(key, value);
     let fields = {};
@@ -36,19 +40,20 @@ const Experience = (props) => {
   };
 
   const onDateChange = (key, value, max, e) => {
-    let fields = experience;
+    let fields = experience.duration;
     // setexperience(fld => ({ ...fld , ...fields}))
 
     if (max < parseInt(value)) {
-      fields["duration"][key][e.target.name] =
-        e.target.name == "mm" ? "12" : "2022";
+      fields[key][e.target.name] = e.target.name == "mm" ? "12" : "2022";
     } else if (parseInt(value) <= 0) {
-      fields["duration"][key][e.target.name] =
-        e.target.name == "mm" ? "1" : "1980";
+      fields[key][e.target.name] = e.target.name == "mm" ? "1" : "1980";
     } else {
-      fields["duration"][key][e.target.name] = value;
+      fields[key][e.target.name] = value;
     }
-    setExperience((fld) => ({ ...fld, ...fields }));
+    setExperience((fld) => ({
+      ...fld,
+      ...{ duration: { ...fld.duration, ...fields } },
+    }));
     props.handleExperiencesChange("duration", experience, props.active);
   };
 
@@ -63,25 +68,25 @@ const Experience = (props) => {
       props.handleExperiencesChange("duration", experience, props.active);
     }
   };
+  console.log(experience, props.active);
   return (
     <div className="row">
-      <div className="col-12 col-md-4">
+      <div className="col-12 col-md-6">
         <div className="rmfInputfiled m24">
           <label>
-            <img
-              src={rmfJobTitle}
-              alt=""
-              width="18px"
-              height="18px"
-            />
+            <img src={rmfJobTitle} alt="" width="18px" height="18px" />
             Job Title/Position
           </label>
-          <input type="text"  value={experience.title ? experience.title : "title"}
-              onChange={(e) => handleChange("title", e.target.value)}
-             name="" placeholder="" />
+          <input
+            type="text"
+            value={experience.title ? experience.title : ""}
+            onChange={(e) => handleChange("title", e.target.value)}
+            name=""
+            placeholder=""
+          />
         </div>
       </div>
-      <div className="col-12 col-md-4">
+      <div className="col-12 col-md-6">
         <div className="rmfInputfiled m24">
           <label>
             <img
@@ -96,70 +101,94 @@ const Experience = (props) => {
             type="text"
             name=""
             placeholder=""
-            value={experience.company ? experience.company : "Company Name"}
+            value={experience.company ? experience.company : ""}
             onChange={(e) => handleChange("company", e.target.value)}
           />
         </div>
       </div>
-      <div className="col-12 col-md-4">
-            <div className="rmfInputfiled m24">
-              <label>
-                <img src={rmfFiMapPin} alt="" width="18px" height="18px" />
-                Location
-              </label>
-              <input
-                type="text"
-                value={experience.location}
-                onChange={(e) => handleChange("location", e.target.value)}
-                placeholder="City, Country"
+      {/* <div className="row"> */}
+        <div className="col-12 col-md-6">
+          <div className="rmfInputfiled m24">
+            <label>
+              <img
+                src="images/icons-image/rmf-city.svg"
+                alt=""
+                width="18px"
+                height="18px"
               />
-            </div>
+              Area Of Work
+            </label>
+            <input
+              type="text"
+              name=""
+              placeholder="Area of Work/Experience"
+              value={experience.areaOfWork ? experience.areaOfWork : ""}
+              onChange={(e) => handleChange("areaOfWork", e.target.value)}
+            />
           </div>
-          <div className="col-12 col-md-6">
-            <div className="rmfInputfiled rmfInputwitCheck m24" >
-              <label>
-                <img src={rmfCalender} alt="" width="18px" height="18px" />
-
-                Start date
-              </label>
-              <div style={{display:"flex"}}>
-              <input
-                type="number"
-                id="from"
-                style={{width:"50%"}}
-                className="form-control"
-                placeholder={"mm"}
-                value={experience.duration.from.mm}
-                min="1"
-                max="12"
-                name="mm"
-                onChange={(e) => onDateChange("from", e.target.value, 12, e)}
-              />
-              <input
-                    type="number"
-                    className="form-control"
-                    name="yy"
-                    style={{width:"50%"}}
-                    value={experience.duration.from.yy}
-                    placeholder={"yyyy"}
-                    min="1950"
-                    max="2050"
-                    onChange={(e) => onDateChange("from", e.target.value, 2030, e)}
-                />
-                </div>
-            </div>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="rmfInputfiled m24">
+            <label>
+              <img src={rmfFiMapPin} alt="" width="18px" height="18px" />
+              Location
+            </label>
+            <input
+              type="text"
+              value={experience.location}
+              onChange={(e) => handleChange("location", e.target.value)}
+              placeholder="City, Country"
+            />
           </div>
+        </div>
+      {/* </div> */}
 
-          <div className="col-12 col-md-6">
-            <div className="rmfInputfiled rmfInputwitCheck m24">
-              <label>
-                <img src={rmfCalender} alt="" width="18px" height="18px" />
+      <div className="col-12 col-md-6">
+        <div className="rmfInputfiled rmfInputwitCheck m24">
+          <label>
+            <img src={rmfCalender} alt="" width="18px" height="18px" />
+            Start date
+          </label>
+          <div style={{ display: "flex" }}>
+            <input
+              type="number"
+              id="from"
+              style={{ width: "50%" }}
+              className="form-control"
+              placeholder={"mm"}
+              value={experience.duration.from.mm}
+              min="1"
+              max="12"
+              name="mm"
+              onChange={(e) => onDateChange("from", e.target.value, 12, e)}
+            />
+            <input
+              type="number"
+              className="form-control"
+              name="yy"
+              style={{ width: "50%" }}
+              value={experience.duration.from.yy}
+              placeholder={"yyyy"}
+              min="1950"
+              max="2050"
+              onChange={(e) => onDateChange("from", e.target.value, 2030, e)}
+            />
+          </div>
+        </div>
+      </div>
 
-                End Date
-              </label>
-              <div style={{display:"flex"}}>
-
-              <input
+      <div className="col-12 col-md-6">
+        <div className="rmfInputfiled rmfInputwitCheck m24">
+          <label>
+            <img src={rmfCalender} alt="" width="18px" height="18px" />
+            End Date
+            <label class="rmf_control rmf_checkbox">Currently Working Here
+                <input type="checkbox" onChange={(e) => handleCurrentChange(e)}/>
+                <span class="rmf_control__indicator"></span>
+            </label>
+          </label>
+          <div style={{ display: "flex" }}>
+            <input
               type="number"
               className="form-control"
               placeholder={"mm"}
@@ -169,58 +198,63 @@ const Experience = (props) => {
               name="mm"
               max={12}
               onChange={(e) => onDateChange("to", e.target.value, 12, e)}
-              />
-              <input
-                type="number"
-                className="form-control"
-                name="yy"
-                value={experience.duration.to.yy}
-                placeholder={"yyyy"}
-                min="1950"
-                max="2050"
-                onChange={(e) => onDateChange("to", e.target.value, 2030, e)}
-                />
-                </div>
-            </div>
-            {/* <input
+            />
+            <input
+              type="number"
+              className="form-control"
+              name="yy"
+              value={experience.duration.to.yy}
+              placeholder={"yyyy"}
+              min="1950"
+              max="2050"
+              onChange={(e) => onDateChange("to", e.target.value, 2030, e)}
+            />
+          </div>
+        </div>
+        {/* <input
                 type="radio"
                 className="form-control"
                 value="currently_working"
                 onChange={(e) => handleCurrentChange(e)}
           ></input>
           Currenlty Working here */}
-          </div>
-          <div className="col-12 col-md-12">
-            <div className="rmfInputfiled m24">
-              <label>
-                <img src={rmfFiMapPin} ahandleSavelt="" width="18px" height="18px" />
-                Description
-              </label>
-              <ContentEditable 
-                value={experience.description}
-                onChange={(value) => handleChange('description', value)}  
-              />
-            </div>
-          </div>
-          <div className="row">
-              <button
-                className="btn btn-danger m-2"
-                onClick={() =>
-                  props.handleExperienceDelete(props.active, "experience")
-                }
-              >
-                {" "}
-                Delete
-              </button>
-              <button
-                className="btn btn-success m-2"
-                onClick={() => props.handleSave(props.active)}
-              >
-                {" "}
-                Submit
-              </button>
-            </div>
+      </div>
+      <div className="col-12 col-md-12">
+        <div className="rmfInputfiled m24">
+          <label>
+            <img
+              src={rmfFiMapPin}
+              ahandleSavelt=""
+              width="18px"
+              height="18px"
+            />
+            Description
+          </label>
+          <ContentEditable
+            value={experience.description}
+            onChange={(value) => handleChange("description", value)}
+          />
         </div>
+      </div>
+      <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
+        <button
+          className="btn cancel_button m-2"
+          onClick={() =>
+            props.handleExperienceDelete(props.active, "experience")
+          }
+        >
+          {" "}
+          Delete
+        </button>
+        <button
+          className="btn submit_button m-2"
+          onClick={() => props.handleSave(props.active)}
+        >
+          {" "}
+          Submit
+        </button>
+      </div>
+    </div>
   );
 };
 

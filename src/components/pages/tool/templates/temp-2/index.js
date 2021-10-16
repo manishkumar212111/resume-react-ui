@@ -97,15 +97,24 @@ const Index = (props) => {
     return h;
   };
 
+  const getSocialDetailsVal = (type) => {
+    let val = (basic_info.social_account|| []).filter((itm) => (
+      itm.type === type
+    ))
+
+    return val && val[0]? val[0].url : "";
+  }
+
+  console.log(basic_info)
   return (
-    <main class="resumeMain2">
+    <main class="resumeMain2" style={{backgroundColor : resume_detail?.style?.background, color: resume_detail?.style?.text_color}}>
       <div class="resumeLeft2">
         <div class="resumeProfile">
           <div class="resumePP">
             <img src={Img} alt="" />
           </div>
           {basic_info && (
-            <h1 onClick={() => props.sideBarCb("info")}>
+            <h1>
               {basic_info.first_name} <strong>{basic_info.last_name}</strong>
             </h1>
           )}
@@ -220,6 +229,9 @@ const Index = (props) => {
                     {item.providers ? item.providers : "Training providers"}
                   </span>
                   <span className="resumelocation">
+                    {item.location ? item.location : ""}
+                  </span>
+                  <span className="resumelocation">
                     {item.date ? item.date : "Date"}
                   </span>
                   <span className="resumeCourse">
@@ -243,8 +255,14 @@ const Index = (props) => {
                   <span className="resumeUniName">
                     {item.date ? item.date : "Date"}
                   </span>
-                  <span className="resumeDescp">
-                    {item.description ? item.description : "Description"}
+                  <span 
+                    dangerouslySetInnerHTML={{
+                      __html: (item.description).replaceAll(
+                        "&lt;",
+                        "<"
+                      ),
+                    }}
+                  className="resumeDescp">
                   </span>
                 </div>
               ))}
@@ -264,10 +282,19 @@ const Index = (props) => {
                     {item.providers ? item.providers : "Training providers"}
                   </span>
                   <span className="resumeUniName">
+                    {item.location ? item.location : ""}
+                  </span>
+                  <span className="resumeUniName">
                     {item.date ? item.date : "Date"}
                   </span>
-                  <span className="resumeDescp">
-                    {item.description ? item.description : "Description"}
+                  <span
+                  dangerouslySetInnerHTML={{
+                    __html: (item.description).replaceAll(
+                      "&lt;",
+                      "<"
+                    ),
+                  }}
+                  className="resumeDescp">
                   </span>
                 </div>
               ))}
@@ -277,7 +304,7 @@ const Index = (props) => {
       <div class="resumeRight2">
         <div class="resumeContacts">
           <h2>CONTACT</h2>
-          <ul class="clearfix" onClick={() => props.sideBarCb("info")}>
+          <ul class="clearfix">
             <li>
               <i class="icon-Vector"></i>{basic_info.ccode} {basic_info.contact}
             </li>
@@ -288,7 +315,7 @@ const Index = (props) => {
               <i class="icon-calendar"></i>{basic_info?.dob?.split("T")[0]}
             </li>
             <li>
-              <i class="icon-linkedin"></i>linkedin.com/username
+              <i class="icon-linkedin"></i>{getSocialDetailsVal("linkedin") || "url"}
             </li>
             <li>
               <i class="icon-mail"></i>{basic_info.email}
@@ -296,9 +323,9 @@ const Index = (props) => {
             <li>
               <i class="icon-location1"></i>Willing to Relocate - {basic_info.willing_to_relocate ? "Yes" : "No"}
             </li>
-            <li>
+            {(basic_info.address?.address || basic_info.address?.city?.value || basic_info.address?.country?.value) && <li>
               <i class="icon-home"></i>{basic_info.address?.address} {basic_info.address?.city?.value} {basic_info.address?.country?.value}
-            </li>
+            </li>}
           </ul>
         </div>
         <h2>ABOUT ME</h2>
@@ -342,7 +369,7 @@ const Index = (props) => {
                         {
                           months[
                             item.duration.from.mm
-                              ? parseInt(item.duration.from.mm)
+                              ? parseInt(item.duration.from.mm) -1
                               : 0
                           ]
                         }{" "}
@@ -351,7 +378,7 @@ const Index = (props) => {
                         {
                           months[
                             item.duration.to.mm
-                              ? parseInt(item.duration.to.yy)
+                              ? parseInt(item.duration.to.mm) -1
                               : 0
                           ]
                         }{" "}
@@ -407,8 +434,14 @@ const Index = (props) => {
                       {item.location ? item.location : "Location"}{" "}
                       {item.date ? item.date : "date"}
                     </span>
-                    <span className="description">
-                      {item.description ? item.description : "Description"}
+                    <span 
+                    dangerouslySetInnerHTML={{
+                      __html: (item.description).replaceAll(
+                        "&lt;",
+                        "<"
+                      ),
+                    }}
+                    className="description">
                     </span>
                   </div>
                 )}
@@ -428,8 +461,14 @@ const Index = (props) => {
                     {item.location ? item.location : "Location"}{" "}
                     {item.date ? item.date : "date"}
                   </span>
-                  <span className="description">
-                    {item.description ? item.description : "Description"}
+                  <span 
+                  dangerouslySetInnerHTML={{
+                    __html: (item.description).replaceAll(
+                      "&lt;",
+                      "<"
+                    ),
+                  }}
+                  className="description">
                   </span>
                 </div>
               ))}
@@ -450,8 +489,14 @@ const Index = (props) => {
                       {item.location ? item.location : "Location"}{" "}
                       {item.date ? item.date : "date"}
                     </span>
-                    <span className="description">
-                      {item.description ? item.description : "Description"}
+                    <span 
+                      dangerouslySetInnerHTML={{
+                        __html: (item.description).replaceAll(
+                          "&lt;",
+                          "<"
+                        ),
+                      }}
+                    className="description">
                     </span>
                   </div>
                 
@@ -476,13 +521,19 @@ const Index = (props) => {
                     {item.location ? item.location : "location"}{" "}
                     {item.date ? item.date : "date"}
                   </span>
-                  <span className="description">
-                    {item.description ? item.description : "Description"}
+                  <span 
+                  dangerouslySetInnerHTML={{
+                    __html: (item.description).replaceAll(
+                      "&lt;",
+                      "<"
+                    ),
+                  }}
+                  className="description">
                   </span>
-                  <span className="link">
+                  {/* <span className="link">
                     <span>URL</span> :
                     <a href="">{item.url ? item.url : "url"}</a>
-                  </span>
+                  </span> */}
                 </div>
               ))}
           </div>
@@ -496,7 +547,7 @@ const Index = (props) => {
                     className="resumeConfRecBlk resumeConfOneThBlk"
                   >
                     <span className="title">
-                      {item.title ? item.title : "Title"}
+                      {item.name ? item.name : "Title"}
                     </span>
                     <span className="location">
                       {item.company ? item.company : "company"}
@@ -507,11 +558,11 @@ const Index = (props) => {
                     <span className="location">
                       {item.position ? item.position : "position"}
                     </span>
+                    {/* <span className="contactPhNDEmail">
+                      T - {item.contact ? item.contact : "phone"}
+                    </span> */}
                     <span className="contactPhNDEmail">
-                      T - {item.phone ? item.phone : "phone"}
-                    </span>
-                    <span className="contactPhNDEmail">
-                      E - {item.email ? item.email : "email"}
+                      E - {item.contact ? item.contact : "email"}
                     </span>
                   </div>
               )}

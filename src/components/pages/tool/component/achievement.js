@@ -10,7 +10,7 @@
     import rmfOnceRif from "./../form/images/icons-image/rmf-oncerifName.svg";
     
     const defaultProps = {
-        achievement : {
+        value : {
             title : "Title",
             location: "",
             date: "",
@@ -19,8 +19,13 @@
     };
     
     const Achievement = (props) => {
-      const [achievement, setAchievement] = useState(props.achievements);
+      const [achievement, setAchievement] = useState(props.value);
     
+
+      useEffect(() => {
+        setAchievement(props.value)
+      }, [props.value]);
+      
       const handleChange = (key, value) => {
         let fields = {};
         fields[key] = value;
@@ -28,9 +33,6 @@
         props.handleChange(key, { ...achievement, ...fields }, props.active);
       };
     
-      useEffect(() => {
-        setAchievement(props.achievements);
-      }, [props.achievements]);
     
       return (
         <div className="row">
@@ -70,7 +72,7 @@
                 Date
               </label>
               <input
-                type="date"
+                type="month"
                 name="date"
                 value={achievement.date}
                 onChange={(e) => handleChange("date", e.target.value)}
@@ -91,9 +93,9 @@
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}}>
               <button
-                className="btn btn-danger m-2"
+                className="btn cancel_button m-2"
                 onClick={() =>
                   props.handleAchievementsDelete(props.active, "achievement")
                 }
@@ -102,7 +104,7 @@
                 Delete
               </button>
               <button
-                className="btn btn-success m-2"
+                className="btn submit_button m-2"
                 onClick={() => props.handleSave(props.active)}
               >
                 {" "}

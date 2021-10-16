@@ -32,7 +32,7 @@ const Fonts = (props) => {
         <h6 className="p-2" style={{fontWeight: 700}}>Fonts</h6>
             <div className="row p-2">
             {fonts.map((itm) => (
-                <div className="col-md-6">
+                <div className="col-md-3">
                     <div className="custom-control custom-radio mb-3">
                         <input type="radio" className="custom-control-input" name="font" id={`customRadio${itm}`} value={itm} onChange={(e) => props.handleSidebar(itm , 'font') }/> 
                         <label className="custom-control-label" for={`customRadio${itm}`}>{itm}</label>
@@ -46,9 +46,9 @@ const Fonts = (props) => {
             </div>
             {fontPairing.map((itm) => (
                 
-                <div className="col-md-6">
+                <div className="col-md-3">
                     <div className="custom-control custom-radio mb-3">
-                        <input type="radio" className="custom-control-input"  id={`customRadio11${itm}`} value={itm} onChange={() => props.handleSidebar(itm , 'fontPairing')}  />
+                        <input type="radio" name="fontWeight" className="custom-control-input"  id={`customRadio11${itm}`} value={itm} onChange={() => props.handleSidebar(itm , 'fontPairing')}  />
                         <label className="custom-control-label" for={`customRadio11${itm}`}>{itm}</label>
                     </div>
                 </div>
@@ -60,25 +60,23 @@ const Fonts = (props) => {
             </div>
             {fontSize.map((itm) => (
                     
-                <div className="col-md-6">
+                <div className="col-md-3">
                     <div className="custom-control custom-radio mb-3">
-                        <input type="radio" key={itm.text} className="custom-control-input" id={`customRadio12${itm.text}`} value={itm.text} onChange={() => props.handleSidebar(itm.value , 'fontSize')}  />
-                        <label className="custom-control-label" for={`customRadio12${itm.text}`}>{itm.text}</label>
+                        <input type="radio" name="fontSize" key={itm.text} className="custom-control-input" id={`customRadio12${itm.text}`} value={itm.text} onChange={() => props.handleSidebar(itm.value , 'fontSize')}  />
+                        <label className="custom-control-label" style= {{fontSize: itm.value}} for={`customRadio12${itm.text}`}>{itm.text}</label>
                     </div>
                 </div>
             ))}
 
-                <div className="col-md-12 mt-4">
+                {/* <div className="col-md-12 mt-4">
                     <h6 className="p-2" style={{fontWeight: 700}}>Style</h6><br></br>
 
-                </div>
-                <div className="col-md-12">
+                </div> */}
+                {/* <div className="col-md-12">
                     <span className="mdi mdi-format-bold f-20 d-inline-block mr-4" onClick={bold}></span>
                     <span className="mdi mdi-format-italic f-20 d-inline-block mr-4" onClick={italic}></span>
                     <span className="mdi mdi-format-underline  f-20 d-inline-block mr-4" onClick={underline}></span>
-                    {/* <span className="mdi mdi-format-size f-20 d-inline-block mr-4"></span>
-                    <span className="mdi mdi-format-align-center f-20 d-inline-block"></span> */}
-                </div>
+                </div> */}
                 {/* <div className="col-md-12">
                     <div className="custom-control custom-switch mt-4 mb-4">
                         <input type="checkbox" className="custom-control-input" id="switch1" />
@@ -87,7 +85,7 @@ const Fonts = (props) => {
                 </div> */}
 
 
-                <div className="col-md-12 mt-4">
+                {/* <div className="col-md-12 mt-4">
                     <h6 className="p-2" style={{fontWeight: 700}}>Icons</h6><br></br>
                 </div>
 
@@ -99,7 +97,7 @@ const Fonts = (props) => {
                         </div>
                     </div>
             
-                ))}
+                ))} */}
             
         </div>
 

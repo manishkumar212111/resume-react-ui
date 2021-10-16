@@ -19,8 +19,13 @@
     };
     
     const Conference = (props) => {
-      const [conference, setConference] = useState(props.conferences);
+      const [conference, setConference] = useState(props.value);
     
+
+      useEffect(() => {
+        setConference(props.value)
+      }, [props.value]);
+      
       const handleChange = (key, value) => {
         let fields = {};
         fields[key] = value;
@@ -29,8 +34,8 @@
       };
     
       useEffect(() => {
-        setConference(props.conferences);
-      }, [props.conferences]);
+        setConference(props.value);
+      }, [props.value]);
     
       return (
         <div className="row">
@@ -70,7 +75,7 @@
                 Date
               </label>
               <input
-                type="date"
+                type="month"
                 name="date"
                 value={conference.date}
                 onChange={(e) => handleChange("date", e.target.value)}
@@ -91,9 +96,9 @@
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row col-12" style={{justifyContent: "flex-end", marginBottom: 7}} >
               <button
-                className="btn btn-danger m-2"
+                className="btn cancel_button m-2"
                 onClick={() =>
                   props.handleConferencesDelete(props.active, "conference")
                 }
@@ -102,7 +107,7 @@
                 Delete
               </button>
               <button
-                className="btn btn-success m-2"
+                className="btn submit_button m-2"
                 onClick={() => props.handleSave(props.active)}
               >
                 {" "}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./index.scss";
-
 import ContentEditable from "../../../elements/contentEditable";
 import Education from "../component/education";
 import Experience from "../component/experience";
@@ -106,6 +105,13 @@ const Form = (props) => {
     setBasicInfo(props.basic_info);
   }, [props.basic_info]);
 
+  const handleFileUpload = (e) => {
+    props.updateUserProfileImage(resume_detail.id, e.target.files[0]);
+  };
+  const handleFileDelete = (e) => {
+    props.updateUserProfileImage(resume_detail.id, '');
+  };
+
   const handleBasicInfoChange = (type , value) => {
     let basicInfo = basic_info.social_account;
 
@@ -119,7 +125,7 @@ const Form = (props) => {
 
     setBasicInfo(itm => ({...itm , social_account : basic}));
 
-    props.handleToolEvent("basic_info" , basic)
+    props.handleToolEvent(basic , "social_account" )
   }
 
   const handleBasicInfoChangePersonal = (type , val, subObject) => {
@@ -185,6 +191,7 @@ const Form = (props) => {
       },
       achievements: "",
       description: "",
+      areaOfWork:""
     });
     setResumeDetail((fld) => ({
       ...fld,
@@ -556,7 +563,6 @@ const Form = (props) => {
     }
   };
 
-  console.log(activeSkill, "sdjkkdfjbkj", resume_detail);
 
   const renderSkill = () => {
     let h = [];
@@ -683,11 +689,11 @@ const Form = (props) => {
                   <div className="rmfPreFilButton">
                     <button className="rmfbuttom" onClick={() => setActiveEducation(index)}>
                       <img src={rmfEdit} alt="" />
-                      Edit/Update
+                      
                     </button>
                     <button className="rmfDeletebutton" onClick={() => handleDelate(index, "education")}>
                       <img src={rmfDeleteWhite} alt="" />
-                      Delete
+                      
                     </button>
                   </div>
                 </div>
@@ -700,7 +706,7 @@ const Form = (props) => {
               handleSave={() => setActiveEducation("")}
               handleEducationDelete={handleDelate}
               handleEducationsChange={handleEducationCB}
-              value={resume_detail.education[activeEducation]}
+              education={resume_detail.education[activeEducation]}
             />
           )
         )
@@ -715,7 +721,7 @@ const Form = (props) => {
       />
     );
   };
-
+  console.log(resume_detail)
   const renderExperience = () => {
     let h = [];
     resume_detail.employment_history &&
@@ -737,11 +743,11 @@ const Form = (props) => {
                   <div className="rmfPreFilButton">
                     <button className="rmfbuttom" onClick={() => setActiveExperience(index)}>
                       <img src={rmfEdit} alt="" />
-                      Edit/Update
+                      
                     </button>
                     <button className="rmfDeletebutton" onClick={() => handleDelate(index, "experience")}>
                       <img src={rmfDeleteWhite} alt="" />
-                      Delete
+                      
                     </button>
                   </div>
                 </div>
@@ -754,7 +760,7 @@ const Form = (props) => {
               handleSave={() => setActiveExperience("")}
               handleExperienceDelete={handleDelate}
               handleExperiencesChange={handleExperienceCB}
-              value={resume_detail.employment_history[activeExperience]}
+              experience={resume_detail.employment_history[activeExperience]}
             />
           )
         )
@@ -893,14 +899,14 @@ const Form = (props) => {
                     onClick={() => setActiveCertifications(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "certifications")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -912,7 +918,7 @@ const Form = (props) => {
                   handleSave={() => setActiveCertifications("")}
                   handleCertificationsDelete={handleDelate}
                   active={activeCertifications}
-                  certifications={
+                  value={
                     resume_detail.certifications[activeCertifications]
                   }
                   handleChange={handleCertificationsChange}
@@ -956,14 +962,14 @@ const Form = (props) => {
                     onClick={() => setActiveConference(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "conference")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -975,7 +981,7 @@ const Form = (props) => {
                   handleSave={() => setActiveConference("")}
                   handleConferencesDelete={handleDelate}
                   active={activeConference}
-                  conferences={
+                  value={
                     resume_detail.conferences[activeConference]
                   }
                   handleChange={handleConferenceCB}
@@ -1067,14 +1073,14 @@ const Form = (props) => {
                     onClick={() => setActiveTrainings(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "trainings")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1086,7 +1092,7 @@ const Form = (props) => {
                   handleSave={() => setActiveTrainings("")}
                   handleTrainingsDelete={handleDelate}
                   active={activeTrainings}
-                  trainings={resume_detail.trainings[activeTrainings]}
+                  value={resume_detail.trainings[activeTrainings]}
                   handleChange={handleTrainingsChange}
                 />
               )}
@@ -1128,14 +1134,14 @@ const Form = (props) => {
                     onClick={() => setActivePatents(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "patents")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1147,7 +1153,7 @@ const Form = (props) => {
                   handleSave={() => setActivePatents("")}
                   handlePatentsDelete={handleDelate}
                   active={activePatents}
-                  patents={resume_detail.patents[activePatents]}
+                  value={resume_detail.patents[activePatents]}
                   handleChange={handlePatentsCB}
                 />
               )}
@@ -1189,14 +1195,14 @@ const Form = (props) => {
                     onClick={() => setActiveAchievement(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "achievement")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1208,7 +1214,7 @@ const Form = (props) => {
                   handleSave={() => setActiveAchievement("")}
                   handleAchievementsDelete={handleDelate}
                   active={activeAchievement}
-                  achievements={resume_detail.achievements[activeAchievement]}
+                  value={resume_detail.achievements[activeAchievement]}
                   handleChange={handleAchievementCB}
                 />
               )}
@@ -1250,14 +1256,14 @@ const Form = (props) => {
                     onClick={() => setActivePublications(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "publications")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1269,7 +1275,7 @@ const Form = (props) => {
                   handleSave={() => setActivePublications("")}
                   handlePublicationsDelete={handleDelate}
                   active={activePublications}
-                  publications={resume_detail.publications[activePublications]}
+                  value={resume_detail.publications[activePublications]}
                   handleChange={handlePublicationsChange}
                 />
               )}
@@ -1310,14 +1316,14 @@ const Form = (props) => {
                     onClick={() => setActiveCustom_field(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "custom_field")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1329,7 +1335,7 @@ const Form = (props) => {
                   handleSave={() => setActiveCustom_field("")}
                   handleCustom_fieldsDelete={handleDelate}
                   active={activeCustom_field}
-                  custom_fields={resume_detail.custom_field[activeCustom_field]}
+                  value={resume_detail.custom_field[activeCustom_field]}
                   handleChange={handleCustom_fieldCB}
                 />
               )}
@@ -1371,14 +1377,14 @@ const Form = (props) => {
                     onClick={() => setActiveVolunteer(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "volunteer")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1390,7 +1396,7 @@ const Form = (props) => {
                   handleSave={() => setActiveVolunteer("")}
                   handleVolunteersDelete={handleDelate}
                   active={activeVolunteer}
-                  volunteers={
+                  value={
                     resume_detail.volunteers[activeVolunteer]
                   }
                   handleChange={handleVolunteerCB}
@@ -1434,14 +1440,14 @@ const Form = (props) => {
                     onClick={() => setActiveReferences(index)}
                   >
                     <img src={rmfEdit} alt="" />
-                    Edit/Update
+                    
                   </button>
                   <button
                     onClick={() => handleDelate(index, "references")}
                     className="rmfDeletebutton"
                   >
                     <img src={rmfDeleteWhite} alt="" />
-                    Delete
+                    
                   </button>
                 </div>
               </div>
@@ -1453,7 +1459,7 @@ const Form = (props) => {
                   handleSave={() => setActiveReferences("")}
                   handleReferencesDelete={handleDelate}
                   active={activeReferences}
-                  references={
+                  value={
                     resume_detail.references[activeReferences]
                   }
                   handleChange={handleReferencesCB}
@@ -1482,11 +1488,12 @@ const Form = (props) => {
               <img src={starMarked} alt="" />
             </span>
             <div className="rmfImgBox">
-              <img src={pp2} alt="" />
+              <img src={resume_detail.profileImage ? resume_detail.profileImage: pp2} alt="" />
             </div>
           </div>
-          <div className="rmfImgSelect">
-            <span className="rmfSelect">
+          <div className="rmfImgSelect" >
+            <input type="file" style={{display: "none"}} onChange={(e) => handleFileUpload(e)} id="flUpload"/>
+            <span onClick={() => {document.getElementById("flUpload").click()}} className="rmfSelect">
               <img
                 src={rmfFileUpload}
                 alt=""
@@ -1494,7 +1501,7 @@ const Form = (props) => {
                 height="24px"
               />
             </span>
-            <span className="rmfDelete">
+            <span onClick={() => handleFileDelete()} className="rmfDelete">
               <img
                 src={rmfDelete}
                 alt=""
@@ -1503,7 +1510,25 @@ const Form = (props) => {
               />
             </span>
           </div>
-          <div className="rmfTitleBox">
+          <div class="rmfTitleBox">
+              <div class="rmfInputfiled">
+                  <label><img src={userRectangle} width="18px" height="18px" />Job Title / Professional Title</label>
+                  <input 
+                    type="text"
+                    name="job_title"
+                    value={
+                      resume_detail.job_title
+                        ? resume_detail.job_title
+                        : "Enter Job Title"
+                    }
+
+                    placeholder="Job Title"
+                    onChange={(e) => props.handleToolEvent(e.target.value, "job_title")}      
+                    />
+              </div>
+          </div>
+          
+          {/* <div className="rmfTitleBox">
             <div className="rmfInputfiled">
               <label>
                 <img
@@ -1524,7 +1549,7 @@ const Form = (props) => {
                 className={"resumeAboutMe"}
               />
             </div>
-          </div>
+          </div> */}
           <div className="rmfShadowBrdr rmfOpenAcc">
             <div className="rmfAccHeader">
               <span className="icon">
@@ -1652,7 +1677,12 @@ const Form = (props) => {
                       />
                       Date of Birth
                     </label>
-                    <input type="date" value={basic_info.dob ? basic_info.dob.split("T")[0] : ""} onChange={(e) => handleBasicInfoChangePersonal("dob" , e.target.value)} placeholder="DD/MM/YYY" />
+                    {/* <label class="rmf_control rmf_checkbox">Present
+                        <input type="checkbox" checked={!(basic_info.dob == null)} onChange={() => handleBasicInfoChangePersonal("dob" , null)}/>
+                        <span class="rmf_control__indicator"></span>
+                    </label> */}
+                    <input type="date" value={basic_info.dob ? basic_info.dob.split("T")[0] : null} onChange={(e) => handleBasicInfoChangePersonal("dob" , e.target.value)} placeholder="DD/MM/YYY" />
+                    
                   </div>
                 </div>
                 {/* <div className="col-12 col-md-4 m24">

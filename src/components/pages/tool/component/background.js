@@ -1,6 +1,7 @@
 import React from 'react';
 import {background_color , text_color , theme} from "../../../../configs"
 const Background = (props) => {
+    console.log(background_color);
     return(
         <div className="p-3">
             <h6>Background</h6>
@@ -12,7 +13,7 @@ const Background = (props) => {
                 </ul>
                 {/* <h6>New Colour</h6>
                 <div class="all"></div> */}
-                <h6 class="mt-2">Theme</h6>
+                {/* <h6 class="mt-2">Theme</h6>
                 <div class="row">
                     {theme.map(item => (
                     <div class="col-md-6" onClick={() => props.handleSidebar(item , 'theme')}>
@@ -20,7 +21,7 @@ const Background = (props) => {
                     </div>
 
                     ))}                
-                </div>
+                </div> */}
                 <h6 className="pt-3">Text Color</h6>
                 <ul class="color">
                     {text_color.map(item => (
