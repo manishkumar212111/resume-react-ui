@@ -16,6 +16,90 @@
 @import "materialdesignicons.min";
 
 
+.smallTxt {
+    p {
+        font-size: 10px !important;
+    }
+    h1 {
+        font-size: 16px !important;
+    }
+    h2 {
+        font-size: 14px !important;
+    }
+    h3 {
+        font-size: 12px !important;
+    }
+    span {
+        font-size: 10px !important;
+    }
+    ul : {
+        line-height: 1;
+    }
+}
+
+.mediumTxt {
+    p {
+        font-size: 12px !important;
+    }
+    h1 {
+        font-size: 18px !important;
+    }
+    h2 {
+        font-size: 16px !important;
+    }
+    h3 {
+        font-size: 14px !important; 
+    }
+    span {
+        font-size: 12px !important;
+    }
+    ul : {
+        line-height: 1;
+    }
+}
+
+.largeTxt {
+    p {
+        font-size: 14px !important;
+    }
+    h1 {
+        font-size: 20px !important;
+    }
+    h2 {
+        font-size: 18px !important;
+    }
+    h3 {
+        font-size: 16px !important;
+    }
+    span {
+        font-size: 14px !important;
+    }
+    ul : {
+        line-height: 1;
+    }
+}
+
+.extraLargeTxt {
+    p {
+        font-size: 16px !important;
+    }
+    h1 {
+        font-size: 22px !important;
+    }
+    h2 {
+        font-size: 20px !important;
+    }
+    h3 {
+        font-size: 18px !important;
+    }
+    span {
+        font-size: 16px !important;
+    }
+    ul : {
+        line-height: 1;
+    }
+}
+
 .downloadMain {
     margin : 0px !important;
     max-width: none !important;
@@ -40,7 +124,7 @@
 .innerSidebar {
     padding: 35px;
 }
-.tab-content {
+.sideBarContent .tab-content {
     border-radius: 41px;
     box-shadow: 8.83788px 8.83788px 26.5136px grey;
 }

@@ -4,6 +4,7 @@ import { createResume , updateLocalState , getResumeForDownload , updateResume }
 // import { getLocalStorageItem, setLocalStorageItem } from "../../../../utils/globals";
 import Shimmer from "../../../widgets/shimmerEffect";
 import Temp1 from "../templates/temp-1";
+import Temp2 from "../templates/temp-2";
 
 function Download (props){
     const [resume_detail , setResumeDetail] = useState({});
@@ -41,9 +42,11 @@ function Download (props){
     }
     const getResume = (template_id) => {
         switch(parseInt(template_id)){
-            case 2:
-            default:
+            case 1:
                 return <Temp1 downloads = {true} basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+            case 2:
+                return <Temp2 downloads = {true} basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+            default:
         }
     }
 

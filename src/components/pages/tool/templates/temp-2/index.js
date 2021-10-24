@@ -107,11 +107,11 @@ const Index = (props) => {
 
   console.log(basic_info)
   return (
-    <main class="resumeMain2" style={{backgroundColor : resume_detail?.style?.background, color: resume_detail?.style?.text_color}}>
+    <main class={`resumeMain2 ${resume_detail.style.fontSize == 12 ? "smallTxt" : (resume_detail.style.fontSize == 14 ? "mediumTxt" : (resume_detail.style.fontSize == 16 ? "largeTxt" : "extraLargeTxt"))}`} style={{backgroundColor : resume_detail?.style?.background, color: resume_detail?.style?.text_color}}>
       <div class="resumeLeft2">
         <div class="resumeProfile">
           <div class="resumePP">
-            <img src={Img} alt="" />
+            <img src={resume_detail.profileImage ? resume_detail.profileImage : Img} alt="" />
           </div>
           {basic_info && (
             <h1>

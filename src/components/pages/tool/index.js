@@ -7,6 +7,19 @@ import Auth from "../../pages/Auth";
 import Shimmer from "../../widgets/shimmerEffect";
 import Temp1 from "./templates/temp-1";
 import Temp2 from "./templates/temp-2";
+import {ShareSocial} from 'react-share-social' 
+
+const style = {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    position: "fixed",
+    zIndex: "99",
+    border: 0,
+    top:"50%",
+    color: 'white',
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  };
 
 import { BASE_URL } from "../../../API/config"
 import Form from './form/Form';
@@ -16,6 +29,7 @@ function Index (props){
     const [basic_info , setBasicInfo] = useState({});
     const [type , setType] = useState("");
     const [sidebarOpened , setSideBarOpen] = useState(false);
+    const [showShare , setShowShare] = useState(false)
     useEffect(() => {
         if(!getLocalStorageItem('userDetail').user){ 
             window.login_redirect = window.location.href ? window.location.href : "";
@@ -99,7 +113,7 @@ function Index (props){
                 props.updateLocalState({...resume_detail, skills : {...resume_detail.skills , skills : value}})
                 break;
             case 'softSkills':
-                props.updateLocalState({...resume_detail, softSkills : {...resume_detail.skills , softSkills : value}})
+                props.updateLocalState({...resume_detail, skills : {...resume_detail.skills , softSkills : value}})
                 break;
             
             case 'awards':
@@ -183,6 +197,7 @@ function Index (props){
 
     const saveResume = () => {
         console.log(resume_detail)
+        delete resume_detail.profileImage;
         props.updateResume(resume_detail.id , resume_detail);
         props.updateUserInfo(basic_info);
     }
@@ -199,11 +214,17 @@ function Index (props){
                         <div className={`${sidebarOpened ? "col-md-5" :  "col-md-5"} p-5`}>
                             <div className="row">
                                 <div className="col-md-12 text-center mb-4">
-                                    <button className="btn btn-primary d-inline-block mr-2"><span className="mdi mdi-share"></span>Share</button>
+                                     
+                                    <button className="btn btn-primary d-inline-block mr-2" onClick={() => setShowShare(!showShare)}><span className="mdi mdi-share"></span>Share</button>
                                     <button className="btn btn-danger d-inline-block mr-2" onClick={saveResume}><span className="mdi mdi-eye"></span>Save</button>
                                     <button className="btn btn-success d-inline-block mr-2" onClick={downloadResume}><span className="mdi mdi-download"></span>Download</button>
                                     <button className="btn btn-white d-inline-block mr-2"><span className="mdi mdi-plus"></span> </button>
                                 </div>
+                                {showShare && <ShareSocial 
+                                        style={style}
+                                        url ={`${process.env.REACT_APP_CLIENT_URL}downloads/${resume_detail.id}`}
+                                        socialTypes={['facebook','twitter','reddit','linkedin', "Instapaper", "email" , "whatsapp"]}
+                                    />}
                                 <div className="col-md-12 rmf_thin_scroll">
                                     {/* <canvas> */}
                                         {getResume(resume_detail.template_id)}
