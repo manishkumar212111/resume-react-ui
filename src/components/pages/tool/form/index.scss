@@ -39,8 +39,8 @@
 .rmfromwrpr {
   background: #F1F1F1;
   box-shadow: 0px 15px 40px rgba(222, 222, 222, 0.1);
-  border-radius: 41px;
-  padding: 20px 24px;
+  border-radius: 21px;
+  padding: 14px 6px;
   font-family: 'Open Sans', sans-serif;
   .rmf_thin_scroll {
     height: 100vh;
@@ -88,6 +88,7 @@
      .rmfImgBox {
       overflow: hidden;
       border-radius: 8px;
+      height:200px;
       img {
          display: block;
          object-fit: cover;
@@ -99,14 +100,14 @@
   .rmfImgSelect {
     text-align: center;    
     span {
-      width: 100px;
-      height: 86px;
+      width: 70px;
+      height: 61px;
       display: inline-block;
       vertical-align: top;
       background: #D3F6D0;
       border-radius: 16px;
       text-align: center;
-      line-height: 86px;
+      line-height: 60px;
       cursor: pointer;
       margin-right: 13px;
       &:last-child {
@@ -125,7 +126,7 @@
     background: #E6EDF7;
     border: 1px dashed #0029FF;
     backdrop-filter: blur(40px);
-    border-radius: 8px;
+    border-radius: 7px;
     font-weight: 600;
     color: #4267B2;
     font-size: 14px;
@@ -246,14 +247,14 @@
   .rmfShadow {
     background: #fff;
     box-shadow: 0px 15px 40px rgba(222, 222, 222, 0.1);
-    border-radius: 41px;
-    padding: 32px 42px;
-    margin-bottom: 17px;
+    border-radius: 8px;
+    padding: 15px 15px;
+    margin-bottom: 10px;
     .rmfShadowBrdr {
       border: 1px dashed #000000;
       filter: drop-shadow(0px 15px 40px rgba(222, 222, 222, 0.1));
       border-radius: 8px;
-      padding: 38px 55px 27px;
+      padding: 20px 20px 20px;
       &.rmfOpenAcc {
          .rmfAccHeader {
             transform: unset;
@@ -287,7 +288,7 @@
          cursor: pointer;
         transform: rotate(180deg);
          img {
-            width: 30px;
+            width: 18px;
             height: auto;
             margin: 0;
          }
@@ -337,13 +338,13 @@
     margin: 69px auto 67px;
   }
   .rmfProfileBox {
-     padding: 91px 42px;
+     padding: 26px 15px;
   }
   .rmfPreFilled {
     border: 0.5px dashed #000000;
     box-sizing: border-box;
     filter: drop-shadow(0px 15px 40px rgba(222, 222, 222, 0.1));
-    border-radius: 12px;
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -383,15 +384,15 @@
     .rmfPreDragDropIcon {
       flex: 0 0 16px;
        img {
-        width: 16px;
+        width: 10px;
        }
     }
     .rmfPreFilled {
-      flex: 0 0 calc(100% - 36px);
-      margin-left: 20px;
+      flex: 0 0 calc(100% - 20px);
+      margin-left: 4px;
     }
     &.rmfPreFilledSmall {
-      margin-left: -16px;
+      // margin-left: -16px;
        h4 {
         font-size: 14px;
         color: #000;

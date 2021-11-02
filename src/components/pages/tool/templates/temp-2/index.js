@@ -110,15 +110,15 @@ const Index = (props) => {
     <main class={`resumeMain2 ${resume_detail.style.fontSize == 12 ? "smallTxt" : (resume_detail.style.fontSize == 14 ? "mediumTxt" : (resume_detail.style.fontSize == 16 ? "largeTxt" : "extraLargeTxt"))}`} style={{backgroundColor : resume_detail?.style?.background, color: resume_detail?.style?.text_color}}>
       <div class="resumeLeft2">
         <div class="resumeProfile">
-          <div class="resumePP">
+          {resume_detail.profileImage && <div class="resumePP">
             <img src={resume_detail.profileImage ? resume_detail.profileImage : Img} alt="" />
-          </div>
+          </div>}
           {basic_info && (
             <h1>
               {basic_info.first_name} <strong>{basic_info.last_name}</strong>
             </h1>
           )}
-          <div
+          {props.resume_detail.job_title && <div
             dangerouslySetInnerHTML={{
               __html: (props?.resume_detail?.job_title
                 ? props.resume_detail.job_title
@@ -126,9 +126,9 @@ const Index = (props) => {
               ).replaceAll("&lt;", "<"),
             }}
             className={"resumePosTitle"}
-          />
+          />}
         </div>
-        <div className="resumEducation">
+        {Boolean(resume_detail.education && resume_detail.education.length) && <div className="resumEducation">
           <h4>EDUCATION</h4>
           {resume_detail.education &&
             resume_detail.education.map((item, index) =>
@@ -152,14 +152,14 @@ const Index = (props) => {
                 </div>
             )}
           
-        </div>
-        {resume_detail.sample_map && resume_detail.sample_map.skills && (
+        </div>}
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.skills && resume_detail.skills && resume_detail.skills.skills.length) && (
           <ul className="resumeSkills">
             <h4>SKILLS</h4>
             {renderSkill()}
           </ul>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.skills && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.skills && resume_detail.skills && resume_detail.skills.softSkills.length) && (
           <ul className="resumeSkills">
             <h4>SOFT SKILLS</h4>
             {resume_detail.skills && resume_detail.skills.softSkills.map(itm => (
@@ -197,26 +197,26 @@ const Index = (props) => {
                     <span class="resumeSkillsPer">70%</span>
                 </li>
             </ul> */}
-        {resume_detail.sample_map && resume_detail.sample_map.languages && (
+        {(resume_detail.sample_map && resume_detail.sample_map.languages && resume_detail.languages.length) ? (
           <ul className="resumeSkills resumeLangSpoke">
             <h4>LANGUAGES</h4>
             {renderLanguages()}
           </ul>
-        )}
-        {resume_detail.sample_map && resume_detail.sample_map.hobbies && (
+        ) : <></>}
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.hobbies && resume_detail.hobbies.length) && (
           <ul className="resumeSkills resumeLangSpoke">
             <h4>Hobbies</h4>
             {renderHobbies()}
           </ul>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.awards && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.awards && resume_detail.awards) && (
           <div className="resumEducation resumeCeriFLic">
             <h4>AWARDS</h4>
             {renderAwards()}
             
           </div>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.certifications && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.certifications && resume_detail.certifications.length) && (
           <div className="resumEducation resumeCeriFLic">
             <h4>CERTIFICATE & LICENSE</h4>
             {resume_detail.certifications &&
@@ -243,7 +243,7 @@ const Index = (props) => {
               ))}
           </div>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.publications && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.publications && resume_detail.publications.length) && (
           <div className="resumEducation resumeCeriFLic">
             <h4>PUBLICATION & APPEARENCES</h4>
             {resume_detail.publications &&
@@ -269,7 +269,7 @@ const Index = (props) => {
           </div>
         )}
 
-        {resume_detail.sample_map && resume_detail.sample_map.trainings && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.trainings && resume_detail.trainings.length) && (
           <div className="resumEducation resumeCeriFLic">
             <h4>TRAINING</h4>
             {resume_detail.trainings &&
@@ -305,21 +305,27 @@ const Index = (props) => {
         <div class="resumeContacts">
           <h2>CONTACT</h2>
           <ul class="clearfix">
-            <li>
+            {basic_info.contact && <li>
               <i class="icon-Vector"></i>{basic_info.ccode} {basic_info.contact}
-            </li>
-            <li>
+            </li>}
+            {basic_info.email && <li>
               <i class="icon-expend"></i>{basic_info.email}
-            </li>
-            <li>
+            </li>}
+            {basic_info?.dob && <li>
               <i class="icon-calendar"></i>{basic_info?.dob?.split("T")[0]}
-            </li>
-            <li>
-              <i class="icon-linkedin"></i>{getSocialDetailsVal("linkedin") || "url"}
-            </li>
-            <li>
-              <i class="icon-mail"></i>{basic_info.email}
-            </li>
+            </li>}
+            {getSocialDetailsVal("linkedin") && <li>
+              <i class="icon-linkedin"></i>{getSocialDetailsVal("linkedin")}
+            </li>}
+            {getSocialDetailsVal("facebook") && <li>
+              <i class="icon-facebook"></i>{getSocialDetailsVal("facebook")}
+            </li>}
+            {getSocialDetailsVal("twitter") && <li>
+              <i class="icon-twitter"></i>{getSocialDetailsVal("twitter")}
+            </li>}
+            {getSocialDetailsVal("github") && <li>
+              <i class="icon-github"></i>{getSocialDetailsVal("github")}
+            </li>}
             <li>
               <i class="icon-location1"></i>Willing to Relocate - {basic_info.willing_to_relocate ? "Yes" : "No"}
             </li>
@@ -328,7 +334,7 @@ const Index = (props) => {
             </li>}
           </ul>
         </div>
-        <h2>ABOUT ME</h2>
+        {resume_detail.summary && <><h2>ABOUT ME</h2>
         <div
           dangerouslySetInnerHTML={{
             __html: (resume_detail.summary || "Your Resume Summary").replaceAll(
@@ -337,10 +343,10 @@ const Index = (props) => {
             ),
           }}
           className={"resumeAboutMe"}
-        />
+        /></>}
 
-        {resume_detail.sample_map &&
-          resume_detail.sample_map.employment_history && (
+        {Boolean(resume_detail.sample_map &&
+          resume_detail.sample_map.employment_history && resume_detail.employment_history.length) && (
             <div className="resumeExperince">
               <h2>EXPERIENCE</h2>
               {resume_detail.employment_history &&
@@ -368,21 +374,22 @@ const Index = (props) => {
                       <div className="resumeRightLoc">
                         {
                           months[
-                            item.duration.from.mm
-                              ? parseInt(item.duration.from.mm) -1
+                            item.duration.from
+                              ? parseInt(item.duration.from.split("-")[1]) -1
                               : 0
                           ]
                         }{" "}
-                        {item.duration.from.yy ? item.duration.from.yy : "2000"}{" "}
-                        -{" "}
+                        {item.duration.from ? item.duration.from.split("-")[0] : "2000"}{" "}
+                        -
+                        {item.currentCompany ? "PRESENT" :<>
                         {
                           months[
-                            item.duration.to.mm
-                              ? parseInt(item.duration.to.mm) -1
+                            item.duration.to
+                              ? parseInt(item.duration.to.split("-")[1]) -1
                               : 0
                           ]
                         }{" "}
-                        {item.duration.to.yy ? item.duration.to.yy : "2003"}
+                        {item.duration.to ? item.duration.to.split("-")[0] : "2003"}</>}
                       </div>
                       <div className="resumeRightLoc">
                         {item.location ? item.location : ""}
@@ -419,7 +426,7 @@ const Index = (props) => {
                 
             </div> */}
 
-        {resume_detail.sample_map && resume_detail.sample_map.conferences && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.conferences && resume_detail.conferences.length) && (
           <div className="resumeConference">
             <h2>CONFERENCES</h2>
             {resume_detail.conferences &&
@@ -448,7 +455,7 @@ const Index = (props) => {
           </div>
         )}
 
-        {resume_detail.sample_map && resume_detail.sample_map.achievements && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.achievements && resume_detail.achievements.length) && (
           <div className="resumeConference">
             <h2>ACHIEVEMENTS</h2>
             {resume_detail.achievements &&
@@ -474,7 +481,7 @@ const Index = (props) => {
               ))}
           </div>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.custom_field && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.custom_field && resume_detail.custom_field.length) && (
           <div className="resumeConference">
             <h2>CUSTOM FIELD</h2>
             {resume_detail.custom_field &&
@@ -503,7 +510,7 @@ const Index = (props) => {
               )}
           </div>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.patents && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.patents && resume_detail.patents.length) && (
           <div className="resumeConference">
             <h2>PATENTS</h2>
             {resume_detail.patents &&
@@ -538,7 +545,7 @@ const Index = (props) => {
               ))}
           </div>
         )}
-        {resume_detail.sample_map && resume_detail.sample_map.references && (
+        {Boolean(resume_detail.sample_map && resume_detail.sample_map.references && resume_detail.references.length) && (
           <div className="resumeConference resumeReferene">
             <h2>REFERENCE</h2>
             {resume_detail.references &&

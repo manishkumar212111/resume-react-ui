@@ -15,7 +15,7 @@ const style = {
     position: "fixed",
     zIndex: "99",
     border: 0,
-    top:"50%",
+    top:"25%",
     color: 'white',
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -28,7 +28,7 @@ function Index (props){
     const [resume_detail , setResumeDetail] = useState({});
     const [basic_info , setBasicInfo] = useState({});
     const [type , setType] = useState("");
-    const [sidebarOpened , setSideBarOpen] = useState(false);
+    const [sidebarOpened , setSideBarOpen] = useState("content");
     const [showShare , setShowShare] = useState(false)
     useEffect(() => {
         if(!getLocalStorageItem('userDetail').user){ 
@@ -208,17 +208,20 @@ function Index (props){
                 <div className="container" style={{marginRight : 0, marginLeft : 0, display : "initial"}}>
                     <div className="row">
                         <SideBar setSideBarOpen={setSideBarOpen} handleSidebar={handleSidebar} type={type} setType={setType} resume_detail={resume_detail} basic_info={props.basic_info}/>
-                        <div className={`${sidebarOpened ? "col-md-6" :  "col-md-6"} p-5`}>
-                        <Form updateUserProfileImage={props.updateUserProfileImage} basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>
-                        </div>
-                        <div className={`${sidebarOpened ? "col-md-5" :  "col-md-5"} p-5`}>
+                        {(sidebarOpened == "" || sidebarOpened == "content") && <div className={`${sidebarOpened ? "col-md-6" :  "col-md-6"} p-5`}>
+                            <Form updateUserProfileImage={props.updateUserProfileImage} basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>
+                        </div>}
+                        {!(sidebarOpened == "" || sidebarOpened == "content") && <div className="col-md-3 p-5">
+                        </div>}
+                        
+                        <div className={`${(sidebarOpened == "content" || sidebarOpened == "") ? "col-md-5" :  "col-md-5"} p-5`}>
                             <div className="row">
                                 <div className="col-md-12 text-center mb-4">
                                      
                                     <button className="btn btn-primary d-inline-block mr-2" onClick={() => setShowShare(!showShare)}><span className="mdi mdi-share"></span>Share</button>
                                     <button className="btn btn-danger d-inline-block mr-2" onClick={saveResume}><span className="mdi mdi-eye"></span>Save</button>
                                     <button className="btn btn-success d-inline-block mr-2" onClick={downloadResume}><span className="mdi mdi-download"></span>Download</button>
-                                    <button className="btn btn-white d-inline-block mr-2"><span className="mdi mdi-plus"></span> </button>
+                                    {/* <button className="btn btn-white d-inline-block mr-2"><span className="mdi mdi-plus"></span> </button> */}
                                 </div>
                                 {showShare && <ShareSocial 
                                         style={style}

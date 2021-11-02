@@ -16,7 +16,7 @@ import { updateUserInfo } from "../../../actions/tool";
 import { connect } from "react-redux";
 
 function SideBar(props) {
-  const [type, setType] = useState("");
+  const [type, setType] = useState("content");
   const handleSideBarClick = (type) => {
     type == "" && props.setType("");
     setType(type);
@@ -35,7 +35,7 @@ function SideBar(props) {
   return (
     <>
       <div className="col-md-1">
-        <ul className="nav nav-pills mb-3 " id="pills-tab1" role="tablist">
+        <ul className="nav nav-pills mb-3 " id="pills-tab1" role="tablist" style={{position:"fixed" , width: "6%", fontSize: 9}}>
           <li
             className="nav-item col-md-12 mt-3 "
             role="presentation"
@@ -44,7 +44,7 @@ function SideBar(props) {
             }
           >
             <div
-              className="nav-link bg-white text-center p-2"
+              className="nav-link bg-white text-center p-1"
               id="pills-home-tab"
               data-toggle="pill"
               href="#f1"
@@ -62,7 +62,7 @@ function SideBar(props) {
             onClick={() => handleSideBarClick(type == "layout" ? "" : "layout")}
           >
             <div
-              className="nav-link  p-2 bg-white  text-center"
+              className="nav-link  p-1 bg-white  text-center"
               id="pills-profile-tab "
               data-toggle="pill"
               href="#f2"
@@ -86,7 +86,7 @@ function SideBar(props) {
             }
           >
             <div
-              className="nav-link  p-2 bg-white  text-center"
+              className="nav-link  p-1 bg-white  text-center"
               id="pills-contact-tab"
               data-toggle="pill"
               href="#f4"
@@ -104,7 +104,7 @@ function SideBar(props) {
             onClick={() => handleSideBarClick(type == "font" ? "" : "font")}
           >
             <div
-              className="nav-link  p-2 bg-white  text-center"
+              className="nav-link  p-1 bg-white  text-center"
               id="pills-contact-tab "
               data-toggle="pill"
               href="#f5"
@@ -116,13 +116,31 @@ function SideBar(props) {
               Fonts
             </div>
           </li>
+          <li
+            className="nav-item col-md-12 mt-3 "
+            role="presentation"
+            onClick={() => handleSideBarClick(type == "content" ? "" : "content")}
+          >
+            <div
+              className="nav-link  p-1 bg-white  text-center"
+              id="pills-contact-tab "
+              data-toggle="pill"
+              href="#f5"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+            >
+              <img className="d-block w-50" src={content} alt="work-img" />
+              Content
+            </div>
+          </li>
           {/* <li className="nav-item col-md-12 mt-3 p-0" role="presentation" onClick={() => handleSideBarClick(type == 'content' ? "" : "content")}>
                     <div className="nav-link  p-4 bg-white  text-center" id="pills-contact-tab " data-toggle="pill" href="#f6" role="tab" aria-controls="pills-contact" aria-selected="false"><img className="d-block w-50" src={content} alt="work-img" /> Content
                         Management</div>
                 </li> */}
         </ul>
       </div>
-      {type && <div className="sideBarContent rmf_thin_scroll_t">   
+      {type && type !== "content" && <div className="sideBarContent rmf_thin_scroll_t">   
       <img style={{ float : "right", margin:20, cursor: "pointer" }} onClick={() => setType("")} height="18" src={close}></img>
         <div className="innerSidebar ">
         {type == "template" && (

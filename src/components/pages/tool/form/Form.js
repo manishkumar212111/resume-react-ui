@@ -158,11 +158,11 @@ const Form = (props) => {
     education.push({
       awards: [],
       courses: [],
-      degree: "Study Program",
+      degree: "",
       degree_major: "",
       startDate: "",
       endDate: "",
-      institute_name: "Institute Name",
+      institute_name: "",
       location: "",
       marks: { value: "", type: "" },
       projects: [],
@@ -182,16 +182,17 @@ const Form = (props) => {
   const handleExperienceClick = () => {
     let experience = resume_detail.employment_history;
     experience.push({
-      title: "Job title",
-      company: "Company Name",
+      title: "",
+      company: "",
       location: "",
       duration: {
-        from: { mm: "", yy: "" },
-        to: { mm: "", yy: "" },
+        from: "",
+        to: "",
       },
       achievements: "",
       description: "",
-      areaOfWork:""
+      areaOfWork:"",
+      currentCompany: false
     });
     setResumeDetail((fld) => ({
       ...fld,
@@ -261,8 +262,8 @@ const Form = (props) => {
   const handleConferenceClick = () => {
     let conferences = resume_detail.conferences;
     conferences.push({
-      title: "Title",
-      description: "Description",
+      title: "",
+      description: "",
       location: "",
       date: "",
     });
@@ -280,8 +281,8 @@ const Form = (props) => {
   const handleAchievementClick = () => {
     let achievements = resume_detail.achievements;
     achievements.push({
-      title: "Title",
-      description: "Description",
+      title: "",
+      description: "",
       location: "",
       date: "",
     });
@@ -299,8 +300,8 @@ const Form = (props) => {
   const handleVolunteerClick = () => {
     let volunteers = resume_detail.volunteers;
     volunteers.push({
-      title: "Title",
-      description: "Description",
+      title: "",
+      description: "",
       location: "",
       startDate: "",
       endDate: "",
@@ -319,8 +320,8 @@ const Form = (props) => {
   const handleCustom_fieldClick = () => {
     let custom_field = resume_detail.custom_field;
     custom_field.push({
-      title: "Title",
-      description: "Description",
+      title: "",
+      description: "",
       location: "",
       date: "",
     });
@@ -366,8 +367,8 @@ const Form = (props) => {
   const handleTrainingsClick = () => {
     let trainings = resume_detail.trainings;
     trainings.push({
-      title: "Title",
-      providers: "Training Providers and Location",
+      title: "",
+      providers: "",
       date: "",
       description: "",
     });
@@ -385,11 +386,11 @@ const Form = (props) => {
   const handleCertificationsClick = () => {
     let certifications = resume_detail.certifications;
     certifications.push({
-      title: "Title",
-      providers: "Training Providers and Location",
+      title: "",
+      providers: "",
       date: "",
-      location: "Location",
-      certificate_no: "Certificate number",
+      location: "",
+      certificate_no: "",
     });
     setResumeDetail((fld) => ({
       ...fld,
@@ -408,9 +409,9 @@ const Form = (props) => {
   const handlePublicationsClick = () => {
     let publications = resume_detail.publications;
     publications.push({
-      title: "Title",
+      title: "",
       date: "",
-      description: "Description",
+      description: "",
     });
     setResumeDetail((fld) => ({ ...fld, ...{ publications: publications } }));
     setActivePublications(publications.length - 1);
@@ -426,12 +427,12 @@ const Form = (props) => {
   const handlePatentsClick = () => {
     let patents = resume_detail.patents;
     patents.push({
-      title: "Title",
-      application_no: "Application number",
-      date: "Date",
-      location: "Location",
-      url: "https://",
-      description: "Description",
+      title: "",
+      application_no: "",
+      date: "",
+      location: "",
+      url: "",
+      description: "",
     });
     setResumeDetail((fld) => ({ ...fld, ...{ patents: patents } }));
     setActivePatents(patents.length - 1);
@@ -446,10 +447,10 @@ const Form = (props) => {
   const handleReferencesClick = () => {
     let references = resume_detail.references;
     references.push({
-      name: "name",
-      company: "Company reference",
-      location: "location",
-      position: "Position of reference",
+      name: "",
+      company: "",
+      location: "",
+      position: "",
       contact: "",
     });
     setResumeDetail((fld) => ({ ...fld, ...{ references: references } }));

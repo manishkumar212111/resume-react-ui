@@ -16,12 +16,13 @@ const defaultProps = {
     company: "",
     location: "",
     duration: {
-      from: { mm: "", yy: "" },
-      to: { mm: "", yy: "" },
+      from: "",
+      to: "",
     },
     achievements: "",
     description: "",
     areaOfWork: "",
+    currentCompany: false
   },
 };
 
@@ -31,6 +32,7 @@ const Experience = (props) => {
   useEffect(() => {
     setExperience(experience);
   }, [props.experience]);
+  
   const handleChange = (key, value) => {
     console.log(key, value);
     let fields = {};
@@ -39,34 +41,23 @@ const Experience = (props) => {
     props.handleExperiencesChange(key, experience, props.active);
   };
 
-  const onDateChange = (key, value, max, e) => {
+  const handleDateChange = (key, value) => {
+    console.log(key, value);
     let fields = experience.duration;
-    // setexperience(fld => ({ ...fld , ...fields}))
-
-    if (max < parseInt(value)) {
-      fields[key][e.target.name] = e.target.name == "mm" ? "12" : "2022";
-    } else if (parseInt(value) <= 0) {
-      fields[key][e.target.name] = e.target.name == "mm" ? "1" : "1980";
-    } else {
-      fields[key][e.target.name] = value;
-    }
-    setExperience((fld) => ({
-      ...fld,
-      ...{ duration: { ...fld.duration, ...fields } },
-    }));
-    props.handleExperiencesChange("duration", experience, props.active);
+    fields[key] = value;
+    setExperience((fld) => ({ ...fld, duration:fields }));
+    props.handleExperiencesChange(key, experience, props.active);
   };
 
+
   const handleCurrentChange = (e) => {
-    if (e.target.checked) {
       let fields = experience;
       // setexperience(fld => ({ ...fld , ...fields}))
-
-      fields["duration"]["to"]["mm"] = new Date().getMonth() + 1;
-      fields["duration"]["to"]["yy"] = new Date().getFullYear();
+      fields['currentCompany'] = e.target.checked;
+      // fields["duration"]["to"]["mm"] = new Date().getMonth() + 1;
+      // fields["duration"]["to"]["yy"] = new Date().getFullYear();
       setExperience((fld) => ({ ...fld, ...fields }));
       props.handleExperiencesChange("duration", experience, props.active);
-    }
   };
   console.log(experience, props.active);
   return (
@@ -82,7 +73,7 @@ const Experience = (props) => {
             value={experience.title ? experience.title : ""}
             onChange={(e) => handleChange("title", e.target.value)}
             name=""
-            placeholder=""
+            placeholder="Job Title"
           />
         </div>
       </div>
@@ -100,7 +91,7 @@ const Experience = (props) => {
           <input
             type="text"
             name=""
-            placeholder=""
+            placeholder="Company Name"
             value={experience.company ? experience.company : ""}
             onChange={(e) => handleChange("company", e.target.value)}
           />
@@ -151,27 +142,11 @@ const Experience = (props) => {
           </label>
           <div style={{ display: "flex" }}>
             <input
-              type="number"
+              type="month"
               id="from"
-              style={{ width: "50%" }}
               className="form-control"
-              placeholder={"mm"}
-              value={experience.duration.from.mm}
-              min="1"
-              max="12"
-              name="mm"
-              onChange={(e) => onDateChange("from", e.target.value, 12, e)}
-            />
-            <input
-              type="number"
-              className="form-control"
-              name="yy"
-              style={{ width: "50%" }}
-              value={experience.duration.from.yy}
-              placeholder={"yyyy"}
-              min="1950"
-              max="2050"
-              onChange={(e) => onDateChange("from", e.target.value, 2030, e)}
+              value={experience.duration.from}
+              onChange={(e) => handleDateChange("from", e.target.value)}
             />
           </div>
         </div>
@@ -183,32 +158,19 @@ const Experience = (props) => {
             <img src={rmfCalender} alt="" width="18px" height="18px" />
             End Date
             <label class="rmf_control rmf_checkbox">Currently Working Here
-                <input type="checkbox" onChange={(e) => handleCurrentChange(e)}/>
+                <input type="checkbox" checked={experience.currentCompany} onChange={(e) => handleCurrentChange(e)}/>
                 <span class="rmf_control__indicator"></span>
             </label>
           </label>
           <div style={{ display: "flex" }}>
             <input
-              type="number"
+              type="month"
               className="form-control"
               placeholder={"mm"}
-              value={experience.duration.to.mm}
-              min="1"
-              max="12"
-              name="mm"
-              max={12}
-              onChange={(e) => onDateChange("to", e.target.value, 12, e)}
+              value={experience.duration.to}
+              onChange={(e) => handleDateChange("to", e.target.value)}
             />
-            <input
-              type="number"
-              className="form-control"
-              name="yy"
-              value={experience.duration.to.yy}
-              placeholder={"yyyy"}
-              min="1950"
-              max="2050"
-              onChange={(e) => onDateChange("to", e.target.value, 2030, e)}
-            />
+            
           </div>
         </div>
         {/* <input
