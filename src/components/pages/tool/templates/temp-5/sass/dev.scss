@@ -1,0 +1,641 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  // margin: 0;
+  // padding: 0;
+  // border: 0;
+  // font-size: 100%;
+  // font: inherit;
+  // vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+body {
+  font-family: Lato;
+  font-weight: 400;
+  line-height: 12px;
+  background-color: #DADADA;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 0.6em;
+    color: #000;
+    padding-left: 22px;
+    border-left: solid 1px rgba(0, 0, 0, 0.2);
+    span {
+      display: block;
+      font-weight: 400;
+    }
+}
+*, *:after , *:before {
+  box-sizing: border-box;
+}
+/*For Clear*/
+.clearfix { *zoom: 1; }
+.clearfix:before, .clearfix:after { display:block; content: ""; line-height: 0; }
+.clearfix:after { clear: both; }
+.clear { clear: both; }
+/* font family added from here */
+@font-face {
+    font-family: 'Cambria';
+    src: url('../fonts/Cambria.eot');
+    src: url('../fonts/Cambria.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Cambria.woff2') format('woff2'),
+        url('../fonts/Cambria.woff') format('woff'),
+        url('../fonts/Cambria.ttf') format('truetype'),
+        url('../fonts/Cambria.svg#Cambria') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cambria';
+    src: url('../fonts/Cambria-Bold.eot');
+    src: url('../fonts/Cambria-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Cambria-Bold.woff2') format('woff2'),
+        url('../fonts/Cambria-Bold.woff') format('woff'),
+        url('../fonts/Cambria-Bold.ttf') format('truetype'),
+        url('../fonts/Cambria-Bold.svg#fonts/Cambria-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Calibri';
+    src: url('../fonts/Calibri.eot');
+    src: url('../fonts/Calibri.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Calibri.woff2') format('woff2'),
+        url('../fonts/Calibri.woff') format('woff'),
+        url('../fonts/Calibri.ttf') format('truetype'),
+        url('../fonts/Calibri.svg#Calibri') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Calibri';
+    src: url('../fonts/Calibri-Light.eot');
+    src: url('../fonts/Calibri-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Calibri-Light.woff2') format('woff2'),
+        url('../fonts/Calibri-Light.woff') format('woff'),
+        url('../fonts/Calibri-Light.ttf') format('truetype'),
+        url('../fonts/Calibri-Light.svg#Calibri-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Calibri';
+    src: url('../fonts/Calibri-Bold.eot');
+    src: url('../fonts/Calibri-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Calibri-Bold.woff2') format('woff2'),
+        url('../fonts/Calibri-Bold.woff') format('woff'),
+        url('../fonts/Calibri-Bold.ttf') format('truetype'),
+        url('../fonts/Calibri-Bold.svg#Calibri-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+.clearfix:after, .clearfix:before {
+    display: block;
+    content: "";
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+.resumeMain5 {
+  max-width: 595px;
+  margin:  15px auto;
+  background: #fff; 
+  padding: 30px 30px 0; 
+  .resumeAboutTop {
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 206px auto;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+  }
+  .resumeContainer {
+    display: grid;
+    grid-template-columns: auto 216px;
+  }
+  ol, ul {
+    list-style: none;
+    padding-inline-start :0
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.15em;
+    color: #000;
+    padding: 0 0 10px 22px;
+    border-left: 1px solid rgba(0,0,0,.2)
+  }
+  .resumeProfilePic {
+    padding: 7px 12px 25px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: right;
+    margin-top: 14px;
+  }
+  .resumeDesp {
+    padding-left: 19px;
+    h1 {
+      width: 250px;
+    }
+  }
+  .resumePP {
+    width: 156px;
+    height: 111px;    
+    overflow: hidden;
+    display: inline-block;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .resumeProfile {
+    margin-right: -20px;
+  }
+  .resumePosTitle {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 40px;
+    letter-spacing: 0.6em;
+    color: #000;
+    margin-bottom: 3px;
+    margin-left: -30px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid #888888;
+    border-left: 0;
+    margin-top: 16px;
+    margin-bottom: 30px;
+    padding: 6px 10px 5px;
+  }
+   .resumeAboutMe {
+    margin-bottom: 30px;
+    span {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 0.15em;
+      color: #000;
+      display: block;
+      padding: 0 0 10px 22px;
+      border-left: 1px solid rgba(0,0,0,.2);
+    }
+    p {
+      font-size: 8px;
+      line-height: 12px;
+      color: #646464;
+      letter-spacing: 0.25em;
+      padding-left: 22px;
+      border-left: 1px solid rgba(0,0,0,.2);
+      position: relative;
+      &:before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: #000;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        left: -3px;
+        top: 0;
+      }
+    }
+  }
+  .resumeSortBio {
+    padding: 20px 10px 19px 25px;
+    border-bottom: 1px solid #888888;
+    li {
+      font-size: 10px;
+      line-height: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      i {
+        margin-right: 17px;
+        vertical-align: middle;
+        font-size: 14px;
+        &:before {
+          font-size: 14px;
+        }
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  h4 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.15em;
+    color: #000;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 18px;
+  }
+  .resumEducation {
+    margin-bottom: 30px;  
+  }
+  .resumEducationInfo {    
+    font-size: 8px;
+    line-height: 15px;
+    font-weight: 400;
+    padding-bottom: 15px;
+    letter-spacing: 0.1em;
+    padding-left: 22px;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
+    &:before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      background: #000;
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+      left: -3px;
+      top: 4px;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+    .resumeDegree, .resumeUniName {
+      display: block;
+      letter-spacing: 0.1em;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .resumeAwardOrg {
+      text-transform: capitalize;
+      font-weight: 700;
+      display: block;
+    }
+    .resumeUniName {
+      span {
+        display: block;
+      }
+    }
+    .resumeDescp {
+      position: relative;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      padding-left: 10px;
+      &:before {
+        content: '';
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: 3px;
+        top: 4px;
+      }
+    }
+    .resumeCourse {
+      display: block;
+    }
+  }
+  .resumeHobbies {
+    h2 {
+      padding-left: 0;
+      border-left: 0;
+    }
+    li {
+      font-weight: bold;
+      font-size: 8px;
+      line-height: 10px;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      color: #646464;
+      padding-left: 13px;
+      position: relative;
+      &:before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: #000;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 2px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }  
+  .resumeSkills {
+    font-weight: bold;
+    font-size: 8px;
+    line-height: 10px;
+    letter-spacing: 0.1em;
+    color: #646464;
+    margin-bottom: 30px;    
+    li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 13px;
+      &:before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: #000;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 2px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .withOutBorder {
+      padding-left: 0;
+      border: 0;
+    }
+  }
+  .resumeContacts {
+    margin-bottom: 30px;
+    ul {
+      li {
+          display: block;
+          font-size: 8px;
+          line-height: 10px;
+          letter-spacing: 0.02em;
+          color: #646464;
+          margin-bottom: 16px;
+          position: relative;
+          padding-left: 26px;
+          vertical-align: top;  
+          i {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-right: 18px;
+            vertical-align: middle;
+            position: absolute;
+            left: 0;
+            top: 0;
+            &:before {
+              font-size: 10px;
+              color: rgba(0, 0, 0, 0.5);
+            }
+          }
+          &:last-child {
+            margin-bottom: 0;
+          }
+      }
+    }
+  }
+  .resumeExperince {
+    margin-bottom: 30px ;
+  }
+  .resumeJobTitleBlock {
+    padding: 0 0 25px 22px;
+    border-left: 1px solid rgba(0,0,0,.2);
+    position: relative;
+    &:before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: #000;
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+      left: -3px;
+      top: 4px;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+    h3 {
+      font-weight: 700;
+      font-size: 10px;
+      line-height: 13px;
+      letter-spacing: 0.02em;
+      color: #000;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;      
+    }
+    .resumeComName {
+      font-weight: 700;
+      font-size: 10px;
+      line-height: 13px;
+      letter-spacing: 0.02em;
+      color: #000;
+      margin-bottom: 4px;
+    }
+    .resumeRightLoc {
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 13px;
+        letter-spacing: .02em;
+        color: #646464;
+        margin-bottom: 10px;
+    }
+    .resumeAreaOfWork {
+      font-size: 8px;
+      line-height: 9px;
+      letter-spacing: 0.02em;
+      color: #646464;
+      margin-bottom: 5px;
+    }
+    .resumeDuties {      
+      font-size: 8px;
+      line-height: 9px;
+      letter-spacing: 0.02em;
+      color: #646464;
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 20px;
+      &:before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        background: #646464;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        position: absolute;
+        top: 3px;
+        left: 10px;
+      }
+    }
+    .resumeEnterJobPoints {
+      padding-left: 10px;
+      li {
+        font-size: 8px;
+        line-height: 10px;
+        color: #646464;
+        margin-bottom: 5px;
+        padding-left: 10px;
+        position: relative;
+        &:before {
+          content: '';
+          width: 2px;
+          height: 2px;
+          background: #646464;
+          border-radius: 50%;
+          display: inline-block;
+          vertical-align: middle;
+          position: absolute;
+          top: 3px;
+          left: 0;
+        }
+      }
+    }    
+  }
+  .resumeAward {
+    margin-bottom: 30px;
+    .resumeAwardRec {
+      width: 49%;
+      display: inline-block;
+      font-family: Calibri;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 10px;
+      line-height: 12px;
+      letter-spacing: 0.1em;
+      color: #000000;
+      span {        
+        text-transform: uppercase;
+        display: block;
+      }
+    }
+  }
+  .resumeConference {
+    margin-bottom: 30px;
+    .resumeConfRecBlk {
+      font-weight: 700;
+      font-size: 8px;
+      line-height: 12px;
+      letter-spacing: 0.1em;
+      color: #000000;
+      padding-left: 11px;
+      padding-bottom: 15px;
+      position: relative;
+      border-left: 1px solid rgba(0,0,0,.2);
+      &:before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: #000;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        left: -3px;
+        top: 4px;
+      }
+      &:last-child {
+        padding-bottom: 0;
+      }
+      .title {
+        display: block;
+        text-transform: uppercase;
+      }
+      .location, .description {
+        display: block;
+        font-weight: 400;
+        color: #888888;
+        line-height: 15px;
+      }
+      .description {
+        padding-left: 12px;
+        position: relative;
+        &:before {
+          content: "";
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: #646464;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 5px;
+        }
+      }
+      .link {
+          font-family: Calibri;
+          font-size: 10px;
+          line-height: 15px;
+          letter-spacing: 0.02em;
+          color: #00B0D7;
+          margin-top: 3px;
+          font-weight: 400;
+          display: block;
+          a {
+            color: #00B0D7;
+            text-decoration: none;
+          }
+      }
+      .contactPhNDEmail {
+        font-size: 10px;
+        line-height: 15px;
+        display: block;
+        letter-spacing: 0.02em;
+        font-weight: 400;
+        margin-top: 10px;
+        &:last-child {
+          margin-top: 0;
+        }
+      }
+    }
+    &.resumeReferene {
+      .description, .location {
+        color: #646464;
+      }
+    }
+  }
+}
+.resumeLeft5 {
+  padding: 0 12px 15px 0;
+}
+.resumeRight5 {
+  padding: 0 0 5px 12px;
+  h2 {
+    padding-left: 11px;
+  }
+  .resumEducationInfo {
+    padding-left: 11px;
+  }
+}

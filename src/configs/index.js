@@ -3,7 +3,9 @@ const GOOGLE_LOGIN_CLIENT_ID = '140876642215-6e6e0r90qvkt1tgfdejb9da94ec74p1t.ap
 const templates = [
     { id : "1", img: "https://ik.imagekit.io/lcq5etn9k/templates/7_jwzNnTjSJ.png", category : "All", type: "baisc",name: "template" },
     { id : "2", img: "https://ik.imagekit.io/lcq5etn9k/templates/6_wKLS6-srNC.png", category : "New", type: "baisc",name: "template" },
-    // { id : "3", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
+    { id : "3", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
+    { id : "4", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
+    { id : "5", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
     // { id : "4", img: "https://ik.imagekit.io/lcq5etn9k/templates/9_nMm230qzhU.png", category : "All", type: "baisc",name: "template" },
     // { id : "5", img: "https://ik.imagekit.io/lcq5etn9k/templates/9_nMm230qzhU.png", category : "All", type: "baisc",name: "template" },
     // { id : "6", img: "https://ik.imagekit.io/lcq5etn9k/templates/12_5Z_zKtftK.png", category : "All", type: "baisc",name: "template" },

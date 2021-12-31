@@ -378,7 +378,7 @@ const Index = (props) => {
                               ? parseInt(item.duration.from.split("-")[1]) -1
                               : 0
                           ]
-                        }{" "}
+                        }
                         {item.duration.from ? item.duration.from.split("-")[0] : "2000"}{" "}
                         -
                         {item.currentCompany ? "PRESENT" :<>
@@ -481,6 +481,19 @@ const Index = (props) => {
               ))}
           </div>
         )}
+        {(resume_detail.sample_map && resume_detail.sample_map.volunteers) && 
+                                    
+            <div className="resumeConference">
+                <h2>VOLUNTEER WORK</h2>
+                {resume_detail.volunteers && resume_detail.volunteers.map((item, index) => (
+                    <div className="resumeConfRecBlk">
+                        <span className="title">{item.title ? item.title : "Title"}</span>
+                        <span className="location">{item.location ? item.location : "Location"} {item.date ? item.date : "date"}</span> 
+                        <span className="description">{item.description ? item.description : "Description"}</span>
+                    </div>
+                ))} 
+            </div>
+        }
         {Boolean(resume_detail.sample_map && resume_detail.sample_map.custom_field && resume_detail.custom_field.length) && (
           <div className="resumeConference">
             <h2>CUSTOM FIELD</h2>

@@ -7,6 +7,9 @@ import Auth from "../../pages/Auth";
 import Shimmer from "../../widgets/shimmerEffect";
 import Temp1 from "./templates/temp-1";
 import Temp2 from "./templates/temp-2";
+import Temp3 from "./templates/temp-3";
+import Temp4 from "./templates/temp-4";
+import Temp5 from "./templates/temp-5";
 import {ShareSocial} from 'react-share-social' 
 
 const style = {
@@ -190,7 +193,13 @@ function Index (props){
                 return <Temp1 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
             case 2:
                 return <Temp2 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
-
+            case 3:
+                return <Temp3 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+            case 4:
+                return <Temp4 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+            case 5:
+                return <Temp5 basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>    
+        
             default:
         }
     }
