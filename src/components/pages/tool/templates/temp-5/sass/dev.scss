@@ -1,141 +1,135 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  // margin: 0;
-  // padding: 0;
-  // border: 0;
-  // font-size: 100%;
-  // font: inherit;
-  // vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
+// html, body, div, span, applet, object, iframe,
+// h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+// a, abbr, acronym, address, big, cite, code,
+// del, dfn, em, img, ins, kbd, q, s, samp,
+// small, strike, strong, sub, sup, tt, var,
+// b, u, i, center,
+// dl, dt, dd, ol, ul, li,
+// fieldset, form, label, legend,
+// table, caption, tbody, tfoot, thead, tr, th, td,
+// article, aside, canvas, details, embed, 
+// figure, figcaption, footer, header, hgroup, 
+// menu, nav, output, ruby, section, summary,
+// time, mark, audio, video {
+//   // margin: 0;
+//   // padding: 0;
+//   // border: 0;
+//   // font-size: 100%;
+//   // font: inherit;
+//   // vertical-align: baseline;
+// }
+// /* HTML5 display-role reset for older browsers */
+// article, aside, details, figcaption, figure, 
+// footer, header, hgroup, menu, nav, section {
+//   display: block;
+// }
 
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-body {
-  font-family: Lato;
-  font-weight: 400;
-  line-height: 12px;
-  background-color: #DADADA;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+// blockquote, q {
+//   quotes: none;
+// }
+// blockquote:before, blockquote:after,
+// q:before, q:after {
+//   content: '';
+//   content: none;
+// }
+// table {
+//   border-collapse: collapse;
+//   border-spacing: 0;
+// }
 
-h1 {
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 40px;
-    letter-spacing: 0.6em;
-    color: #000;
-    padding-left: 22px;
-    border-left: solid 1px rgba(0, 0, 0, 0.2);
-    span {
-      display: block;
-      font-weight: 400;
-    }
-}
-*, *:after , *:before {
-  box-sizing: border-box;
-}
-/*For Clear*/
-.clearfix { *zoom: 1; }
-.clearfix:before, .clearfix:after { display:block; content: ""; line-height: 0; }
-.clearfix:after { clear: both; }
-.clear { clear: both; }
-/* font family added from here */
-@font-face {
-    font-family: 'Cambria';
-    src: url('../fonts/Cambria.eot');
-    src: url('../fonts/Cambria.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Cambria.woff2') format('woff2'),
-        url('../fonts/Cambria.woff') format('woff'),
-        url('../fonts/Cambria.ttf') format('truetype'),
-        url('../fonts/Cambria.svg#Cambria') format('svg');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+// h1 {
+//     font-weight: 900;
+//     font-size: 20px;
+//     line-height: 40px;
+//     letter-spacing: 0.6em;
+//     color: #000;
+//     padding-left: 22px;
+//     border-left: solid 1px rgba(0, 0, 0, 0.2);
+//     span {
+//       display: block;
+//       font-weight: 400;
+//     }
+// }
+// *, *:after , *:before {
+//   box-sizing: border-box;
+// }
+// /*For Clear*/
+// .clearfix { *zoom: 1; }
+// .clearfix:before, .clearfix:after { display:block; content: ""; line-height: 0; }
+// .clearfix:after { clear: both; }
+// .clear { clear: both; }
+// /* font family added from here */
+// @font-face {
+//     font-family: 'Cambria';
+//     src: url('../fonts/Cambria.eot');
+//     src: url('../fonts/Cambria.eot?#iefix') format('embedded-opentype'),
+//         url('../fonts/Cambria.woff2') format('woff2'),
+//         url('../fonts/Cambria.woff') format('woff'),
+//         url('../fonts/Cambria.ttf') format('truetype'),
+//         url('../fonts/Cambria.svg#Cambria') format('svg');
+//     font-weight: 400;
+//     font-style: normal;
+//     font-display: swap;
+// }
 
-@font-face {
-    font-family: 'Cambria';
-    src: url('../fonts/Cambria-Bold.eot');
-    src: url('../fonts/Cambria-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Cambria-Bold.woff2') format('woff2'),
-        url('../fonts/Cambria-Bold.woff') format('woff'),
-        url('../fonts/Cambria-Bold.ttf') format('truetype'),
-        url('../fonts/Cambria-Bold.svg#fonts/Cambria-Bold') format('svg');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Calibri';
-    src: url('../fonts/Calibri.eot');
-    src: url('../fonts/Calibri.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Calibri.woff2') format('woff2'),
-        url('../fonts/Calibri.woff') format('woff'),
-        url('../fonts/Calibri.ttf') format('truetype'),
-        url('../fonts/Calibri.svg#Calibri') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+// @font-face {
+//     font-family: 'Cambria';
+//     src: url('../fonts/Cambria-Bold.eot');
+//     src: url('../fonts/Cambria-Bold.eot?#iefix') format('embedded-opentype'),
+//         url('../fonts/Cambria-Bold.woff2') format('woff2'),
+//         url('../fonts/Cambria-Bold.woff') format('woff'),
+//         url('../fonts/Cambria-Bold.ttf') format('truetype'),
+//         url('../fonts/Cambria-Bold.svg#fonts/Cambria-Bold') format('svg');
+//     font-weight: 700;
+//     font-style: normal;
+//     font-display: swap;
+// }
+// @font-face {
+//     font-family: 'Calibri';
+//     src: url('../fonts/Calibri.eot');
+//     src: url('../fonts/Calibri.eot?#iefix') format('embedded-opentype'),
+//         url('../fonts/Calibri.woff2') format('woff2'),
+//         url('../fonts/Calibri.woff') format('woff'),
+//         url('../fonts/Calibri.ttf') format('truetype'),
+//         url('../fonts/Calibri.svg#Calibri') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+// }
 
-@font-face {
-    font-family: 'Calibri';
-    src: url('../fonts/Calibri-Light.eot');
-    src: url('../fonts/Calibri-Light.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Calibri-Light.woff2') format('woff2'),
-        url('../fonts/Calibri-Light.woff') format('woff'),
-        url('../fonts/Calibri-Light.ttf') format('truetype'),
-        url('../fonts/Calibri-Light.svg#Calibri-Light') format('svg');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
+// @font-face {
+//     font-family: 'Calibri';
+//     src: url('../fonts/Calibri-Light.eot');
+//     src: url('../fonts/Calibri-Light.eot?#iefix') format('embedded-opentype'),
+//         url('../fonts/Calibri-Light.woff2') format('woff2'),
+//         url('../fonts/Calibri-Light.woff') format('woff'),
+//         url('../fonts/Calibri-Light.ttf') format('truetype'),
+//         url('../fonts/Calibri-Light.svg#Calibri-Light') format('svg');
+//     font-weight: 300;
+//     font-style: normal;
+//     font-display: swap;
+// }
 
-@font-face {
-    font-family: 'Calibri';
-    src: url('../fonts/Calibri-Bold.eot');
-    src: url('../fonts/Calibri-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Calibri-Bold.woff2') format('woff2'),
-        url('../fonts/Calibri-Bold.woff') format('woff'),
-        url('../fonts/Calibri-Bold.ttf') format('truetype'),
-        url('../fonts/Calibri-Bold.svg#Calibri-Bold') format('svg');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-.clearfix:after, .clearfix:before {
-    display: block;
-    content: "";
-    line-height: 0;
-}
-.clearfix:after {
-    clear: both;
-}
+// @font-face {
+//     font-family: 'Calibri';
+//     src: url('../fonts/Calibri-Bold.eot');
+//     src: url('../fonts/Calibri-Bold.eot?#iefix') format('embedded-opentype'),
+//         url('../fonts/Calibri-Bold.woff2') format('woff2'),
+//         url('../fonts/Calibri-Bold.woff') format('woff'),
+//         url('../fonts/Calibri-Bold.ttf') format('truetype'),
+//         url('../fonts/Calibri-Bold.svg#Calibri-Bold') format('svg');
+//     font-weight: 700;
+//     font-style: normal;
+//     font-display: swap;
+// }
+// .clearfix:after, .clearfix:before {
+//     display: block;
+//     content: "";
+//     line-height: 0;
+// }
+// .clearfix:after {
+//     clear: both;
+// }
 .resumeMain5 {
   max-width: 595px;
   margin:  15px auto;

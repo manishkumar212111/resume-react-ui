@@ -51,7 +51,7 @@ class Home extends React.Component {
 
         return (
             <div>
-                 <section className="bg-home align-items-center" id="home">
+                 <section style={{marginTop: 100}} className="bg-home align-items-center mt-5" id="home">
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6">
