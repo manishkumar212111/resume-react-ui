@@ -214,24 +214,26 @@ function Index (props){
     return (
         <section className="mt-5 pt-2">
             <div className="tool bg-dark mt-5">
-                <div className="container" style={{marginRight : 0, marginLeft : 0, display : "initial"}}>
+                <div className="container" style={{marginRight : 0, marginLeft : 0, maxWidth: "100%"}}>
+                    <div className="row">
+                        <div className="col-md-12 text-right mt-4 ">                                     
+                            <button className="btn btn-primary d-inline-block mr-2" onClick={() => setShowShare(!showShare)}><span className="mdi mdi-share"></span>Share</button>
+                            <button className="btn btn-danger d-inline-block mr-2" onClick={saveResume}><span className="mdi mdi-eye"></span>Save</button>
+                            <button className="btn btn-success d-inline-block mr-2" onClick={downloadResume}><span className="mdi mdi-download"></span>Download</button>
+                            {/* <button className="btn btn-white d-inline-block mr-2"><span className="mdi mdi-plus"></span> </button> */}
+                        </div>
+                    </div>
+
                     <div className="row">
                         <SideBar setSideBarOpen={setSideBarOpen} handleSidebar={handleSidebar} type={type} setType={setType} resume_detail={resume_detail} basic_info={props.basic_info}/>
-                        {(sidebarOpened == "" || sidebarOpened == "content") && <div className={`${sidebarOpened ? "col-md-6" :  "col-md-6"} p-5`}>
+                        {(sidebarOpened == "" || sidebarOpened == "content") && <div className={`${sidebarOpened ? "col-md-5" :  "col-md-5"} p-4`}>
                             <Form updateUserProfileImage={props.updateUserProfileImage} basic_info={basic_info} resume_detail={resume_detail} sideBarCb={(type) => setType(type)} handleToolEvent={handleToolEvent}/>
                         </div>}
                         {!(sidebarOpened == "" || sidebarOpened == "content") && <div className="col-md-3 p-5">
                         </div>}
                         
-                        <div className={`${(sidebarOpened == "content" || sidebarOpened == "") ? "col-md-5" :  "col-md-5"} p-5`}>
-                            <div className="row">
-                                <div className="col-md-12 text-center mb-4">
-                                     
-                                    <button className="btn btn-primary d-inline-block mr-2" onClick={() => setShowShare(!showShare)}><span className="mdi mdi-share"></span>Share</button>
-                                    <button className="btn btn-danger d-inline-block mr-2" onClick={saveResume}><span className="mdi mdi-eye"></span>Save</button>
-                                    <button className="btn btn-success d-inline-block mr-2" onClick={downloadResume}><span className="mdi mdi-download"></span>Download</button>
-                                    {/* <button className="btn btn-white d-inline-block mr-2"><span className="mdi mdi-plus"></span> </button> */}
-                                </div>
+                        <div className={`${(sidebarOpened == "content" || sidebarOpened == "") ? "col-md-6" :  "col-md-6"} p-4`}>
+                            <div className="row">                                
                                 {showShare && <ShareSocial 
                                         style={style}
                                         url ={`${process.env.REACT_APP_CLIENT_URL}downloads/${resume_detail.id}`}
@@ -241,7 +243,7 @@ function Index (props){
                                     {/* <canvas> */}
                                         {getResume(resume_detail.template_id)}
                                     {/* </canvas> */}
-                                </div>
+                                </div>                                
                             </div>
                         </div>
                     </div>
