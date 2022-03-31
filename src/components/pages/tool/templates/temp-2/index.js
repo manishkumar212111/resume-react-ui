@@ -109,7 +109,8 @@ const Index = (props) => {
   return (
     <main class={`resumeMain2 ${resume_detail.style.fontSize == 12 ? "smallTxt" : (resume_detail.style.fontSize == 14 ? "mediumTxt" : (resume_detail.style.fontSize == 16 ? "largeTxt" : "extraLargeTxt"))}`} style={{backgroundColor : resume_detail?.style?.background, color: resume_detail?.style?.text_color}}>
       <div class="resumeLeft2">
-        <div class="resumeProfile">
+        <div class="resumeProfile">          
+
           {resume_detail.profileImage && <div class="resumePP">
             <img src={resume_detail.profileImage ? resume_detail.profileImage : Img} alt="" />
           </div>}
@@ -132,9 +133,7 @@ const Index = (props) => {
           <h4>EDUCATION</h4>
           {resume_detail.education &&
             resume_detail.education.map((item, index) =>
-                <div
-                  className="resumEducationInfo"
-                >
+                <div className="resumEducationInfo" >
                   <span className="resumeDegree">
                     {item.degree ? item.degree : "Program"}
                   </span>
@@ -306,34 +305,35 @@ const Index = (props) => {
           <h2>CONTACT</h2>
           <ul class="clearfix">
             {basic_info.contact && <li>
-              <i class="icon-Vector"></i>{basic_info.ccode} {basic_info.contact}
+              <i class="fas fa-phone-alt"></i>{basic_info.ccode} {basic_info.contact}
             </li>}
             {basic_info.email && <li>
-              <i class="icon-expend"></i>{basic_info.email}
+              <i class="fas fa-envelope"></i>{basic_info.email}
             </li>}
             {basic_info?.dob && <li>
-              <i class="icon-calendar"></i>{basic_info?.dob?.split("T")[0]}
+              <i class="fas fa-calendar"></i>{basic_info?.dob?.split("T")[0]}
             </li>}
             {getSocialDetailsVal("linkedin") && <li>
-              <i class="icon-linkedin"></i>{getSocialDetailsVal("linkedin")}
+              <i class="fab fa-linkedin-in"></i>{getSocialDetailsVal("linkedin")}
             </li>}
             {getSocialDetailsVal("facebook") && <li>
-              <i class="icon-facebook"></i>{getSocialDetailsVal("facebook")}
+              <i class="fab fa-facebook-f"></i>{getSocialDetailsVal("facebook")}
             </li>}
             {getSocialDetailsVal("twitter") && <li>
-              <i class="icon-twitter"></i>{getSocialDetailsVal("twitter")}
+              <i class="fab fa-twitter"></i>{getSocialDetailsVal("twitter")}
             </li>}
             {getSocialDetailsVal("github") && <li>
-              <i class="icon-github"></i>{getSocialDetailsVal("github")}
+              <i class="fab fa-github"></i>{getSocialDetailsVal("github")}
             </li>}
             <li>
-              <i class="icon-location1"></i>Willing to Relocate - {basic_info.willing_to_relocate ? "Yes" : "No"}
+              <i class="fas fa-map-marker-alt"></i>Willing to Relocate - {basic_info.willing_to_relocate ? "Yes" : "No"}
             </li>
             {(basic_info.address?.address || basic_info.address?.city?.value || basic_info.address?.country?.value) && <li>
-              <i class="icon-home"></i>{basic_info.address?.address} {basic_info.address?.city?.value} {basic_info.address?.country?.value}
+              <i class="fas fa-home-alt"></i>{basic_info.address?.address} {basic_info.address?.city?.value} {basic_info.address?.country?.value}
             </li>}
           </ul>
         </div>
+
         {resume_detail.summary && <><h2>ABOUT ME</h2>
         <div
           dangerouslySetInnerHTML={{
@@ -371,7 +371,7 @@ const Index = (props) => {
                           ).replaceAll("&lt;", "<"),
                         }}
                       ></div>
-                      <div className="resumeRightLoc">
+                      <div className="resumeRightLoc date">
                         {
                           months[
                             item.duration.from
@@ -391,7 +391,7 @@ const Index = (props) => {
                         }{" "}
                         {item.duration.to ? item.duration.to.split("-")[0] : "2003"}</>}
                       </div>
-                      <div className="resumeRightLoc">
+                      <div className="resumeRightLoc location">
                         {item.location ? item.location : ""}
                       </div>
 
