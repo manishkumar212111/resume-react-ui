@@ -35,9 +35,35 @@
 //   content: '';
 //   content: none;
 // }
+/* == FONTS FAMILY NAME
+font-family: 'Book Antiqua';
+font-family: 'Calibri';
+font-family: 'Cambria';
+font-family: 'Garamond';
+font-family: 'Georgia';
+font-family: 'Helvetica';
+font-family: 'Lato';
+font-family: 'Noto Sans Cond';
+font-family: 'Trebuchet MS';
+font-family: 'Verdana';
+*/
+ // == FONTS / ICONS
+ @import '../fonts/systemFont.css';
+
 .resumeMain2 {
+  // max-width: 595px;
+  // margin:  15px auto;
+  font-family: 'Lato';
+  background: #fff;
+  display: grid;
+  grid-template-columns: 249px auto;
+  margin:15px 0;
+  border-radius: 10px;
+
   h1, h2, h3,h4,h5,h6 {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Book Antiqua';
+    color: #000000;
+    font-weight: 700;
   }
   h1 {
       font-family: 'Playfair Display', serif;
@@ -55,70 +81,7 @@
   .clearfix:before, .clearfix:after { display:block; content: ""; line-height: 0; }
   .clearfix:after { clear: both; }
   .clear { clear: both; }
-  /* font family added from here */
-  @font-face {
-      font-family: 'Cambria';
-      src: url('../fonts/Cambria.eot');
-      src: url('../fonts/Cambria.eot?#iefix') format('embedded-opentype'),
-          url('../fonts/Cambria.woff2') format('woff2'),
-          url('../fonts/Cambria.woff') format('woff'),
-          url('../fonts/Cambria.ttf') format('truetype'),
-          url('../fonts/Cambria.svg#Cambria') format('svg');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  @font-face {
-      font-family: 'Cambria';
-      src: url('../fonts/Cambria-Bold.eot');
-      src: url('../fonts/Cambria-Bold.eot?#iefix') format('embedded-opentype'),
-          url('../fonts/Cambria-Bold.woff2') format('woff2'),
-          url('../fonts/Cambria-Bold.woff') format('woff'),
-          url('../fonts/Cambria-Bold.ttf') format('truetype'),
-          url('../fonts/Cambria-Bold.svg#fonts/Cambria-Bold') format('svg');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-  }
-  @font-face {
-      font-family: 'Calibri';
-      src: url('../fonts/Calibri.eot');
-      src: url('../fonts/Calibri.eot?#iefix') format('embedded-opentype'),
-          url('../fonts/Calibri.woff2') format('woff2'),
-          url('../fonts/Calibri.woff') format('woff'),
-          url('../fonts/Calibri.ttf') format('truetype'),
-          url('../fonts/Calibri.svg#Calibri') format('svg');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  @font-face {
-      font-family: 'Calibri';
-      src: url('../fonts/Calibri-Light.eot');
-      src: url('../fonts/Calibri-Light.eot?#iefix') format('embedded-opentype'),
-          url('../fonts/Calibri-Light.woff2') format('woff2'),
-          url('../fonts/Calibri-Light.woff') format('woff'),
-          url('../fonts/Calibri-Light.ttf') format('truetype'),
-          url('../fonts/Calibri-Light.svg#Calibri-Light') format('svg');
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  @font-face {
-      font-family: 'Calibri';
-      src: url('../fonts/Calibri-Bold.eot');
-      src: url('../fonts/Calibri-Bold.eot?#iefix') format('embedded-opentype'),
-          url('../fonts/Calibri-Bold.woff2') format('woff2'),
-          url('../fonts/Calibri-Bold.woff') format('woff'),
-          url('../fonts/Calibri-Bold.ttf') format('truetype'),
-          url('../fonts/Calibri-Bold.svg#Calibri-Bold') format('svg');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-  }
+
   .clearfix:after, .clearfix:before {
       display: block;
       content: "";
@@ -129,17 +92,172 @@
   }
   p{
     line-height: 1.2;
+  }  
+
+  &.smallTxt {
+    .resumeLeft2{
+      h4{
+        font-size: 14px;
+      }
+      .resumEducationInfo {
+        &:before {          
+          width: 5px;
+          height: 5px;          
+          top: 4px;          
+        }
+        &:after {          
+          left: 2px;
+          top: 4px;          
+        }
+      }
+      .resumeSkills{
+        li{ 
+          padding:0 20px 0 12px;         
+          &:before {            
+            width: 5px;
+            height: 5px;            
+            top: 3px;            
+          }
+        }
+      }
+    }
+    .resumeRight2{
+      .resumeContacts {
+        margin-bottom: 15px;
+        ul{
+          li{            
+            padding-left: 15px;
+            margin-bottom: 10px;
+
+            i {              
+              top: 0px;            
+            }
+          }
+        }
+      }
+      .resumeJobTitleBlock{
+        padding-bottom: 15px;
+        &:before {          
+          width: 5px;
+          height: 5px;          
+          top: 4px;          
+        }
+        &:after {          
+          left: 2px;
+          top: 4px;          
+        }
+      }
+    }
   }
-  // max-width: 595px;
-  // margin:  15px auto;
-  background: #fff;
-  display: grid;
-  grid-template-columns: 249px auto;
+  &.mediumTxt {
+    .resumeLeft2{
+      h4{
+        font-size: 16px;
+      }
+      .resumEducationInfo {
+        &:before {          
+          width: 5px;
+          height: 5px;          
+          top: 4px;          
+        }
+        &:after {          
+          left: 2px;
+          top: 4px;          
+        }
+      }
+      .resumeSkills{
+        li{ 
+          padding:0 20px 0 12px;         
+          &:before {            
+            width: 5px;
+            height: 5px;            
+            top: 3px;            
+          }
+        }
+      }
+    }
+    .resumeRight2{
+      .resumeContacts {
+        margin-bottom: 20px;
+        ul{
+          li{            
+            padding-left: 15px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .resumeJobTitleBlock{
+        padding-bottom: 15px;
+        &:before {          
+          width: 5px;
+          height: 5px;          
+          top: 4px;          
+        }
+        &:after {          
+          left: 2px;
+          top: 4px;          
+        }
+      }
+    }
+  }
+  &.largeTxt {    
+    .resumeLeft2{
+      h4{
+        font-size: 18px;
+      }
+      .resumEducationInfo {
+        &:before {          
+          width: 7px;
+          height: 7px;          
+          top: 4px;          
+        }
+        &:after {          
+          left: 3px;
+          top: 3px;          
+        }
+      }
+      .resumeSkills{
+        li{
+          &:before {            
+            width: 6px;
+            height: 6px;            
+            top: 3px;            
+          }
+        }
+      }
+    }
+    .resumeRight2{
+      .resumeContacts {
+        margin-bottom: 20px;
+        ul{
+          li{            
+            padding-left: 20px;
+            margin-bottom: 12px;
+          }
+        }
+      }
+
+      .resumeJobTitleBlock{
+        &:before {          
+          width: 7px;
+          height: 7px;          
+          top: 4px;          
+        }
+        &:after {          
+          left: 3px;
+          top: 3px;          
+        }
+      }      
+    }
+  }
 }
+
+
 .resumeLeft2 {
   padding: 26px 20px 15px;
   .resumeProfile {
-    text-align: center;  
+    text-align: center;
+    margin-bottom: 20px;
   }
   .resumePP {
     width: 88px;
@@ -154,11 +272,10 @@
     }
   }
   .resumePosTitle {
-    font-weight: 700;
-    font-family: Calibri;
-    font-size: 15px;
+    font-weight: 700;    
+    font-size: 18px; 
     line-height: 18px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
   }
   .resumeSortBio {
     padding: 20px 10px 19px 25px;
@@ -181,43 +298,79 @@
       }
     }
   }
-  h4 {
-    font-weight: 600;
-    font-size: 12px;
+  h4 {    
+    font-size: 20px;
+    font-weight: 600;    
     line-height: 16px;
-    letter-spacing: 0.15em;
-    color: #000;
-    padding-bottom: 3px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.1em;    
     margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
   .resumEducation {
-    padding: 20px 0 15px;  }
+    padding-bottom: 20px; 
+    margin-bottom: 10px;
+  }
+
   .resumEducationInfo {    
     font-size: 8px;
     line-height: 12px;
     font-weight: 400;
-    margin-bottom: 15px;
-    letter-spacing: 0.1em;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    .resumeDegree, .resumeUniName {
+    //margin-bottom: 15px;
+    padding:0 0 15px 20px;
+    position: relative;
+
+    &:before{
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      left: 0px;
+      top: 3px;
       display: block;
-      letter-spacing: 0.1em;
+      background: #000;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    &:after{
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      left: 4px;
+      top: 2px;      
+      background: #cccccc;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+    .resumeDegree{
+      display: block;
       font-weight: bold;
+      letter-spacing: 0.1em;      
       text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .resumeUniName {
+      display: block;
+      font-weight: bold;
+      letter-spacing: inherit;        
+      margin-bottom: 5px;
+      //line-height: 1; 
+      //text-transform: uppercase;
+
+      span {
+        display: block;
+      }
     }
     .resumeAwardOrg {
       text-transform: capitalize;
       font-weight: 700;
       display: block;
-    }
-    .resumeUniName {
-      span {
-        display: block;
-      }
-    }
+    }    
     .resumeDescp {
       position: relative;
       font-weight: bold;
@@ -286,29 +439,39 @@
     }
   }
   .resumeSkills {
-    padding: 0 0 20px;
-    font-weight: bold;
+    padding: 0 0 20px;    
     font-size: 8px;
     line-height: 10px;
-    letter-spacing: 0.1em;
-    color: #646464;
-    li {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      padding-left: 29px;
-      position: relative;
+    list-style: none;
+    margin-bottom: 10px;
+
+    //font-weight: bold;
+    //letter-spacing: 0.1em;
+    //color: #646464;    
+
+    .resumeSkillsPer{
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      top: 1px;
+    }
+    .resumeSkillsTitle{
+      line-height: 1;
+    }
+
+    li {      
+      margin-bottom: 10px;
+      padding:0 25px 0 18px;
+      position: relative;   
+      line-height: 1;   
+
       &:before {
         content: '';
         position: absolute;
-        width: 6px;
-        height: 6px;
-        left: 8px;
-        top: 2px;
-        display: inline-block;
+        width: 8px;
+        height: 8px;
+        left: 0px;
+        top: 4px;       
         background: #000;
         border-radius: 50%;
       }
@@ -334,35 +497,30 @@
   }
 }
 .resumeRight2 {
-  padding: 25px 20px 0 5px;
+  padding: 25px 20px 20px 5px;
   .resumeContacts {
     margin-bottom: 24px;
     ul {
       padding-inline-start: 0px;
+      list-style: none;
       li {
           width: 49%;
-          float: left;
-          display: inline-block;
-          font-size: 8px;
-          line-height: 10px;
+          float: left;          
           letter-spacing: 0.02em;
           color: #000000;
           margin-bottom: 16px;
           position: relative;
           padding-left: 26px;
-          vertical-align: top;  
+          vertical-align: top; 
+          word-break: break-all; 
           i {
-            font-size: 10px;
+            //font-size: 10px;
             color: rgba(0, 0, 0, 0.5);
             margin-right: 18px;
             vertical-align: middle;
             position: absolute;
-            left: 0;
-            top: 0;
-            &:before {
-              font-size: 10px;
-              color: rgba(0, 0, 0, 0.5);
-            }
+            left: 0px;
+            top: 2px;            
           }
       }
     }
@@ -370,30 +528,58 @@
   .resumeAboutMe {
     font-size: 8px;
     line-height: 12px;
-    color: #646464;
-    margin-bottom: 20px;
+    //color: #646464;
+    margin-bottom: 30px;
   }
-  h2 {
-    font-family: Cambria;
+  h2 {    
     font-weight: 600;
     font-size: 12px;
     line-height: 16px;
-    letter-spacing: 0.15em;
-    color: #000000;
+    letter-spacing: 0.10em;    
     margin-bottom: 18px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   }
-  .resumeJobTitleBlock {
-    font-family: Cambria;
-    margin-bottom: 25px;
+  .resumeJobTitleBlock {    
+    padding-bottom: 25px;
+    padding-left: 20px;
+    position: relative;
+
+    &:last-child{
+      padding-bottom:0px;
+    }
+
+    &:before{
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      left: 0px;
+      top: 3px;
+      display: block;
+      background: #000;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    &:after{
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      left: 4px;
+      top: 4px;      
+      background: #cccccc;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
     h3 {
       font-weight: 700;
       font-size: 10px;
       line-height: 13px;
       letter-spacing: 0.02em;
       color: #000;
-      margin-bottom: 4px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -406,25 +592,36 @@
     }
     .resumeComName {
       font-weight: 700;
-      font-size: 10px;
-      line-height: 13px;
+      font-size: 14px;
+      //line-height: 13px;
       letter-spacing: 0.02em;
       color: #000;
-      margin-bottom: 4px;
+      //margin-bottom: 4px;
     }
     .resumeRightLoc {
-        font-weight: 700;
-        font-size: 10px;
-        line-height: 13px;
+        //font-weight: 700;
+        font-size: 14px;
+        //line-height: 13px;
         letter-spacing: .02em;
-        color: #646464;
+        //color: #646464;
         margin-bottom: 10px;
+
+        &.date{
+          font-weight: 700;
+          position: absolute;
+          right: 0;
+          top: 0;
+          font-size: 14px;
+        }
+        &.location{
+          font-weight: 700;
+        }
     }
     .resumeAreaOfWork {
       font-size: 8px;
       line-height: 9px;
       letter-spacing: 0.02em;
-      color: #646464;
+      //color: #646464;
       margin-bottom: 5px;
     }
     .resumeDuties {      
@@ -450,8 +647,7 @@
     }
     .resumeEnterJobPoints {
       padding-left: 10px;
-      li {
-        font-family: Calibri;
+      li {        
         font-size: 8px;
         line-height: 10px;
         letter-spacing: 0.02em;
@@ -478,8 +674,7 @@
     margin-bottom: 30px;
     .resumeAwardRec {
       width: 49%;
-      display: inline-block;
-      font-family: Calibri;
+      display: inline-block;      
       font-style: normal;
       font-weight: bold;
       font-size: 10px;
@@ -494,8 +689,7 @@
   }
   .resumeConference {
     margin-bottom: 20px;
-    .resumeConfRecBlk {
-      font-family: Calibri;
+    .resumeConfRecBlk {      
       font-weight: 700;
       font-size: 8px;
       line-height: 12px;
@@ -546,8 +740,7 @@
           top: 5px;
         }
       }
-      .link {
-          font-family: Calibri;
+      .link {          
           font-size: 10px;
           line-height: 15px;
           letter-spacing: 0.02em;
