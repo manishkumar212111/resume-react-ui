@@ -17,7 +17,7 @@
 
 
 .smallTxt {
-    p {
+    p,li,span {
         font-size: 10px !important;
         line-height: 1;
     }
@@ -38,13 +38,16 @@
     ul : {
         line-height: 1;
     }
+    .fas,.far,.fal,
+    .fab{
+        font-size: 9px;
+    }
 }
 
 .mediumTxt {
     p,li,span {
         font-size: 12px !important;
-        line-height: 1.2;
-
+        line-height: 1;
     }
     h1 {
         font-size: 18px !important;
@@ -59,13 +62,17 @@
     ul : {
         line-height: 1;
     }
+
+    .fas,.far,.fal,
+    .fab{
+        font-size: 10px;
+    }
 }
 
 .largeTxt {
     p,li,span {
         font-size: 14px !important;
         line-height: 1.2;
-
     }
     h1 {
         font-size: 20px !important;
@@ -80,13 +87,17 @@
     ul : {
         line-height: 1;
     }
+
+    .fas,.far,.fal,
+    .fab{
+        font-size: 12px;
+    }
 }
 
 .extraLargeTxt {
     p,li,span {
         font-size: 16px !important;
         line-height: 1.2;
-
     }
     h1 {
         font-size: 22px !important;
@@ -100,6 +111,11 @@
     
     ul : {
         line-height: 1;
+    }
+
+    .fas,.far,.fal,
+    .fab{
+        font-size: 16px;
     }
 }
 
