@@ -5,20 +5,7 @@ const templates = [
     { id : "2", img: "https://ik.imagekit.io/lcq5etn9k/templates/6_wKLS6-srNC.png", category : "New", type: "baisc",name: "template" },
     { id : "3", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
     { id : "4", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
-    { id : "5", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },
-    // { id : "4", img: "https://ik.imagekit.io/lcq5etn9k/templates/9_nMm230qzhU.png", category : "All", type: "baisc",name: "template" },
-    // { id : "5", img: "https://ik.imagekit.io/lcq5etn9k/templates/9_nMm230qzhU.png", category : "All", type: "baisc",name: "template" },
-    // { id : "6", img: "https://ik.imagekit.io/lcq5etn9k/templates/12_5Z_zKtftK.png", category : "All", type: "baisc",name: "template" },
-    // { id : "7", img: "https://ik.imagekit.io/lcq5etn9k/templates/2_X8aDRA8s5.png", category : "All", type: "baisc",name: "template" },
-    // { id : "8", img: "https://ik.imagekit.io/lcq5etn9k/templates/1_u_QLznEs1.png", category : "All", type: "baisc",name: "template" },
-    // { id : "9", img: "https://ik.imagekit.io/lcq5etn9k/templates/10_K5CpyeOAt1.png", category : "All", type: "baisc",name: "template" },
-    // { id : "10", img: "https://ik.imagekit.io/lcq5etn9k/templates/4_Q2ArbRqRT.png", category : "All", type: "baisc",name: "template" },
-    // { id : "11", img: "https://ik.imagekit.io/lcq5etn9k/templates/11_afmbaifCP.png", category : "All", type: "baisc",name: "template" },
-    // { id : "12", img: "https://ik.imagekit.io/lcq5etn9k/templates/14_Ovjkmjn26L.png", category : "All", type: "baisc",name: "template" },
-    // { id : "13", img: "https://ik.imagekit.io/lcq5etn9k/templates/3_vgSkFmPbJ.png", category : "All", type: "baisc",name: "template" },
-    // { id : "14", img: "https://ik.imagekit.io/lcq5etn9k/templates/8_c58TWkqNsO.png", category : "All", type: "baisc",name: "template" },
-    // { id : "15", img: "", category : "All", type: "baisc" },
-    
+    { id : "5", img: "https://ik.imagekit.io/lcq5etn9k/templates/15_fSuqdFzlFN.png", category : "New", type: "baisc",name: "template" },    
 ]
 const categories = ['All', 'New'];
 
@@ -26,9 +13,20 @@ const background_color = ['red','green','blue','yellow','violet','grey', 'white'
 
 const text_color = ['red','green','blue','yellow','violet','grey'];;
 const theme = ['theme1', 'theme2', 'theme3','theme4']
+const fonts = ["Calibri", "Cambria",
+"Noto",
+"Georgia",
+"Helvetica",
+"Garamond",
+"Verdana",
+"Lato",
+"Trebuchet MS",
+"Book Antiqua",
+];
 
-const fonts = ['fjvkjdfvbjfd', 'dfvhbjhdbvdhf','fdvbhdfjhdfvbh','fdhvbjdfvbjhdf','fdjvbjdfvbjdfh'];
-const fontPairing = ['600','700','800','900'];
+
+// const fonts = ['Arial, sans-serif', 'Verdana, sans-serif','Helvetica, sans-serif','Tahoma, sans-serif','Trebuchet MS, sans-serif', 'Times New Roman, serif', 'Georgia, serif', 'Garamond, serif', 'Courier New, monospace', 'Brush Script MT, cursive'];
+const fontPairing = ['500', '600','700','800','900'];
 
 const fontSize = [
     { text : "Small" , value:12 },
