@@ -28,45 +28,50 @@ const Fonts = (props) => {
     
     console.log(props.font_detail)
     return (
-        <><br></br>
-        <h6 className="p-2" style={{fontWeight: 700}}>Fonts</h6>
-            <div className="row p-2">
-            {fonts.map((itm) => (
-                <div className="col-md-3">
-                    <div className="custom-control custom-radio mb-3">
-                        <input type="radio" className="custom-control-input" name="font" id={`customRadio${itm}`} value={itm} onChange={(e) => props.handleSidebar(itm , 'font') }/> 
-                        <label className="custom-control-label" for={`customRadio${itm}`}>{itm}</label>
-                    </div>
+        <>
+            
+            <div className="row">
+
+                <div className="col-md-12 mt-4 mb-4 font-info">
+                    <i class="far fa-font"></i>
+                    <h5>Fonts</h5>
                 </div>
-            ))}
-                
-            <div className="col-md-12 mt-4">
-                <h6 className="p-2" style={{fontWeight: 700}}>Font Weight</h6><br></br>
-
-            </div>
-            {fontPairing.map((itm) => (
-                
-                <div className="col-md-3">
-                    <div className="custom-control custom-radio mb-3">
-                        <input type="radio" name="fontWeight" className="custom-control-input"  id={`customRadio11${itm}`} value={itm} onChange={() => props.handleSidebar(itm , 'fontPairing')}  />
-                        <label className="custom-control-label" for={`customRadio11${itm}`}>{itm}</label>
+                {fonts.map((itm) => (
+                    <div className="col-md-3">
+                        <div className="custom-control custom-radio mb-3">
+                            <input type="radio" className="custom-control-input" name="font" id={`customRadio${itm}`} value={itm} onChange={(e) => props.handleSidebar(itm , 'font') }/> 
+                            <label className="custom-control-label" for={`customRadio${itm}`}>{itm}</label>
+                        </div>
                     </div>
-                </div>
-            ))}
-
-            <div className="col-md-12 mt-4">
-                <h6 className="p-2" style={{fontWeight: 700}}>Font Size</h6><br></br>
-
-            </div>
-            {fontSize.map((itm) => (
+                ))}
                     
-                <div className="col-md-3">
-                    <div className="custom-control custom-radio mb-3">
-                        <input type="radio" name="fontSize" key={itm.text} className="custom-control-input" id={`customRadio12${itm.text}`} value={itm.text} onChange={() => props.handleSidebar(itm.value , 'fontSize')}  />
-                        <label className="custom-control-label" style= {{fontSize: itm.value}} for={`customRadio12${itm.text}`}>{itm.text}</label>
-                    </div>
+                <div className="col-md-12 mt-4 mb-4 font-info">
+                    <i class="far fa-text-height"></i>
+                    <h5>Font Weight</h5>
                 </div>
-            ))}
+                {fontPairing.map((itm) => (
+                    
+                    <div className="col-md-3">
+                        <div className="custom-control custom-radio mb-3">
+                            <input type="radio" name="fontWeight" className="custom-control-input"  id={`customRadio11${itm}`} value={itm} onChange={() => props.handleSidebar(itm , 'fontPairing')}  />
+                            <label className="custom-control-label" for={`customRadio11${itm}`}>{itm}</label>
+                        </div>
+                    </div>
+                ))}
+
+                <div className="col-md-12 mt-4 mb-4 font-info">
+                    <i class="far fa-text-size"></i>
+                    <h5>Font Size</h5>
+                </div>
+                {fontSize.map((itm) => (
+                        
+                    <div className="col-md-3">
+                        <div className="custom-control custom-radio mb-3">
+                            <input type="radio" name="fontSize" key={itm.text} className="custom-control-input" id={`customRadio12${itm.text}`} value={itm.text} onChange={() => props.handleSidebar(itm.value , 'fontSize')}  />
+                            <label className="custom-control-label" style= {{fontSize: itm.value}} for={`customRadio12${itm.text}`}>{itm.text}</label>
+                        </div>
+                    </div>
+                ))}
 
                 {/* <div className="col-md-12 mt-4">
                     <h6 className="p-2" style={{fontWeight: 700}}>Style</h6><br></br>

@@ -44,7 +44,7 @@ const Header = ( props ) => {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <i className="mdi mdi-menu"></i>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarCollapse">
+                <div className="navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav ml-auto navbar-center" id="mySidenav">
                         <li className="nav-item">
                             <Link to="/" className="nav-link">Home</Link>
@@ -65,17 +65,34 @@ const Header = ( props ) => {
                             <Link to="/faq" className="nav-link">FAQs</Link>
                         </li>
 
-                    </ul>
+                    </ul>                    
                     
                     {!(props.userDetail && props.userDetail.first_name) ? <div className="navbar-button d-none d-lg-inline-block">
                         <Link style={{marginRight : "5px"}} className="btn btn-sm btn-primary btn-round" to="#login" data-toggle="modal" onClick = {() => sethashElement('#login')} data-target="#login">Log In</Link>
                         <Link className="btn btn-sm btn-outline-primary btn-round"  to="#register" onClick = {() => sethashElement('#register')} data-toggle="modal">Register</Link>
                     </div> : 
-                    <div class="navbar-button d-none d-lg-inline-block">
+                    <div class="navbar-button d-none d-lg-inline-block">                        
                         {localStorage.getItem('expires') == 'true' && <Link style={{marginRight : "5px"}} to="/pricing"><button class="btn btn-sm btn-warning btn-round"><span class="mdi mdi-lock-open-variant-outline"></span>Upgrade</button></Link>}
                         <Link style={{marginRight : "5px"}} to="/my-resumes" className="btn btn-sm btn-primary btn-round">My Resume</Link>
-                        <Link to="/my-account"><div class="btn btn-sm btn-soft-dark btn-round pt-0 pb-0"><span>Hello, {props.userDetail.first_name} </span><span class="mdi mdi-account-circle mdi-24px"></span></div> </Link>
+                        {/*<Link to="/my-account">
+                            <div class="btn btn-sm btn-soft-dark btn-round pt-0 pb-0">
+                                <span>Hello, {props.userDetail.first_name} </span>
+                                <span class="mdi mdi-account-circle mdi-24px"></span>
+                            </div>
+                        </Link>*/}                        
                         {/* <Link className="btn btn-sm btn-outline-primary btn-round"  to="/my-account">Hello {props.userDetail.first_name}</Link> */}
+                        <div class="user-dropdown">
+                            <a href="javascript:void(0)">
+                                Hello, {props.userDetail.first_name}
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                            <div class="sub-menu">
+                                <ul>
+                                    <li><a href="#">Name 1</a></li>
+                                    <li><a href="#">Name 2</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>}
                 </div>
             </div>

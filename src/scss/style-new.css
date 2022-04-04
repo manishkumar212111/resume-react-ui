@@ -527,7 +527,7 @@ hr {
 }
 
 .bg-dark {
-  background-color: #2F2E41 !important;
+  background-color: #272D3E !important;
 }
 
 .bg-soft-dark {
@@ -1665,12 +1665,16 @@ canvas {
 }
 .color {
   padding-left: 0px;
+  margin:0 -6px;
 }
 .color li {
-  margin-right: 2px;
+  margin: 6px;
   display: inline-block;
-  width: 19%;
-  height: 50px;
+  width: 44px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 2px rgb(212 219 255 / 50%);
 }
 
 .btn-outline-success {
@@ -1695,7 +1699,7 @@ canvas {
   text-align: center;
   width: 90%;
 }
-.tool .nav-link img { margin: 0 auto; margin-bottom: 10px;}
+.tool .nav-link img { margin: 0 auto; margin-bottom: 3px;}
 .error {
   margin: 8px 0px;
   /* display: none; */
@@ -1849,6 +1853,12 @@ canvas {
   top: 8px;
   padding: 0px 9px;}
 .show{ display: block !important;}
+
+.group-cta .btn .fas{
+  font-size: 20px; 
+  margin-right:5px; 
+}
+
 @media (min-width: 200px) and (max-width: 768px) {
   .navbar-custom {
     margin-top: 0px;
@@ -1901,6 +1911,11 @@ canvas {
     margin-top: 15px;
     margin-left: 0px;
   }
+}
+
+.resume-screen{
+  margin-bottom:30px;
+  box-shadow: 0 5px 10px 5px rgb(212 219 255 / 50%);
 }
 
 @media (max-width: 1024px) {

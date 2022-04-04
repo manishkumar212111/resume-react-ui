@@ -3,7 +3,7 @@ import temp from "../../../scss/images/temp.svg";
 import layout from "../../../scss/images/layout.svg";
 import user from "../../../scss/images/user.svg";
 import color from "../../../scss/images/color.svg";
-import close from "../../../scss/images/close.svg";
+import close from "../../../scss/images/close.png";
 import font from "../../../scss/images/font.svg";
 import content from "../../../scss/images/content.svg";
 import Template from "./component/template";
@@ -35,7 +35,7 @@ function SideBar(props) {
   return (
     <>
       <div className="col-md-1">
-        <ul className="nav nav-pills mb-3 " id="pills-tab1" role="tablist" style={{position:"fixed" , width: "6%", fontSize: 9}}>
+        <ul className="nav nav-pills mb-3 " id="pills-tab1" role="tablist" style={{position:"fixed" , width: "6%", minWidth: "112px", fontSize: 11, cursor: "pointer", lineHeight: "1.4"}}>
           <li
             className="nav-item col-md-12 mt-3 "
             role="presentation"
@@ -44,7 +44,7 @@ function SideBar(props) {
             }
           >
             <div
-              className="nav-link bg-white text-center p-1"
+              className="nav-link bg-white text-center p-2"
               id="pills-home-tab"
               data-toggle="pill"
               href="#f1"
@@ -62,7 +62,7 @@ function SideBar(props) {
             onClick={() => handleSideBarClick(type == "layout" ? "" : "layout")}
           >
             <div
-              className="nav-link  p-1 bg-white  text-center"
+              className="nav-link  p-2 bg-white  text-center"
               id="pills-profile-tab "
               data-toggle="pill"
               href="#f2"
@@ -86,7 +86,7 @@ function SideBar(props) {
             }
           >
             <div
-              className="nav-link  p-1 bg-white  text-center"
+              className="nav-link  p-2 bg-white  text-center"
               id="pills-contact-tab"
               data-toggle="pill"
               href="#f4"
@@ -104,7 +104,7 @@ function SideBar(props) {
             onClick={() => handleSideBarClick(type == "font" ? "" : "font")}
           >
             <div
-              className="nav-link  p-1 bg-white  text-center"
+              className="nav-link  p-2 bg-white  text-center"
               id="pills-contact-tab "
               data-toggle="pill"
               href="#f5"
@@ -122,7 +122,7 @@ function SideBar(props) {
             onClick={() => handleSideBarClick(type == "content" ? "" : "content")}
           >
             <div
-              className="nav-link  p-1 bg-white  text-center"
+              className="nav-link  p-2 bg-white  text-center"
               id="pills-contact-tab "
               data-toggle="pill"
               href="#f5"
@@ -141,7 +141,7 @@ function SideBar(props) {
         </ul>
       </div>
       {type && type !== "content" && <div className="sideBarContent rmf_thin_scroll_t">   
-      <img style={{ float : "right", margin:20, cursor: "pointer" }} onClick={() => setType("")} height="18" src={close}></img>
+      <img className="sidebarClose" onClick={() => setType("")} src={close}></img>
         <div className="innerSidebar ">
         {type == "template" && (
           <div
@@ -178,7 +178,7 @@ function SideBar(props) {
 
         {type == "font" && (
           <div
-            className="col-md-12 bg-white pb-5 inner-tab"
+            className="col-md-12 bg-white inner-tab"
             id="f1"
             role="tabpanel"
             aria-labelledby="pills-home-tab"
@@ -210,7 +210,7 @@ function SideBar(props) {
         )}
         {type == "layout" && (
           <div
-            className="col-md-12 bg-white pb-5 inner-tab inner-tab"
+            className="col-md-12 bg-white pb-5 inner-tab"
             id="f1"
             role="tabpanel"
             aria-labelledby="pills-home-tab"
