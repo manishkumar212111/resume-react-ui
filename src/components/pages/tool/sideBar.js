@@ -35,7 +35,7 @@ function SideBar(props) {
   return (
     <>
       <div className="col-md-1">
-        <ul className="nav nav-pills mb-3 " id="pills-tab1" role="tablist" style={{position:"fixed" , width: "6%", minWidth: "112px", fontSize: 11, cursor: "pointer", lineHeight: "1.4"}}>
+        <ul className="nav nav-pills mb-3 sidebar-nav" id="pills-tab1" role="tablist" style={{position:"fixed" , width: "6%", minWidth: "112px", fontSize: 11, cursor: "pointer", lineHeight: "1.4"}}>
           <li
             className="nav-item col-md-12 mt-3 "
             role="presentation"
