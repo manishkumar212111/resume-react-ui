@@ -67,10 +67,12 @@ font-family: 'Verdana';
   }
   h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 25px;
+      font-size: 34px;
       line-height: 33px;      
-      letter-spacing: 0.15em;
+      letter-spacing: 0.10em;
       margin-bottom: 15px;
+      font-weight: 400;
+      word-break: break-all;
   }
   *, *:after , *:before {
     box-sizing: border-box;
@@ -118,6 +120,10 @@ font-family: 'Verdana';
             top: 3px;            
           }
         }
+      }
+      .resumePosTitle {        
+        font-size: 14px; 
+        line-height: 14px;
       }
     }
     .resumeRight2{
@@ -174,6 +180,10 @@ font-family: 'Verdana';
           }
         }
       }
+      .resumePosTitle {        
+        font-size: 15px; 
+        line-height: 15px;
+      }
     }
     .resumeRight2{
       .resumeContacts {
@@ -223,6 +233,10 @@ font-family: 'Verdana';
             top: 3px;            
           }
         }
+      }
+      .resumePosTitle {        
+        font-size: 17px; 
+        line-height: 17px;
       }
     }
     .resumeRight2{
@@ -300,7 +314,7 @@ font-family: 'Verdana';
   h4 {    
     font-size: 20px;
     font-weight: 600;    
-    line-height: 16px;
+    line-height: normal;
     letter-spacing: 0.1em;    
     margin-bottom: 18px;
     padding-bottom: 10px;
@@ -350,7 +364,7 @@ font-family: 'Verdana';
       display: block;
       font-weight: bold;
       letter-spacing: 0.1em;      
-      text-transform: uppercase;
+      //text-transform: uppercase;
       margin-bottom: 5px;
     }
     .resumeUniName {
@@ -364,6 +378,10 @@ font-family: 'Verdana';
       span {
         display: block;
       }
+    }
+    .resumelocation{
+      display: block;
+      margin-bottom:5px;
     }
     .resumeAwardOrg {
       text-transform: capitalize;
@@ -395,18 +413,32 @@ font-family: 'Verdana';
     .resumEducationInfo {
       margin-bottom: 0;
       padding: 0 20px 20px;
-      position: relative;
-      border-left: 1px solid #DADADA;
-      &:before {
+      position: relative;      
+
+      &:before{
+        content: "";
         position: absolute;
-        width: 6px;
-        height: 6px;
-        left: -3.5px;
-        top: 0;
-        background: #000000;
-        content: '';
+        width: 9px;
+        height: 9px;
+        left: 0px;
+        top: 3px;
+        display: block;
+        background: #000;
         border-radius: 50%;
+        z-index: 1;
       }
+      &:after{
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        left: 4px;
+        top: 4px;      
+        background: #cccccc;
+        border-radius: 50%;
+        z-index: 0;
+      }
+
       &:last-child {
         padding-bottom: 5px;
         margin-bottom: 25px;
@@ -453,10 +485,7 @@ font-family: 'Verdana';
       position: absolute;
       right: 0;
       top: 1px;
-    }
-    .resumeSkillsTitle{
-      line-height: 1;
-    }
+    }    
 
     li {      
       margin-bottom: 10px;
@@ -502,16 +531,20 @@ font-family: 'Verdana';
     ul {
       padding-inline-start: 0px;
       list-style: none;
+      display: flex;
+      flex-wrap: wrap;      
+
       li {
-          width: 49%;
-          float: left;          
+          width: 48%;
+          padding:0 10px;
           letter-spacing: 0.02em;
           color: #000000;
           margin-bottom: 16px;
           position: relative;
-          padding-left: 26px;
+          padding-left: 24px;
           vertical-align: top; 
-          word-break: break-all; 
+          word-break: break-all;
+
           i {
             //font-size: 10px;
             color: rgba(0, 0, 0, 0.5);
@@ -520,6 +553,13 @@ font-family: 'Verdana';
             position: absolute;
             left: 0px;
             top: 2px;            
+          }
+
+          &:nth-child(odd) {
+            margin-right:1%;
+          }
+          &:nth-child(even) {
+            margin-left:1%;
           }
       }
     }
