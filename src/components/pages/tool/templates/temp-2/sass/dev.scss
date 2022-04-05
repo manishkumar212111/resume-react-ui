@@ -151,6 +151,23 @@ font-family: 'Verdana';
           left: 2px;
           top: 4px;          
         }
+        .resumeRightLoc,
+        .resumeComName{
+          font-size: 11px;
+        }
+      }
+      .resumeConference{
+        .resumeConfRecBlk{
+          &:before {          
+            width: 5px;
+            height: 5px;          
+            top: 4px;          
+          }
+          &:after {          
+            left: 2px;
+            top: 4px;          
+          }
+        }
       }
     }
   }
@@ -206,6 +223,23 @@ font-family: 'Verdana';
           left: 2px;
           top: 4px;          
         }
+        .resumeRightLoc,
+        .resumeComName{
+          font-size: 12px;
+        }
+      }
+      .resumeConference{
+        .resumeConfRecBlk{
+          &:before {          
+            width: 5px;
+            height: 5px;          
+            top: 4px;          
+          }
+          &:after {          
+            left: 2px;
+            top: 4px;          
+          }
+        }
       }
     }
   }
@@ -249,7 +283,6 @@ font-family: 'Verdana';
           }
         }
       }
-
       .resumeJobTitleBlock{
         &:before {          
           width: 7px;
@@ -260,7 +293,24 @@ font-family: 'Verdana';
           left: 3px;
           top: 3px;          
         }
-      }      
+        .resumeRightLoc,
+        .resumeComName{
+          font-size: 13px;
+        }
+      }       
+      .resumeConference{
+        .resumeConfRecBlk{
+          &:before {
+            width: 7px;
+            height: 7px;          
+            top: 4px;          
+          }
+          &:after {
+            left: 3px;
+            top: 3px;          
+          }
+        }
+      }
     }
   }
 }
@@ -368,15 +418,16 @@ font-family: 'Verdana';
       margin-bottom: 5px;
     }
     .resumeUniName {
-      display: block;
-      font-weight: bold;
+      display: block;      
       letter-spacing: inherit;        
       margin-bottom: 5px;
+      //font-weight: bold;
       //line-height: 1; 
       //text-transform: uppercase;
 
       span {
         display: block;
+        margin-top: 5px;
       }
     }
     .resumelocation{
@@ -637,13 +688,20 @@ font-family: 'Verdana';
       color: #000;
       //margin-bottom: 4px;
     }
-    .resumeRightLoc {
-        //font-weight: 700;
+    .resumeRightLoc {        
         font-size: 14px;
-        //line-height: 13px;
         letter-spacing: .02em;
-        //color: #646464;
         margin-bottom: 10px;
+        //font-weight: 700;
+        //line-height: 13px;        
+        //color: #646464;
+        
+        ol{
+          padding-left: 20px;
+          li{
+            padding: 5px 0;
+          }
+        }
 
         &.date{
           font-weight: 700;
@@ -726,8 +784,12 @@ font-family: 'Verdana';
       }
     }
   }
+  .resumeExperince{
+    margin-bottom: 30px;
+  }
   .resumeConference {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+
     .resumeConfRecBlk {      
       font-weight: 700;
       font-size: 8px;
@@ -737,20 +799,33 @@ font-family: 'Verdana';
       padding-left: 17px;
       padding-bottom: 15px;
       position: relative;
-      border-left: 1px solid #DADADA;
+      &:before{
+        content: "";
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        left: 0px;
+        top: 3px;
+        display: block;
+        background: #000;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      &:after{
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        left: 4px;
+        top: 4px;      
+        background: #cccccc;
+        border-radius: 50%;
+        z-index: 0;
+      }   
       &:last-child {
         padding-bottom: 0;
       }
-      &:before {
-        content: '';
-        top: 0;
-        left: -3.5px;
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: #000000;
-        border-radius:50%;
-      }
+      
       .title {        
         text-transform: uppercase;
         display: flex;
@@ -763,21 +838,36 @@ font-family: 'Verdana';
         font-weight: 400;
         color: #888888;
         line-height: 15px;
+        margin-bottom:5px;
       }
       .description {
-        padding-left: 12px;
+        //padding-left: 12px;
         position: relative;
-        &:before {
-          content: "";
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background: #646464;
-          display: inline-block;
-          position: absolute;
-          left: 4px;
-          top: 5px;
+
+        ul{
+          padding: 0;
+          margin: 0;
+          list-style: none;
+
+          li{
+            position: relative;
+            padding: 0 0 0 10px;
+            margin: 5px 0 5px 10px;
+
+            &:before {
+              content: "";
+              width: 4px;
+              height: 4px;
+              border-radius: 50%;
+              background: #646464;
+              display: inline-block;
+              position: absolute;
+              left: 0px;
+              top: 8px;
+            }
+          }
         }
+        
       }
       .link {          
           font-size: 10px;
@@ -804,6 +894,7 @@ font-family: 'Verdana';
         }
       }
     }
+
     &.resumeReferene {
       .description, .location {
         color: #646464;
